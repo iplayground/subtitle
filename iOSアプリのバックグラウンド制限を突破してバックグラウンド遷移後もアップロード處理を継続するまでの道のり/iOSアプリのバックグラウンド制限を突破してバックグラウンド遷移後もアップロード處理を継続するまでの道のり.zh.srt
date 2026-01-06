@@ -768,7 +768,7 @@ ok
 
 193
 00:14:56,900 --> 00:14:59,600
-PictuireInPictureController 必須已被初始化
+PictureInPictureController 必須已被初始化
 
 194
 00:15:00,200 --> 00:15:00,700
@@ -872,7 +872,7 @@ Delegate 的程式碼大概是長這樣
 
 219
 00:16:30,200 --> 00:16:33,770
-然後，Pictuire In Picutre 的 UI 是這樣
+然後，Picture In Picutre 的 UI 是這樣
 
 220
 00:16:34,270 --> 00:16:37,670
@@ -1484,11 +1484,11 @@ UI 方面也或多或少會受到一些限制
 
 372
 00:26:03,900 --> 00:26:07,700
-透過 completedUnitedCount 這個變數
+透過 completedUnitCount 這個變數
 
 373
 00:26:07,700 --> 00:26:10,470
-和 totalUnitedCount 這個變數
+和 totalUnitCount 這個變數
 
 374
 00:26:10,470 --> 00:26:18,770
