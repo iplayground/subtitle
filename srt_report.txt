@@ -1,5 +1,5 @@
 ❌ **SRT Format Validation Failed**
 
-- `./大規模アプリにおけるXcode_Previews実用化までの道のり/大規模アプリにおけるXcode_Previews実用化までの道のり.ja.srt`: Block 362: line 1446 start time overlaps with previous block 361 (previous end at line 1442)
+- `./iosdc2025/列車行程追跡アルゴリズムを書こう/列車行程追跡アルゴリズムを書こう.jp.srt`: Block 26: line 102 start time overlaps with previous block 25 (previous end at line 98)
 
 Please fix the issues above and push again to re-run the check.
