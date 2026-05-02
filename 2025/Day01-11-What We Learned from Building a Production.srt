@@ -1,0 +1,1376 @@
+1
+00:00:04,000 --> 00:00:09,000
+那接下來要介紹的是 vocus 的 Mobile Product Leader YC Hsu.
+
+2
+00:00:09,000 --> 00:00:16,000
+他熱衷於為創作者打造令人驚艷且具有影響力的產品
+
+3
+00:00:16,000 --> 00:00:22,000
+那，剛剛提到的，我們這場演講是以英文來進行的哦！
+
+4
+00:00:22,000 --> 00:00:24,000
+讓我們歡迎 YC，謝謝
+
+5
+00:00:30,000 --> 00:00:37,000
+Okay. Hello, everyone.
+
+6
+00:00:37,000 --> 00:00:42,000
+My name is YC, and I'm from vocus, which is 方格子.
+
+7
+00:00:42,000 --> 00:00:47,000
+And I'm very happy to be here as one of the speakers at iPlayground.
+
+8
+00:00:47,000 --> 00:00:53,000
+And a couple months ago, I went to Tokyo for the try!Swift Tokyo Conference.
+
+9
+00:00:53,000 --> 00:00:58,000
+And I was so inspired by all the sessions and all the people I met there.
+
+10
+00:00:58,000 --> 00:01:06,000
+So after that, I was like, what if I could share our journey of adopting TCA in our production app?
+
+11
+00:01:06,000 --> 00:01:12,000
+And not only for Taiwanese audience, but also for people from other countries.
+
+12
+00:01:12,000 --> 00:01:17,000
+So that's why I'm here. And that's why I choose to give this talk in English.
+
+13
+00:01:17,000 --> 00:01:22,000
+So I hope you guys enjoy my sharing and also enjoy all the great sessions during these two days.
+
+14
+00:01:23,000 --> 00:01:29,000
+Okay. So first of all, let me introduce myself.
+
+15
+00:01:29,000 --> 00:01:32,000
+My name is YC, or you can call me Yi-chin.
+
+16
+00:01:32,000 --> 00:01:35,000
+I'm currently the mobile product lead at vocus.
+
+17
+00:01:35,000 --> 00:01:40,000
+So I'm product manager now, but I'm also an iOS developer.
+
+18
+00:01:40,000 --> 00:01:44,000
+And I've been working with TCA for over one and a half years,
+
+19
+00:01:44,000 --> 00:01:49,000
+including a personal side project called Check-in Box and two production apps.
+
+20
+00:01:49,000 --> 00:01:57,000
+And I was deeply involved in building the whole foundation of our vocus iOS code base as well.
+
+21
+00:01:57,000 --> 00:02:00,000
+We are building product for creator economy,
+
+22
+00:02:00,000 --> 00:02:06,000
+which is we are helping creators to find their 1,000 true fans on our platform
+
+23
+00:02:06,000 --> 00:02:10,000
+so that the creators can publish their own work,
+
+24
+00:02:10,000 --> 00:02:16,000
+mostly are articles, engage with their fans and monetize their content,
+
+25
+00:02:17,000 --> 00:02:21,000
+which we call it 內容變現 or 知識變現.
+
+26
+00:02:21,000 --> 00:02:25,000
+And actually, we have a website, but we don't have a mobile app yet.
+
+27
+00:02:25,000 --> 00:02:30,000
+So we are going to launch our iOS app in Q4 this year, hopefully.
+
+28
+00:02:30,000 --> 00:02:36,000
+And of course, we are building this app with SwiftUI, TCA, and Tuist,
+
+29
+00:02:36,000 --> 00:02:39,000
+which is a Xcode project management tool.
+
+30
+00:02:39,000 --> 00:02:43,000
+And I will focus more on TCA in today's sharing.
+
+31
+00:02:43,000 --> 00:02:45,000
+So back to my topic today,
+
+32
+00:02:45,000 --> 00:02:50,000
+I'm going to share what we learned from building a production app with TCA.
+
+33
+00:02:50,000 --> 00:02:54,000
+And I would like to start with this simple question.
+
+34
+00:02:54,000 --> 00:03:00,000
+What is the difference between building a personal app and building a production app?
+
+35
+00:03:00,000 --> 00:03:03,000
+From my perspective, there are three differences.
+
+36
+00:03:03,000 --> 00:03:06,000
+So let me show you.
+
+37
+00:03:06,000 --> 00:03:09,000
+The first difference is the mental model.
+
+38
+00:03:09,000 --> 00:03:14,000
+So when it's your side project, you are the only one developer, right?
+
+39
+00:03:14,000 --> 00:03:17,000
+So you are the iOS developer, you are the product manager,
+
+40
+00:03:17,000 --> 00:03:19,000
+you are the backend engineer.
+
+41
+00:03:19,000 --> 00:03:22,000
+So you know everything, you can do whatever you want,
+
+42
+00:03:22,000 --> 00:03:25,000
+everything lives in your head.
+
+43
+00:03:25,000 --> 00:03:30,000
+But in a team, every decision has to make sense to someone else.
+
+44
+00:03:30,000 --> 00:03:33,000
+So you are not just writing code anymore.
+
+45
+00:03:33,000 --> 00:03:36,000
+You are writing the shared understanding.
+
+46
+00:03:37,000 --> 00:03:41,000
+And the second difference is the mentalibility.
+
+47
+00:03:41,000 --> 00:03:43,000
+When it's in your personal app,
+
+48
+00:03:43,000 --> 00:03:47,000
+you can hack everything to make it work today.
+
+49
+00:03:47,000 --> 00:03:50,000
+But in production, you have to write code
+
+50
+00:03:50,000 --> 00:03:54,000
+which your team can maintain for years, for long term,
+
+51
+00:03:54,000 --> 00:03:57,000
+not just something that works right now.
+
+52
+00:03:57,000 --> 00:04:02,000
+So you are building an app from quick hacks to sustainable code.
+
+53
+00:04:03,000 --> 00:04:07,000
+And the third difference is the feature complexity.
+
+54
+00:04:07,000 --> 00:04:11,000
+In a personal app, features are mostly simple.
+
+55
+00:04:11,000 --> 00:04:14,000
+But in production, everything changes.
+
+56
+00:04:14,000 --> 00:04:18,000
+You have more complicated features like payment,
+
+57
+00:04:18,000 --> 00:04:21,000
+like you have to do the event tracking,
+
+58
+00:04:21,000 --> 00:04:24,000
+which means you have more third-party dependencies
+
+59
+00:04:24,000 --> 00:04:28,000
+like Firebase, Mixpanel, or AppsFlyer, something like that.
+
+60
+00:04:29,000 --> 00:04:35,000
+So you are building an app from simple ideas to real-world complexity.
+
+61
+00:04:38,000 --> 00:04:43,000
+So making architectural decisions is never easy, right?
+
+62
+00:04:43,000 --> 00:04:47,000
+In production, architecture is not just about elegance.
+
+63
+00:04:47,000 --> 00:04:50,000
+It is all about survival.
+
+64
+00:04:50,000 --> 00:04:53,000
+It is about how we manage complexity,
+
+65
+00:04:53,000 --> 00:04:56,000
+how we avoid regressions,
+
+66
+00:04:56,000 --> 00:05:00,000
+and how we onboard new teammates without fear.
+
+67
+00:05:00,000 --> 00:05:04,000
+And that's why we started to look seriously at TCA.
+
+68
+00:05:04,000 --> 00:05:07,000
+So let me share our experience.
+
+69
+00:05:07,000 --> 00:05:10,000
+Alright, so why we chose TCA?
+
+70
+00:05:10,000 --> 00:05:13,000
+Here are three big reasons.
+
+71
+00:05:13,000 --> 00:05:16,000
+The first reason is the maintainability.
+
+72
+00:05:16,000 --> 00:05:19,000
+Because of the composable modules,
+
+73
+00:05:19,000 --> 00:05:23,000
+features in production apps become messy really fast.
+
+74
+00:05:23,000 --> 00:05:28,000
+But with reducers, we can break the features into small pieces.
+
+75
+00:05:28,000 --> 00:05:31,000
+And each piece has its own logic.
+
+76
+00:05:31,000 --> 00:05:34,000
+It is reusable, it is testable,
+
+77
+00:05:34,000 --> 00:05:37,000
+and of course, it is composable.
+
+78
+00:05:37,000 --> 00:05:40,000
+So it won't interfere with each other.
+
+79
+00:05:40,000 --> 00:05:45,000
+That means engineers can work on different parts at the same time
+
+80
+00:05:45,000 --> 00:05:48,000
+without running into conflict.
+
+81
+00:05:49,000 --> 00:05:52,000
+And the second reason,
+
+82
+00:05:52,000 --> 00:05:55,000
+which I think is the most important one,
+
+83
+00:05:55,000 --> 00:05:58,000
+is having a shared mental model.
+
+84
+00:05:58,000 --> 00:06:02,000
+TCA's core idea is the unidirectional data flow,
+
+85
+00:06:02,000 --> 00:06:04,000
+單一事件流.
+
+86
+00:06:04,000 --> 00:06:08,000
+So that means everyone on the team can see the same picture.
+
+87
+00:06:08,000 --> 00:06:11,000
+So when you look at the code,
+
+88
+00:06:11,000 --> 00:06:13,000
+it is very clear.
+
+89
+00:06:13,000 --> 00:06:17,000
+The view sends an action to the reducer.
+
+90
+00:06:17,000 --> 00:06:20,000
+Then the state changes,
+
+91
+00:06:20,000 --> 00:06:23,000
+and the view updates.
+
+92
+00:06:23,000 --> 00:06:26,000
+Even with some side effects, like API calls,
+
+93
+00:06:26,000 --> 00:06:30,000
+we can still see the result come back as an action
+
+94
+00:06:30,000 --> 00:06:33,000
+into a reducer again.
+
+95
+00:06:33,000 --> 00:06:36,000
+So everything is expected.
+
+96
+00:06:36,000 --> 00:06:39,000
+There is no guessing and no surprises.
+
+97
+00:06:39,000 --> 00:06:43,000
+And the second benefit of shared mental model is that
+
+98
+00:06:43,000 --> 00:06:47,000
+the new member can learn and understand the code base faster.
+
+99
+00:06:47,000 --> 00:06:50,000
+Even code reviews get more easier
+
+100
+00:06:50,000 --> 00:06:53,000
+because we all speak the same language, right?
+
+101
+00:06:53,000 --> 00:06:56,000
+So the discussion focuses more on the problem,
+
+102
+00:06:56,000 --> 00:07:00,000
+not on trying to understand how the code even works.
+
+103
+00:07:02,000 --> 00:07:05,000
+And the third reason is the testability.
+
+104
+00:07:05,000 --> 00:07:08,000
+In production, things change all the time.
+
+105
+00:07:08,000 --> 00:07:10,000
+So TCA makes it safer.
+
+106
+00:07:10,000 --> 00:07:12,000
+The side effects are clear,
+
+107
+00:07:12,000 --> 00:07:15,000
+and TCA gives you so many useful testing tools
+
+108
+00:07:15,000 --> 00:07:18,000
+for you to write unit tests.
+
+109
+00:07:18,000 --> 00:07:21,000
+So it makes the app more reliable
+
+110
+00:07:21,000 --> 00:07:24,000
+and save us from surprises later.
+
+111
+00:07:24,000 --> 00:07:28,000
+But, of course, TCA is not magic.
+
+112
+00:07:28,000 --> 00:07:31,000
+We all knew that there would be a learning curve
+
+113
+00:07:31,000 --> 00:07:35,000
+or some setup cost when you adopt TCA in your app.
+
+114
+00:07:35,000 --> 00:07:40,000
+So for us, every architecture comes with the trade-off.
+
+115
+00:07:40,000 --> 00:07:44,000
+So there's no single right or wrong answer here.
+
+116
+00:07:44,000 --> 00:07:48,000
+You've probably heard about the questions about TCA before,
+
+117
+00:07:48,000 --> 00:07:51,000
+like the learning curve is way too steep,
+
+118
+00:07:51,000 --> 00:07:55,000
+or there's just too much boilerplate code,
+
+119
+00:07:55,000 --> 00:07:59,000
+or isn't it just over-engineering for most of the apps?
+
+120
+00:07:59,000 --> 00:08:02,000
+And honestly, they are all fair concerns.
+
+121
+00:08:02,000 --> 00:08:05,000
+And after about, like, five months
+
+122
+00:08:05,000 --> 00:08:08,000
+using TCA in vocus's production app,
+
+123
+00:08:08,000 --> 00:08:12,000
+I think we have some answers to those questions.
+
+124
+00:08:12,000 --> 00:08:15,000
+So, what we actually learn from TCA.
+
+125
+00:08:16,000 --> 00:08:20,000
+The first learning is that the learning curve is steep,
+
+126
+00:08:20,000 --> 00:08:25,000
+but for us, I think it is not as steep as you might think.
+
+127
+00:08:25,000 --> 00:08:28,000
+And yes, the initial learning cost is really high,
+
+128
+00:08:28,000 --> 00:08:31,000
+because you have to learn what is the reducer,
+
+129
+00:08:31,000 --> 00:08:35,000
+what is scope, side effect, dependencies.
+
+130
+00:08:35,000 --> 00:08:38,000
+But once you get over that learning phase,
+
+131
+00:08:38,000 --> 00:08:43,000
+it really pays off, because the team can move faster,
+
+132
+00:08:43,000 --> 00:08:46,000
+and you can refactor in a safer way,
+
+133
+00:08:46,000 --> 00:08:49,000
+and onboarding is more smoother than ever.
+
+134
+00:08:49,000 --> 00:08:53,000
+So for us, that is a trade-off, which is worth making.
+
+135
+00:08:55,000 --> 00:08:57,000
+And if you want to learn TCA,
+
+136
+00:08:57,000 --> 00:09:00,000
+it is much more easier than it used to be.
+
+137
+00:09:00,000 --> 00:09:02,000
+Like these days, there are more and more
+
+138
+00:09:02,000 --> 00:09:05,000
+free learning resources available.
+
+139
+00:09:05,000 --> 00:09:09,000
+You don't even need to subscribe to Point-Free to learn TCA.
+
+140
+00:09:09,000 --> 00:09:11,000
+For example, if you are in Taiwan,
+
+141
+00:09:11,000 --> 00:09:13,000
+everyone knows 13 (Ethan Huang),
+
+142
+00:09:13,000 --> 00:09:16,000
+and he has a fantastic free YouTube series
+
+143
+00:09:16,000 --> 00:09:20,000
+that works through the whole TCA in a very friendly way.
+
+144
+00:09:21,000 --> 00:09:24,000
+And actually, I realized that
+
+145
+00:09:24,000 --> 00:09:28,000
+for most of the experienced developers like you guys,
+
+146
+00:09:28,000 --> 00:09:32,000
+it was much easier than picking up a brand new feature
+
+147
+00:09:32,000 --> 00:09:35,000
+from Apple's WWDC videos.
+
+148
+00:09:35,000 --> 00:09:38,000
+And by the way, I think Tuist is much more complicated
+
+149
+00:09:38,000 --> 00:09:40,000
+than learning TCA.
+
+150
+00:09:40,000 --> 00:09:42,000
+So the learning curve is steep,
+
+151
+00:09:42,000 --> 00:09:45,000
+but not as steep as you might think.
+
+152
+00:09:47,000 --> 00:09:50,000
+And our second learning is more code at first
+
+153
+00:09:50,000 --> 00:09:52,000
+and faster progress later.
+
+154
+00:09:52,000 --> 00:09:56,000
+At first, TCA might look like it needs a lot of code
+
+155
+00:09:56,000 --> 00:09:58,000
+to get started, which is true,
+
+156
+00:09:58,000 --> 00:10:00,000
+because you have to define the state,
+
+157
+00:10:00,000 --> 00:10:03,000
+the actions, reducers, the view,
+
+158
+00:10:03,000 --> 00:10:05,000
+and for some people,
+
+159
+00:10:05,000 --> 00:10:08,000
+that feels like overkill for a simple feature.
+
+160
+00:10:09,000 --> 00:10:11,000
+But in our team, we built a snippet
+
+161
+00:10:11,000 --> 00:10:14,000
+that helps us generate everything we need
+
+162
+00:10:14,000 --> 00:10:17,000
+for a new feature, and just in seconds,
+
+163
+00:10:17,000 --> 00:10:20,000
+including the reducer, the view,
+
+164
+00:10:20,000 --> 00:10:22,000
+the state, and the view action between them.
+
+165
+00:10:22,000 --> 00:10:25,000
+So when we need to build a new feature,
+
+166
+00:10:25,000 --> 00:10:27,000
+we don't have to start from scratch.
+
+167
+00:10:27,000 --> 00:10:31,000
+We just use the snippet and modify what we need,
+
+168
+00:10:31,000 --> 00:10:32,000
+and that's it.
+
+169
+00:10:32,000 --> 00:10:36,000
+So more code at first, but faster progress later.
+
+170
+00:10:39,000 --> 00:10:44,000
+And the third learning is the testing happens naturally.
+
+171
+00:10:45,000 --> 00:10:47,000
+We are not suddenly become more disciplined.
+
+172
+00:10:47,000 --> 00:10:50,000
+It is just because the testing became easier
+
+173
+00:10:50,000 --> 00:10:54,000
+and more natural, thanks to TCA's testing support.
+
+174
+00:10:55,000 --> 00:10:59,000
+So with TCA, the test flow is very clear.
+
+175
+00:10:59,000 --> 00:11:01,000
+The first step is arrange, right?
+
+176
+00:11:01,000 --> 00:11:04,000
+So in TCA, we set up a test store,
+
+177
+00:11:04,000 --> 00:11:08,000
+and then we send an action to that reducer,
+
+178
+00:11:08,000 --> 00:11:10,000
+which is a test store.
+
+179
+00:11:10,000 --> 00:11:13,000
+And the third step, we check the state mutation
+
+180
+00:11:13,000 --> 00:11:16,000
+after the action is sent into the reducer.
+
+181
+00:11:17,000 --> 00:11:21,000
+So this simple pattern lowers the barrier so much.
+
+182
+00:11:22,000 --> 00:11:25,000
+So we're just writing unit tests naturally.
+
+183
+00:11:25,000 --> 00:11:27,000
+And not only for unit tests,
+
+184
+00:11:27,000 --> 00:11:31,000
+we also use snapshot testing for data translation.
+
+185
+00:11:31,000 --> 00:11:33,000
+And in the future, we plan to snapshot
+
+186
+00:11:33,000 --> 00:11:36,000
+the shared UI component as well.
+
+187
+00:11:38,000 --> 00:11:42,000
+So we tested more just because it was easy,
+
+188
+00:11:42,000 --> 00:11:44,000
+so it happens naturally.
+
+189
+00:11:46,000 --> 00:11:49,000
+And the fourth learning is Tuist
+
+190
+00:11:49,000 --> 00:11:51,000
+make scaling module effortless.
+
+191
+00:11:52,000 --> 00:11:57,000
+We currently have like 25 to 30 modules in our code base.
+
+192
+00:11:57,000 --> 00:11:58,000
+It seems a lot,
+
+193
+00:11:58,000 --> 00:12:01,000
+but Tuist makes scaling modules very easy.
+
+194
+00:12:01,000 --> 00:12:03,000
+When we need a new module,
+
+195
+00:12:03,000 --> 00:12:05,000
+we simply run the Tuist scaffold
+
+196
+00:12:05,000 --> 00:12:08,000
+with our predefined template.
+
+197
+00:12:08,000 --> 00:12:12,000
+This creates a consistent module structure instantly.
+
+198
+00:12:12,000 --> 00:12:15,000
+And then we use the Tuist edit
+
+199
+00:12:15,000 --> 00:12:18,000
+to configure the dependency and build settings
+
+200
+00:12:18,000 --> 00:12:19,000
+for that module.
+
+201
+00:12:20,000 --> 00:12:22,000
+And finally, we use Tuist generate
+
+202
+00:12:22,000 --> 00:12:25,000
+to compose everything we need together
+
+203
+00:12:25,000 --> 00:12:27,000
+into a Xcode project.
+
+204
+00:12:28,000 --> 00:12:31,000
+And for us, the best thing about Tuist
+
+205
+00:12:31,000 --> 00:12:36,000
+is how fast it makes when we create a new module.
+
+206
+00:12:36,000 --> 00:12:40,000
+So in the past, adding a new module was a lot of ceremony.
+
+207
+00:12:40,000 --> 00:12:42,000
+You had to edit the project file.
+
+208
+00:12:42,000 --> 00:12:46,000
+You had to add target and tweak some build settings.
+
+209
+00:12:46,000 --> 00:12:48,000
+It took a lot of time.
+
+210
+00:12:48,000 --> 00:12:49,000
+But now with Tuist,
+
+211
+00:12:49,000 --> 00:12:53,000
+it is literally just one command and the module is ready.
+
+212
+00:12:54,000 --> 00:12:57,000
+And everything is defined in Swift code, not YAML.
+
+213
+00:12:57,000 --> 00:13:00,000
+So it is also easy to understand and read.
+
+214
+00:13:00,000 --> 00:13:04,000
+So everyone on the team can understand what's going on.
+
+215
+00:13:06,000 --> 00:13:07,000
+So like what we said,
+
+216
+00:13:07,000 --> 00:13:11,000
+even we have like 25 modules in our code base,
+
+217
+00:13:11,000 --> 00:13:13,000
+there are never a burden
+
+218
+00:13:13,000 --> 00:13:16,000
+because Tuist makes scaling modules effortless.
+
+219
+00:13:18,000 --> 00:13:22,000
+And our next learning is the composable modules
+
+220
+00:13:22,000 --> 00:13:24,000
+makes everything really fast.
+
+221
+00:13:24,000 --> 00:13:26,000
+For example, in our project,
+
+222
+00:13:26,000 --> 00:13:28,000
+we have like a login module
+
+223
+00:13:28,000 --> 00:13:32,000
+for sign up, sign in and onboarding process.
+
+224
+00:13:32,000 --> 00:13:34,000
+And we have a design system module,
+
+225
+00:13:34,000 --> 00:13:37,000
+which is for share UI components
+
+226
+00:13:37,000 --> 00:13:39,000
+and a content card module
+
+227
+00:13:39,000 --> 00:13:44,000
+for handling some complex interaction on our article card.
+
+228
+00:13:44,000 --> 00:13:48,000
+So when we need to modify the login flow,
+
+229
+00:13:48,000 --> 00:13:51,000
+we only have to work inside the login module,
+
+230
+00:13:51,000 --> 00:13:53,000
+which is really fast.
+
+231
+00:13:53,000 --> 00:13:56,000
+And let me show you another real world scenario,
+
+232
+00:13:58,000 --> 00:14:01,000
+which is the design discussion.
+
+233
+00:14:01,000 --> 00:14:05,000
+And the photo was actually just taken two weeks ago.
+
+234
+00:14:05,000 --> 00:14:08,000
+It was me sitting next to our designer
+
+235
+00:14:08,000 --> 00:14:11,000
+and we are discussing the UI bottom padding
+
+236
+00:14:11,000 --> 00:14:13,000
+in different devices.
+
+237
+00:14:13,000 --> 00:14:14,000
+So during the discussion,
+
+238
+00:14:14,000 --> 00:14:18,000
+the designer and I could literally sitting side by side
+
+239
+00:14:18,000 --> 00:14:20,000
+and we open the SwiftUI preview
+
+240
+00:14:20,000 --> 00:14:23,000
+for building only for that module
+
+241
+00:14:23,000 --> 00:14:26,000
+and fine-tune the design together in real time.
+
+242
+00:14:28,000 --> 00:14:30,000
+So because the module was isolated,
+
+243
+00:14:30,000 --> 00:14:33,000
+so you don't need to build and run the whole app.
+
+244
+00:14:33,000 --> 00:14:36,000
+The build and feedback loop was extremely fast.
+
+245
+00:14:36,000 --> 00:14:39,000
+So making the collaboration much smoother
+
+246
+00:14:39,000 --> 00:14:41,000
+and much more productive.
+
+247
+00:14:43,000 --> 00:14:45,000
+And not only for faster,
+
+248
+00:14:45,000 --> 00:14:49,000
+composable module also make previews reliable.
+
+249
+00:14:49,000 --> 00:14:52,000
+Like what QCL just said before,
+
+250
+00:14:52,000 --> 00:14:54,000
+if you tried SwiftUI before,
+
+251
+00:14:54,000 --> 00:14:56,000
+you probably seen something like this.
+
+252
+00:14:56,000 --> 00:14:58,000
+When you put SwiftUI views
+
+253
+00:14:58,000 --> 00:15:01,000
+and the external dependencies like Firebase
+
+254
+00:15:01,000 --> 00:15:03,000
+in the same module,
+
+255
+00:15:04,000 --> 00:15:07,000
+then your SwiftUI preview may be crashed.
+
+256
+00:15:07,000 --> 00:15:10,000
+But when you separate the SwiftUI view
+
+257
+00:15:10,000 --> 00:15:12,000
+from those dependencies,
+
+258
+00:15:12,000 --> 00:15:14,000
+the preview not only run faster,
+
+259
+00:15:14,000 --> 00:15:18,000
+but also avoid those crashes entirely.
+
+260
+00:15:18,000 --> 00:15:21,000
+So it makes the preview not only faster,
+
+261
+00:15:21,000 --> 00:15:23,000
+but also reliable.
+
+262
+00:15:25,000 --> 00:15:27,000
+And our last learning is,
+
+263
+00:15:27,000 --> 00:15:29,000
+when we ran into problems,
+
+264
+00:15:30,000 --> 00:15:33,000
+most of the challenges came from SwiftUI,
+
+265
+00:15:33,000 --> 00:15:35,000
+not from TCA.
+
+266
+00:15:35,000 --> 00:15:39,000
+So things like the reuse behavior of SwiftUI list
+
+267
+00:15:39,000 --> 00:15:41,000
+or some rendering performance
+
+268
+00:15:41,000 --> 00:15:45,000
+in complex views or complex animations.
+
+269
+00:15:47,000 --> 00:15:48,000
+And to be honest,
+
+270
+00:15:48,000 --> 00:15:50,000
+it was frustrating at that moment.
+
+271
+00:15:50,000 --> 00:15:54,000
+But I think it is part of working with SwiftUI today.
+
+272
+00:15:54,000 --> 00:15:56,000
+So like what we said,
+
+273
+00:15:56,000 --> 00:15:59,000
+there is no single right answer here.
+
+274
+00:15:59,000 --> 00:16:01,000
+SwiftUI give us huge wins
+
+275
+00:16:01,000 --> 00:16:03,000
+in development speed,
+
+276
+00:16:03,000 --> 00:16:04,000
+the consistency,
+
+277
+00:16:04,000 --> 00:16:06,000
+and the maintainability.
+
+278
+00:16:06,000 --> 00:16:09,000
+But when you need pixel perfect performance
+
+279
+00:16:09,000 --> 00:16:11,000
+on complex interaction,
+
+280
+00:16:11,000 --> 00:16:13,000
+maybe you have to use the UIKit.
+
+281
+00:16:13,000 --> 00:16:15,000
+So there are always trade-off
+
+282
+00:16:15,000 --> 00:16:18,000
+between using SwiftUI or not.
+
+283
+00:16:20,000 --> 00:16:22,000
+You might ask,
+
+284
+00:16:22,000 --> 00:16:24,000
+should I use TCA in my project?
+
+285
+00:16:25,000 --> 00:16:27,000
+So here are some suggestions for you.
+
+286
+00:16:28,000 --> 00:16:30,000
+The first suggestion is
+
+287
+00:16:30,000 --> 00:16:33,000
+to make sure TCA is a good fit to your product.
+
+288
+00:16:33,000 --> 00:16:35,000
+At least for now,
+
+289
+00:16:35,000 --> 00:16:37,000
+TCA really comes alive
+
+290
+00:16:37,000 --> 00:16:39,000
+when you use it with SwiftUI.
+
+291
+00:16:39,000 --> 00:16:43,000
+So if your current app is still UIKit heavy,
+
+292
+00:16:43,000 --> 00:16:45,000
+it might not be the right time yet,
+
+293
+00:16:45,000 --> 00:16:47,000
+but that is totally okay.
+
+294
+00:16:47,000 --> 00:16:49,000
+But if you are starting a new project
+
+295
+00:16:49,000 --> 00:16:51,000
+or a new feature,
+
+296
+00:16:51,000 --> 00:16:54,000
+or you are already using SwiftUI in your app,
+
+297
+00:16:54,000 --> 00:16:56,000
+then TCA can be a strong choice
+
+298
+00:16:56,000 --> 00:16:58,000
+in that environment.
+
+299
+00:17:01,000 --> 00:17:03,000
+And my second suggestion is
+
+300
+00:17:03,000 --> 00:17:05,000
+to learn by building something small.
+
+301
+00:17:05,000 --> 00:17:07,000
+So don't just jump into
+
+302
+00:17:07,000 --> 00:17:09,000
+and try to rewrite your whole app.
+
+303
+00:17:09,000 --> 00:17:12,000
+Instead, you can start with a simple side project,
+
+304
+00:17:12,000 --> 00:17:14,000
+maybe even something personal.
+
+305
+00:17:14,000 --> 00:17:16,000
+It gives you more space and time
+
+306
+00:17:16,000 --> 00:17:19,000
+to explore what TCA can do for you
+
+307
+00:17:19,000 --> 00:17:21,000
+and without pressure.
+
+308
+00:17:22,000 --> 00:17:24,000
+And once you've done something,
+
+309
+00:17:24,000 --> 00:17:26,000
+you can even share your work with others.
+
+310
+00:17:26,000 --> 00:17:28,000
+And there's a showcase discussion
+
+311
+00:17:28,000 --> 00:17:30,000
+on the TCA's official GitHub repo
+
+312
+00:17:30,000 --> 00:17:33,000
+where people post their works.
+
+313
+00:17:33,000 --> 00:17:36,000
+So I actually shared my first TCA project there
+
+314
+00:17:36,000 --> 00:17:38,000
+one and a half years ago,
+
+315
+00:17:38,000 --> 00:17:40,000
+and it was just a small project,
+
+316
+00:17:40,000 --> 00:17:42,000
+but it gave me all the foundation
+
+317
+00:17:42,000 --> 00:17:44,000
+that I need when I move on
+
+318
+00:17:44,000 --> 00:17:46,000
+to the production app.
+
+319
+00:17:47,000 --> 00:17:49,000
+And my next suggestion is
+
+320
+00:17:49,000 --> 00:17:52,000
+to cultivate your own best practice.
+
+321
+00:17:52,000 --> 00:17:56,000
+So don't just try to copy TCA by the book.
+
+322
+00:17:56,000 --> 00:17:58,000
+Try it, refine it,
+
+323
+00:17:58,000 --> 00:18:01,000
+and make it fit to your team and product.
+
+324
+00:18:01,000 --> 00:18:03,000
+And sometimes the right tool
+
+325
+00:18:03,000 --> 00:18:05,000
+might not be TCA at all.
+
+326
+00:18:05,000 --> 00:18:08,000
+Like Point-Free has many useful tools
+
+327
+00:18:08,000 --> 00:18:10,000
+like the swift-sharing
+
+328
+00:18:10,000 --> 00:18:12,000
+for sharing state management,
+
+329
+00:18:12,000 --> 00:18:15,000
+or swift-dependencies for dependency management.
+
+330
+00:18:15,000 --> 00:18:18,000
+What matters is to find the best practice
+
+331
+00:18:18,000 --> 00:18:20,000
+that truly fits your team
+
+332
+00:18:20,000 --> 00:18:22,000
+and your product.
+
+333
+00:18:23,000 --> 00:18:26,000
+So if you are curious about TCA,
+
+334
+00:18:26,000 --> 00:18:28,000
+the best way to find out
+
+335
+00:18:28,000 --> 00:18:30,000
+if TCA works for you or not
+
+336
+00:18:30,000 --> 00:18:31,000
+is really simple.
+
+337
+00:18:31,000 --> 00:18:33,000
+To start small and build something
+
+338
+00:18:33,000 --> 00:18:36,000
+and see what you've learned along the way.
+
+339
+00:18:36,000 --> 00:18:39,000
+And that's been one of the biggest lessons
+
+340
+00:18:39,000 --> 00:18:42,000
+from my years working with TCA in my career.
+
+341
+00:18:43,000 --> 00:18:45,000
+So that's all for my sharing today.
+
+342
+00:18:45,000 --> 00:18:46,000
+Thanks for listening.
+
+343
+00:18:46,000 --> 00:18:49,000
+And I'll be happy to hear your story after the talk.
+
+344
+00:18:49,000 --> 00:18:51,000
+Thank you. Thank you so much.
+
