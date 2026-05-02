@@ -1,0 +1,1524 @@
+1
+00:00:12,600 --> 00:00:15,000
+接下來這位講者是遠從日本而來,
+
+2
+00:00:15,000 --> 00:00:20,000
+他是LY Corporation的iOS Engineer,Yuki Aki。
+
+3
+00:00:20,000 --> 00:00:24,000
+Yuki目前在LINE負責改善Build System,
+
+4
+00:00:24,000 --> 00:00:28,000
+他經常在各大會議分享Swift的開發心得,
+
+5
+00:00:28,000 --> 00:00:31,000
+同時也是多個開源專案的貢獻者,
+
+6
+00:00:31,000 --> 00:00:36,000
+包含Swift Compiler、fastlane還有XcodeGen。
+
+7
+00:00:36,000 --> 00:00:39,000
+今天的演講他會以英文進行,
+
+8
+00:00:39,000 --> 00:00:42,000
+就讓我們歡迎Yuki Aki。
+
+9
+00:00:54,300 --> 00:00:57,000
+比起薄荷巧克力，我還是更喜歡Xcode♡
+
+10
+00:01:04,000 --> 00:01:07,000
+I'm surprised. What happened?
+
+11
+00:01:07,000 --> 00:01:22,000
+你好，我是秋，because my mother is Chinese, so I little know Chinese self-introduction, but only it.
+
+12
+00:01:22,000 --> 00:01:27,000
+Hello everyone, this is Yuki from LY Corporation.
+
+13
+00:01:27,000 --> 00:01:31,000
+In this talk, I will address the Swift performance evolution,
+
+14
+00:01:31,000 --> 00:01:36,000
+and how we as a Swift developer can approach it.
+
+15
+00:01:36,000 --> 00:01:39,000
+Yeah, that is not my introduction,
+
+16
+00:01:39,000 --> 00:01:44,000
+because I want to introduce Swift, not me.
+
+17
+00:01:44,000 --> 00:01:48,000
+Great. So, today's agenda.
+
+18
+00:01:48,000 --> 00:01:51,000
+First, I'll explain the Swift multi-platform support
+
+19
+00:01:51,000 --> 00:01:53,000
+and runtime behind it,
+
+20
+00:01:53,000 --> 00:01:57,000
+without focusing on the performance.
+
+21
+00:01:57,000 --> 00:02:00,000
+Next, I'll touch on the challenges of array,
+
+22
+00:02:00,000 --> 00:02:03,000
+explain the fundamentals of Swift performance,
+
+23
+00:02:03,000 --> 00:02:05,000
+through how array works,
+
+24
+00:02:05,000 --> 00:02:08,000
+and show how InlineArray can help address those challenges,
+
+25
+00:02:08,000 --> 00:02:12,000
+as an example.
+
+26
+00:02:12,000 --> 00:02:15,000
+So next, finally, based on all that,
+
+27
+00:02:15,000 --> 00:02:19,000
+I'll explain what's important for us to be mindful of
+
+28
+00:02:19,000 --> 00:02:26,000
+and to understand about Swift evolution.
+
+29
+00:02:26,000 --> 00:02:31,000
+OK, so first, let's talk about Swift multi-platform support,
+
+30
+00:02:31,000 --> 00:02:38,000
+its runtime and performance aspects that come with them.
+
+31
+00:02:38,000 --> 00:02:40,000
+Oh, I found it.
+
+32
+00:02:40,000 --> 00:02:43,000
+So, Swift has been growing into a language
+
+33
+00:02:43,000 --> 00:02:48,000
+with potential across many platforms.
+
+34
+00:02:48,000 --> 00:02:51,000
+Of course, it's a mainstream language
+
+35
+00:02:51,000 --> 00:02:54,000
+on upper platforms like iOS, watchOS,
+
+36
+00:02:55,000 --> 00:02:59,000
+visionOS, macOS, and tvOS.
+
+37
+00:02:59,000 --> 00:03:02,000
+It's also available on the other operating systems
+
+38
+00:03:02,000 --> 00:03:04,000
+like Windows and Linux,
+
+39
+00:03:04,000 --> 00:03:07,000
+and even supports web development paradigms
+
+40
+00:03:07,000 --> 00:03:12,000
+like the Wasm.
+
+41
+00:03:12,000 --> 00:03:14,000
+And experimentally,
+
+42
+00:03:14,000 --> 00:03:17,000
+it's also moving towards supporting embedded systems,
+
+43
+00:03:17,000 --> 00:03:23,000
+which are more minimum and have stricter environments.
+
+44
+00:03:24,000 --> 00:03:26,000
+Furthermore, an Android work group
+
+45
+00:03:26,000 --> 00:03:28,000
+has been launched in the Swift community,
+
+46
+00:03:28,000 --> 00:03:30,000
+and adoption for Android development
+
+47
+00:03:30,000 --> 00:03:36,000
+is also progressing.
+
+48
+00:03:36,000 --> 00:03:37,000
+As you can see,
+
+49
+00:03:37,000 --> 00:03:40,000
+the Swift supports a wide range of platforms
+
+50
+00:03:40,000 --> 00:03:42,000
+and continues to evolve.
+
+51
+00:03:42,000 --> 00:03:43,000
+When it comes to understanding
+
+52
+00:03:43,000 --> 00:03:46,000
+its multi-platform nature and its performance,
+
+53
+00:03:46,000 --> 00:03:48,000
+what we really need to look at
+
+54
+00:03:48,000 --> 00:03:55,000
+is how Swift works under the platform.
+
+55
+00:03:55,000 --> 00:03:58,000
+A Swift program doesn't run on its own.
+
+56
+00:03:58,000 --> 00:04:03,000
+It needs an environment that makes it behave as like Swift.
+
+57
+00:04:03,000 --> 00:04:08,000
+In other words, it's a runtime.
+
+58
+00:04:08,000 --> 00:04:15,000
+This runtime is called libswiftCcore on most platforms.
+
+59
+00:04:15,000 --> 00:04:21,000
+So,what exactly does libswiftCcore do?
+
+60
+00:04:21,000 --> 00:04:25,000
+As I mentioned earlier, libswiftCcore is a Swift runtime.
+
+61
+00:04:25,000 --> 00:04:26,000
+In other words,
+
+62
+00:04:26,000 --> 00:04:32,000
+it's a foundation that enables Swift to run on a platform.
+
+63
+00:04:32,000 --> 00:04:34,000
+libswiftCcore mainly exists
+
+64
+00:04:34,000 --> 00:04:38,000
+to support Swift dynamic features.
+
+65
+00:04:38,000 --> 00:04:39,000
+In construct,
+
+66
+00:04:39,000 --> 00:04:41,000
+the compiler handles the static side
+
+67
+00:04:41,000 --> 00:04:43,000
+like checking your code correctness,
+
+68
+00:04:43,000 --> 00:04:50,000
+performing optimization and building.
+
+69
+00:04:50,000 --> 00:04:55,000
+Therefore, the dynamic refers to things like reflecting memory layers,
+
+70
+00:04:55,000 --> 00:04:56,000
+performing allocations,
+
+71
+00:04:56,000 --> 00:04:58,000
+and managing memory
+
+72
+00:04:58,000 --> 00:05:05,000
+through the automatic reference counting.
+
+73
+00:05:05,000 --> 00:05:08,000
+The way libswiftCcore is distributed
+
+74
+00:05:09,000 --> 00:05:14,000
+varies by the platform.
+
+75
+00:05:14,000 --> 00:05:15,000
+On Apple platform,
+
+76
+00:05:15,000 --> 00:05:17,000
+it's bundled with the OS.
+
+77
+00:05:17,000 --> 00:05:19,000
+This is why some features
+
+78
+00:05:19,000 --> 00:05:21,000
+of newer Swift versions aren't available
+
+79
+00:05:21,000 --> 00:05:26,000
+until you update to the latest OS.
+
+80
+00:05:26,000 --> 00:05:30,000
+The benefit of having the OS provided
+
+81
+00:05:30,000 --> 00:05:31,000
+is that each application
+
+82
+00:05:31,000 --> 00:05:34,000
+doesn't need to include the runtime
+
+83
+00:05:34,000 --> 00:05:40,000
+and prevents upsides from growing.
+
+84
+00:05:40,000 --> 00:05:41,000
+For Linux programs,
+
+85
+00:05:41,000 --> 00:05:43,000
+you can choose to link the runtime statically
+
+86
+00:05:43,000 --> 00:05:47,000
+or include it as dynamic library.
+
+87
+00:05:47,000 --> 00:05:49,000
+Unlike on Apple platform,
+
+88
+00:05:49,000 --> 00:05:51,000
+without considering the OS version,
+
+89
+00:05:51,000 --> 00:05:57,000
+you can use the latest Swift features right away.
+
+90
+00:05:57,000 --> 00:05:58,000
+On Windows,
+
+91
+00:05:58,000 --> 00:06:08,000
+the current approach is to bundle it with the app as a dynamic library.
+
+92
+00:06:08,000 --> 00:06:11,000
+So on the OS environments we've talked about,
+
+93
+00:06:11,000 --> 00:06:19,000
+the runtime set up the Swift execution environment for us.
+
+94
+00:06:19,000 --> 00:06:22,000
+However, the runtime is by no means small
+
+95
+00:06:22,000 --> 00:06:25,000
+and in environments like embedded systems
+
+96
+00:06:25,000 --> 00:06:27,000
+where memory and storage are limited,
+
+97
+00:06:27,000 --> 00:06:33,000
+including if it's not practical.
+
+98
+00:06:33,000 --> 00:06:35,000
+So Swift allows you to build a program
+
+99
+00:06:35,000 --> 00:06:37,000
+for an embedded system
+
+100
+00:06:37,000 --> 00:06:40,000
+including a much smaller Swift environment.
+
+101
+00:06:40,000 --> 00:06:46,000
+This is called Embedded Swift.
+
+102
+00:06:46,000 --> 00:06:49,000
+Embedded Swift is an executables tailored
+
+103
+00:06:49,000 --> 00:06:54,000
+for an embedded environments.
+
+104
+00:06:54,000 --> 00:06:58,000
+By dropping some dynamic features to reduce binary size,
+
+105
+00:06:58,000 --> 00:07:00,000
+it delivers smaller Swift programs
+
+106
+00:07:00,000 --> 00:07:04,000
+suitable for embedded systems.
+
+107
+00:07:04,000 --> 00:07:10,000
+So how does the Embedded Swift stay small?
+
+108
+00:07:10,000 --> 00:07:11,000
+As you know,
+
+109
+00:07:11,000 --> 00:07:13,000
+Swift offers a wide range of features
+
+110
+00:07:13,000 --> 00:07:20,000
+and some of them are especially tied to runtime.
+
+111
+00:07:20,000 --> 00:07:21,000
+For example,
+
+112
+00:07:21,000 --> 00:07:23,000
+features like untyped throw, reflection,
+
+113
+00:07:24,000 --> 00:07:26,000
+any and weak require runtime metadata
+
+114
+00:07:26,000 --> 00:07:28,000
+and type information.
+
+115
+00:07:28,000 --> 00:07:30,000
+In embedded systems,
+
+116
+00:07:30,000 --> 00:07:33,000
+because environment is limited,
+
+117
+00:07:33,000 --> 00:07:35,000
+these features lead to runtime overhead
+
+118
+00:07:35,000 --> 00:07:39,000
+and increase your program size.
+
+119
+00:07:39,000 --> 00:07:43,000
+Embedded Swift provides a subset of Swift language
+
+120
+00:07:43,000 --> 00:07:45,000
+by removing such features
+
+121
+00:07:45,000 --> 00:07:52,000
+that would cause overhead in embedded systems.
+
+122
+00:07:52,000 --> 00:07:55,000
+Embedded Swift supports the standard library.
+
+123
+00:07:55,000 --> 00:07:57,000
+Features like codable, encodable,
+
+124
+00:07:57,000 --> 00:07:59,000
+and decodable aren't supported
+
+125
+00:07:59,000 --> 00:08:02,000
+because they require the reflection on runtime.
+
+126
+00:08:02,000 --> 00:08:09,000
+But most other familiar features are supported.
+
+127
+00:08:09,000 --> 00:08:10,000
+However, there are challenges
+
+128
+00:08:10,000 --> 00:08:15,000
+and one example is Array.
+
+129
+00:08:15,000 --> 00:08:17,000
+Swift Array is implemented
+
+130
+00:08:17,000 --> 00:08:19,000
+at dynamic heap allocated container
+
+131
+00:08:19,000 --> 00:08:22,000
+to provide rich functionality.
+
+132
+00:08:22,000 --> 00:08:25,000
+While it's safer to use than the C-style Array,
+
+133
+00:08:25,000 --> 00:08:28,000
+those rich features come with overhead.
+
+134
+00:08:28,000 --> 00:08:34,000
+Oh, I noticed that we have many Array talks today.
+
+135
+00:08:34,000 --> 00:08:35,000
+In embedded systems,
+
+136
+00:08:35,000 --> 00:08:39,000
+using Swift Array can be a costly choice
+
+137
+00:08:39,000 --> 00:08:46,000
+because that relies heavily on the heap.
+
+138
+00:08:46,000 --> 00:08:48,000
+So how can we overcome Array's costs
+
+139
+00:08:48,000 --> 00:08:52,000
+on embedded systems?
+
+140
+00:08:52,000 --> 00:08:54,000
+Starting with Swift 6.2,
+
+141
+00:08:54,000 --> 00:08:58,000
+InlineArray offers one way to address this challenge.
+
+142
+00:08:58,000 --> 00:09:00,000
+Let's look at what makes Array costly
+
+143
+00:09:00,000 --> 00:09:03,000
+and how InlineArray solves it.
+
+144
+00:09:03,000 --> 00:09:06,000
+Also, we can see valuable hints
+
+145
+00:09:06,000 --> 00:09:09,000
+about what Swift performance really means
+
+146
+00:09:09,000 --> 00:09:11,000
+from Array challenges
+
+147
+00:09:11,000 --> 00:09:14,000
+and how it's solved by InlineArray.
+
+148
+00:09:14,000 --> 00:09:23,000
+So let's dive in and take a closer look together.
+
+149
+00:09:23,000 --> 00:09:25,000
+Now let's look at challenges of Array
+
+150
+00:09:25,000 --> 00:09:29,000
+and walk through how InlineArray works.
+
+151
+00:09:29,000 --> 00:09:33,000
+This is a kind of Array call you all write all the time.
+
+152
+00:09:33,000 --> 00:09:36,000
+Let's see how an Array is stored in memory
+
+153
+00:09:36,000 --> 00:09:40,000
+when this code is run.
+
+154
+00:09:40,000 --> 00:09:43,000
+First, since Array itself is a struct,
+
+155
+00:09:43,000 --> 00:09:46,000
+it starts in an area called stack.
+
+156
+00:09:46,000 --> 00:09:48,000
+You may already know about stack,
+
+157
+00:09:48,000 --> 00:09:54,000
+but let's take a moment to review what the stack is.
+
+158
+00:09:54,000 --> 00:09:56,000
+The stack is a memory-efficient region
+
+159
+00:09:56,000 --> 00:09:58,000
+used for storing local variables
+
+160
+00:09:58,000 --> 00:10:03,000
+and function calls.
+
+161
+00:10:03,000 --> 00:10:05,000
+Data gets allocated and freed
+
+162
+00:10:06,000 --> 00:10:13,000
+in a strict, last-in, first-out order.
+
+163
+00:10:13,000 --> 00:10:15,000
+I'll explain later, unlike the heap,
+
+164
+00:10:15,000 --> 00:10:17,000
+it doesn't need memory management
+
+165
+00:10:17,000 --> 00:10:22,000
+with reference count.
+
+166
+00:10:22,000 --> 00:10:23,000
+To give you a clear image,
+
+167
+00:10:23,000 --> 00:10:26,000
+let's look at what the stack actually is
+
+168
+00:10:26,000 --> 00:10:30,000
+and with example of a real function call.
+
+169
+00:10:30,000 --> 00:10:32,000
+First, let's see how the stack changes
+
+170
+00:10:32,000 --> 00:10:37,000
+when we call this test1 function.
+
+171
+00:10:37,000 --> 00:10:39,000
+When test1 function is called,
+
+172
+00:10:39,000 --> 00:10:42,000
+the stack gets a new block data on for it,
+
+173
+00:10:42,000 --> 00:10:44,000
+holding the test1 function information
+
+174
+00:10:44,000 --> 00:10:48,000
+like its local variable.
+
+175
+00:10:48,000 --> 00:10:51,000
+Then, after running some code inside test1,
+
+176
+00:10:51,000 --> 00:10:56,000
+as you can see, it's called test2.
+
+177
+00:10:56,000 --> 00:11:01,000
+At this point, what happens to the stack?
+
+178
+00:11:01,000 --> 00:11:03,000
+Well, just like before,
+
+179
+00:11:03,000 --> 00:11:09,000
+the information for test2 gets pushed on stack.
+
+180
+00:11:09,000 --> 00:11:12,000
+OK. Oh, sorry.
+
+181
+00:11:12,000 --> 00:11:14,000
+I didn't know my voice is small.
+
+182
+00:11:14,000 --> 00:11:15,000
+OK, sorry.
+
+183
+00:11:15,000 --> 00:11:16,000
+Just like before,
+
+184
+00:11:16,000 --> 00:11:19,000
+the information for test2 gets pushed on stack.
+
+185
+00:11:19,000 --> 00:11:20,000
+In this way,
+
+186
+00:11:20,000 --> 00:11:27,000
+each function data is managed on its stack frame.
+
+187
+00:11:27,000 --> 00:11:29,000
+When test2 finished
+
+188
+00:11:29,000 --> 00:11:31,000
+and execution returns to test1,
+
+189
+00:11:31,000 --> 00:11:36,000
+what happens to stack?
+
+190
+00:11:36,000 --> 00:11:39,000
+Since stack works in a last-in-first-out manner,
+
+191
+00:11:39,000 --> 00:11:42,000
+it popped out from top frame test2
+
+192
+00:11:42,000 --> 00:11:44,000
+and freed the block.
+
+193
+00:11:44,000 --> 00:11:47,000
+By releasing entire frame at once,
+
+194
+00:11:47,000 --> 00:11:52,000
+all of test2 data is cleared from memory.
+
+195
+00:11:52,000 --> 00:11:53,000
+When test1 finishes,
+
+196
+00:11:53,000 --> 00:11:56,000
+it's popped and freed in the same way.
+
+197
+00:11:56,000 --> 00:11:57,000
+It's clearly releasing all data
+
+198
+00:11:57,000 --> 00:12:02,000
+from the function code so far.
+
+199
+00:12:02,000 --> 00:12:04,000
+When you set block points in Xcode,
+
+200
+00:12:04,000 --> 00:12:05,000
+your app crashes.
+
+201
+00:12:05,000 --> 00:12:08,000
+You've probably seen this screen.
+
+202
+00:12:08,000 --> 00:12:12,000
+This list on the left is called call stack,
+
+203
+00:12:12,000 --> 00:12:15,000
+which is the same stack I'm talking about.
+
+204
+00:12:15,000 --> 00:12:17,000
+Each thread has its own stack,
+
+205
+00:12:17,000 --> 00:12:19,000
+and you can inspect detailed information
+
+206
+00:12:19,000 --> 00:12:24,000
+for each one right in Xcode.
+
+207
+00:12:24,000 --> 00:12:26,000
+Array also follows a similar flow
+
+208
+00:12:26,000 --> 00:12:28,000
+and is stored in stack,
+
+209
+00:12:28,000 --> 00:12:31,000
+but internal implementation uses the heap,
+
+210
+00:12:31,000 --> 00:12:37,000
+so things are not quite that straightforward.
+
+211
+00:12:37,000 --> 00:12:40,000
+To our flexible addition and removals,
+
+212
+00:12:40,000 --> 00:12:42,000
+an array maintains an internal buffer.
+
+213
+00:12:42,000 --> 00:12:43,000
+This buffer is stored
+
+214
+00:12:43,000 --> 00:12:47,000
+in the separate area from the stack frame.
+
+215
+00:12:47,000 --> 00:12:51,000
+That buffer is stored in the heap area.
+
+216
+00:12:51,000 --> 00:12:53,000
+Let's talk about heap.
+
+217
+00:12:53,000 --> 00:12:54,000
+It's a flexible memory area
+
+218
+00:12:55,000 --> 00:12:57,000
+used for long-lived or shared data
+
+219
+00:12:57,000 --> 00:13:00,000
+like class instances.
+
+220
+00:13:00,000 --> 00:13:04,000
+You can allocate a free memory in any order,
+
+221
+00:13:04,000 --> 00:13:06,000
+but that means system has to keep track
+
+222
+00:13:06,000 --> 00:13:10,000
+and manage it.
+
+223
+00:13:10,000 --> 00:13:12,000
+Also, allocating from the heap
+
+224
+00:13:12,000 --> 00:13:14,000
+is slower than using stack.
+
+225
+00:13:14,000 --> 00:13:18,000
+I'll describe later about it.
+
+226
+00:13:18,000 --> 00:13:20,000
+Let's also check how the heap works
+
+227
+00:13:20,000 --> 00:13:22,000
+using a simple example.
+
+228
+00:13:22,000 --> 00:13:23,000
+Here, as you can see,
+
+229
+00:13:23,000 --> 00:13:25,000
+we look at code that works
+
+230
+00:13:25,000 --> 00:13:29,000
+with an instance of some class type.
+
+231
+00:13:29,000 --> 00:13:31,000
+First, the reference address
+
+232
+00:13:31,000 --> 00:13:35,000
+to the class instance is stored in the stack.
+
+233
+00:13:35,000 --> 00:13:37,000
+Then, the class instance itself
+
+234
+00:13:37,000 --> 00:13:39,000
+is stored in the heap,
+
+235
+00:13:39,000 --> 00:13:41,000
+and the address on the stack
+
+236
+00:13:41,000 --> 00:13:46,000
+will point that heap location.
+
+237
+00:13:46,000 --> 00:13:48,000
+When your code takes or drops
+
+238
+00:13:48,000 --> 00:13:49,000
+a reference to the instance,
+
+239
+00:13:49,000 --> 00:13:52,000
+some count updates its internal written count.
+
+240
+00:13:52,000 --> 00:13:56,000
+This mechanism is called auto-reference counting.
+
+241
+00:13:56,000 --> 00:13:57,000
+That counter decides
+
+242
+00:13:57,000 --> 00:13:59,000
+whether the heap object should stay alive
+
+243
+00:13:59,000 --> 00:14:05,000
+or frees when it reaches zero.
+
+244
+00:14:05,000 --> 00:14:07,000
+When it reaches zero,
+
+245
+00:14:07,000 --> 00:14:11,000
+Swift frees the object memory on the heap.
+
+246
+00:14:11,000 --> 00:14:16,000
+That's how Swift manages memory in the heap.
+
+247
+00:14:16,000 --> 00:14:18,000
+Auto reference counting
+
+248
+00:14:18,000 --> 00:14:20,000
+actually comes with a hidden cost.
+
+249
+00:14:20,000 --> 00:14:22,000
+Like behind your Swift code,
+
+250
+00:14:22,000 --> 00:14:25,000
+the compiler inserts the extra instruction
+
+251
+00:14:25,000 --> 00:14:27,000
+to update the reference count.
+
+252
+00:14:27,000 --> 00:14:30,000
+This runs every time a reference changes
+
+253
+00:14:30,000 --> 00:14:32,000
+and over time.
+
+254
+00:14:32,000 --> 00:14:38,000
+That hidden work adds up to the performance cost.
+
+255
+00:14:38,000 --> 00:14:40,000
+Another thing to watch out for
+
+256
+00:14:40,000 --> 00:14:43,000
+with heap memory is fragmentation.
+
+257
+00:14:43,000 --> 00:14:45,000
+For example, let's imagine
+
+258
+00:14:45,000 --> 00:14:50,000
+we store some instance in the heap.
+
+259
+00:14:50,000 --> 00:14:52,000
+As your Swift code runs,
+
+260
+00:14:52,000 --> 00:14:54,000
+objects get freed and allocated,
+
+261
+00:14:54,000 --> 00:15:00,000
+leaving small gaps scattered throughout the heap.
+
+262
+00:15:00,000 --> 00:15:01,000
+This state,
+
+263
+00:15:01,000 --> 00:15:04,000
+and where small gaps are left scattered around,
+
+264
+00:15:04,000 --> 00:15:08,000
+is called fragmentation.
+
+265
+00:15:08,000 --> 00:15:09,000
+Now let's try creating
+
+266
+00:15:09,000 --> 00:15:14,000
+a larger class instance and putting it into the heap.
+
+267
+00:15:14,000 --> 00:15:15,000
+As you can see,
+
+268
+00:15:15,000 --> 00:15:17,000
+the heap has free space here and there,
+
+269
+00:15:17,000 --> 00:15:19,000
+but there isn't a spot large enough
+
+270
+00:15:19,000 --> 00:15:22,000
+for this large class instance.
+
+271
+00:15:22,000 --> 00:15:24,000
+The allocator may have to scan from the beginning
+
+272
+00:15:24,000 --> 00:15:26,000
+to find a big enough block
+
+273
+00:15:26,000 --> 00:15:28,000
+near to the end for a long time
+
+274
+00:15:28,000 --> 00:15:31,000
+or fail to find it.
+
+275
+00:15:31,000 --> 00:15:33,000
+In short, heap usage can incur the overhead
+
+276
+00:15:33,000 --> 00:15:38,000
+from fragmentation and such for continuous space.
+
+277
+00:15:38,000 --> 00:15:39,000
+So putting data on heap
+
+278
+00:15:39,000 --> 00:15:42,000
+can introduce various kinds of overhead.
+
+279
+00:15:43,000 --> 00:15:44,000
+In limited resource environment
+
+280
+00:15:44,000 --> 00:15:45,000
+like embedded system,
+
+281
+00:15:45,000 --> 00:15:50,000
+that impact becomes especially noticeable.
+
+282
+00:15:50,000 --> 00:15:51,000
+Let's also touch on the overhead
+
+283
+00:15:51,000 --> 00:15:56,000
+involved when working with regular array data.
+
+284
+00:15:56,000 --> 00:15:58,000
+For example, when you add an element to array,
+
+285
+00:15:58,000 --> 00:16:02,000
+there still is potential for overhead.
+
+286
+00:16:02,000 --> 00:16:05,000
+Because array is expected to modify,
+
+287
+00:16:05,000 --> 00:16:07,000
+its buffer is usually allocated
+
+288
+00:16:07,000 --> 00:16:09,000
+with some extra capacity
+
+289
+00:16:09,000 --> 00:16:12,000
+beyond the current number of elements.
+
+290
+00:16:12,000 --> 00:16:15,000
+But when that extra capacity runs out,
+
+291
+00:16:15,000 --> 00:16:20,000
+it allocates a new larger buffer.
+
+292
+00:16:20,000 --> 00:16:24,000
+Then all existing elements plus the new one
+
+293
+00:16:24,000 --> 00:16:26,000
+are copied into a new buffer
+
+294
+00:16:26,000 --> 00:16:30,000
+and referenced from the array struct.
+
+295
+00:16:30,000 --> 00:16:32,000
+The old buffer is then freed.
+
+296
+00:16:32,000 --> 00:16:34,000
+From performance perspective,
+
+297
+00:16:34,000 --> 00:16:35,000
+it's worth knowing that
+
+298
+00:16:35,000 --> 00:16:37,000
+this kind of copying and reallocation
+
+299
+00:16:37,000 --> 00:16:41,000
+can introduce overhead.
+
+300
+00:16:41,000 --> 00:16:44,000
+So here's a pitfall of array.
+
+301
+00:16:44,000 --> 00:16:46,000
+Even if it's just a small fixed array,
+
+302
+00:16:46,000 --> 00:16:49,000
+so it still puts it on a heap.
+
+303
+00:16:49,000 --> 00:16:53,000
+In environment with limited resources like embedded system,
+
+304
+00:16:53,000 --> 00:16:56,000
+that become a cost.
+
+305
+00:16:56,000 --> 00:16:57,000
+And if array grows,
+
+306
+00:16:57,000 --> 00:17:00,000
+you've got a buffer reallocation and copying.
+
+307
+00:17:00,000 --> 00:17:06,000
+So the question is how do we work on this?
+
+308
+00:17:07,000 --> 00:17:10,000
+Here, let's take a look at a good example
+
+309
+00:17:10,000 --> 00:17:13,000
+of old C array.
+
+310
+00:17:13,000 --> 00:17:15,000
+A C array is basically a fixed length array
+
+311
+00:17:15,000 --> 00:17:18,000
+stored on the stack.
+
+312
+00:17:18,000 --> 00:17:21,000
+Since embedded Swift can call into C,
+
+313
+00:17:21,000 --> 00:17:23,000
+so you could call C language
+
+314
+00:17:23,000 --> 00:17:26,000
+because that works a lot of main elements.
+
+315
+00:17:26,700 --> 00:17:32,266
+But because it has no bond checks and cause unexpected behavior,
+
+316
+00:17:33,000 --> 00:17:38,066
+so ideally we just want to write it in Swift.
+
+317
+00:17:39,000 --> 00:17:44,000
+And that's a point of motivation
+
+318
+00:17:44,000 --> 00:17:49,000
+behind introducing InlineArray to Swift.
+
+319
+00:17:49,000 --> 00:17:51,000
+InlineArray will be stored stack
+
+320
+00:17:51,000 --> 00:17:53,000
+so we don't need to care overhead heap
+
+321
+00:17:53,000 --> 00:17:58,000
+for fixed size array.
+
+322
+00:17:58,000 --> 00:18:00,000
+InlineArray,in a way,
+
+323
+00:18:00,966 --> 00:18:03,900
+Combines Swift safety with C array performance.
+
+324
+00:18:05,000 --> 00:18:08,000
+It's stored to stack with no heap allocation.
+
+325
+00:18:08,000 --> 00:18:12,966
+Its bond checks yet still highly performant.
+
+326
+00:18:14,000 --> 00:18:18,000
+InlineArray also has benefits in iOS development.
+
+327
+00:18:18,000 --> 00:18:19,000
+Even on iOS,
+
+328
+00:18:19,000 --> 00:18:22,000
+the stack advantage are significant.
+
+329
+00:18:22,000 --> 00:18:26,000
+It keeps data on the stack for low-latency access
+
+330
+00:18:26,000 --> 00:18:30,000
+and it eliminates heap allocation
+
+331
+00:18:30,000 --> 00:18:35,000
+overhead in performance-critical code.
+
+332
+00:18:35,000 --> 00:18:37,700
+Finally, let's take a look at what we learned today
+
+333
+00:18:37,700 --> 00:18:39,433
+and think about what's important
+
+334
+00:18:39,433 --> 00:18:44,000
+for understanding Swift evolution.
+
+335
+00:18:44,000 --> 00:18:45,000
+Swift is now designed
+
+336
+00:18:45,000 --> 00:18:48,000
+with much platform use in mind
+
+337
+00:18:48,000 --> 00:18:49,000
+and we discussed earlier
+
+338
+00:18:49,000 --> 00:18:51,000
+it also has growing focusing
+
+339
+00:18:51,000 --> 00:18:56,000
+on performance consensus features.
+
+340
+00:18:56,000 --> 00:18:58,000
+To keep up with the Swift evolution
+
+341
+00:18:58,000 --> 00:19:00,000
+and truly understand it,
+
+342
+00:19:00,000 --> 00:19:03,000
+I believe these three things are key.
+
+343
+00:19:03,000 --> 00:19:06,933
+First, understand the motivation behind the evolution.
+
+344
+00:19:07,000 --> 00:19:11,000
+For example, code like the InlineArray we looked earlier
+
+345
+00:19:11,000 --> 00:19:14,000
+might not seem beneficial at first glance.
+
+346
+00:19:14,000 --> 00:19:18,000
+But every new feature comes with underlying motivation
+
+347
+00:19:18,000 --> 00:19:21,000
+or specific problems it aims to solve.
+
+348
+00:19:21,000 --> 00:19:23,000
+Without understanding these,
+
+349
+00:19:23,000 --> 00:19:26,000
+it's hard to see their value
+
+350
+00:19:26,000 --> 00:19:28,000
+or know when to use them.
+
+351
+00:19:28,000 --> 00:19:31,000
+By actively digging into proposals
+
+352
+00:19:31,000 --> 00:19:33,000
+for new Swift features,
+
+353
+00:19:33,000 --> 00:19:35,000
+you can uncover these motivations
+
+354
+00:19:35,000 --> 00:19:37,000
+and turn them into your tools
+
+355
+00:19:37,000 --> 00:19:40,000
+in your own power.
+
+356
+00:19:40,000 --> 00:19:43,000
+Next, understand Swift performance.
+
+357
+00:19:43,000 --> 00:19:48,000
+Swift offers many high-level conveniences,
+
+358
+00:19:48,000 --> 00:19:53,000
+but this sometimes hides costs under the hood.
+
+359
+00:19:53,000 --> 00:19:55,000
+So like heap allocation,
+
+360
+00:19:55,000 --> 00:19:56,000
+reference counting
+
+361
+00:19:56,000 --> 00:19:58,000
+and buffer reallocation.
+
+362
+00:19:58,000 --> 00:20:00,000
+Knowing where these costs come from
+
+363
+00:20:00,000 --> 00:20:04,000
+and know how they differ across platforms
+
+364
+00:20:04,000 --> 00:20:05,000
+helps you write codes
+
+365
+00:20:05,000 --> 00:20:10,000
+that's both expressive and efficient.
+
+366
+00:20:10,000 --> 00:20:14,000
+Finally, understand the mechanism of your code.
+
+367
+00:20:14,000 --> 00:20:17,000
+Please look at your everyday code
+
+368
+00:20:17,000 --> 00:20:19,000
+through the lens of performance,
+
+369
+00:20:19,000 --> 00:20:21,000
+asking, is this the right tool?
+
+370
+00:20:21,000 --> 00:20:23,000
+Am I using it correctly?
+
+371
+00:20:23,000 --> 00:20:26,000
+And could it be improved?
+
+372
+00:20:26,000 --> 00:20:31,000
+It builds a deeper understanding of Swift.
+
+373
+00:20:31,000 --> 00:20:33,000
+Finally, I'd like to share a few more sessions
+
+374
+00:20:33,000 --> 00:20:37,000
+that can help deepen your understanding of Swift.
+
+375
+00:20:37,000 --> 00:20:39,000
+These talks and materials are great resources
+
+376
+00:20:39,000 --> 00:20:42,000
+for keeping up with Swift evolution
+
+377
+00:20:42,000 --> 00:20:45,000
+and strengthen your knowledge.
+
+378
+00:20:45,000 --> 00:20:49,000
+I encourage you to check them out.
+
+379
+00:20:49,000 --> 00:20:50,000
+Thank you for listening.
+
+380
+00:20:50,000 --> 00:20:53,000
+I hope this make your Swift journey great.
+
+381
+00:20:53,000 --> 00:20:55,000
+謝謝
+

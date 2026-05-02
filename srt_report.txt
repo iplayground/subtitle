@@ -1,5 +1,5 @@
 ❌ **SRT Format Validation Failed**
 
-- `./iosdc2025/列車行程追跡アルゴリズムを書こう/列車行程追跡アルゴリズムを書こう.jp.srt`: Block 26: line 102 start time overlaps with previous block 25 (previous end at line 98)
+- `./2025/Day02-06-Build Mobile Identity into your app with.srt`: Block 111: line 442 index mismatch (expected 111, got 112) (possibly missing block 111)
 
 Please fix the issues above and push again to re-run the check.

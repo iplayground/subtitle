@@ -1,0 +1,1157 @@
+1
+00:00:03,666 --> 00:00:07,600
+好的 接下來讓我們介紹的講者是Astrid
+
+2
+00:00:07,666 --> 00:00:12,133
+她將帶來KKBOX StoreKit migration 過渡作法
+
+3
+00:00:12,300 --> 00:00:16,633
+分享如何在新功能中導入StoreKit2
+
+4
+00:00:16,833 --> 00:00:20,400
+同時確保購買流程不受影響
+
+5
+00:00:20,633 --> 00:00:21,833
+特別提醒大家
+
+6
+00:00:21,833 --> 00:00:25,166
+如果還沒下載App或翻譯軟體的
+
+7
+00:00:25,166 --> 00:00:27,666
+可以掃badge後面的 QR code
+
+8
+00:00:27,966 --> 00:00:30,400
+因為接下來的議程要用英文分享
+
+9
+00:00:30,400 --> 00:00:32,233
+那讓我們歡迎 Astrid
+
+10
+00:00:46,833 --> 00:00:49,333
+Hello
+
+11
+00:00:49,400 --> 00:00:50,833
+I am Astrid
+
+12
+00:00:50,833 --> 00:00:58,600
+I'm here to show you how painful it is to implement In-App Purchase without RevenueCat
+
+13
+00:01:00,266 --> 00:01:01,900
+ Just kidding.
+
+14
+00:01:01,900 --> 00:01:03,466
+ I'm here to...
+
+15
+00:01:03,466 --> 00:01:09,366
+ share my experience of introducing a new business model
+
+16
+00:01:09,366 --> 00:01:14,566
+Using StoreKit 2 in an app  that originally used StoreKit 1.
+
+17
+00:01:15,800 --> 00:01:17,800
+To tell you a bit about myself.
+
+18
+00:01:17,966 --> 00:01:23,133
+I've been an iOS developer at KKBOX for three and a half years.
+
+19
+00:01:23,133 --> 00:01:26,466
+ And this is my first job, out of AppWorksSchool.
+
+20
+00:01:26,466 --> 00:01:30,466
+I am very grateful for the opportunity to be here.
+
+21
+00:01:30,933 --> 00:01:32,566
+I like being a developer,
+
+22
+00:01:32,566 --> 00:01:36,400
+because it feels great when people enjoy what I built.
+
+23
+00:01:37,133 --> 00:01:38,600
+Outside of work
+
+24
+00:01:38,600 --> 00:01:44,566
+I love playing with Tonku and traveling.
+
+25
+00:01:44,766 --> 00:01:47,833
+I just came back from Cambodia last month.
+
+26
+00:01:47,933 --> 00:01:52,100
+I enjoy learning how people live in different cultures.
+
+27
+00:01:52,100 --> 00:01:52,766
+Someday,
+
+28
+00:01:52,766 --> 00:01:54,766
+ I hope to live abroad.
+
+29
+00:01:55,266 --> 00:01:56,400
+ So far
+
+30
+00:01:56,400 --> 00:01:59,466
+many of you may have a question in your mind
+
+31
+00:01:59,466 --> 00:02:05,333
+Why is this person speaking English to a bunch of Taiwanese?
+
+32
+00:02:05,800 --> 00:02:10,566
+I was also inspired by try Swift Tokyo
+
+33
+00:02:11,700 --> 00:02:15,266
+This is a selfie from the after-party
+
+34
+00:02:15,266 --> 00:02:21,966
+We had developers from six different countries share ideas with common languages.
+
+35
+00:02:22,133 --> 00:02:28,600
+I hope iPlayground can grow into an event that attracts people from all around the world.
+
+36
+00:02:29,033 --> 00:02:31,133
+ My English isn't perfect,
+
+37
+00:02:31,466 --> 00:02:33,333
+but I want to try
+
+38
+00:02:33,333 --> 00:02:38,966
+so that people who don’t understand Mandarin can engage more directly.
+
+39
+00:02:39,433 --> 00:02:42,100
+Also, I’m not an expert.
+
+40
+00:02:42,100 --> 00:02:44,666
+I'm just here to share my experience
+
+41
+00:02:44,666 --> 00:02:49,900
+and hopefully help some of you avoid the struggles I went through.
+
+42
+00:02:52,166 --> 00:02:53,933
+By the end of this talk
+
+43
+00:02:53,933 --> 00:03:03,700
+You’ll have a better idea of how to handle the challenges when using both StoreKit 1 and 2 in the same app.
+
+44
+00:03:03,966 --> 00:03:06,500
+Here's what I'll cover today:
+
+45
+00:03:06,500 --> 00:03:10,300
+A quick overview of StoreKit APIs
+
+46
+00:03:10,300 --> 00:03:15,233
+Our implementation context and strategic decisions
+
+47
+00:03:15,800 --> 00:03:18,466
+The technical challenges we faced
+
+48
+00:03:18,766 --> 00:03:21,766
+The tools we used for testing
+
+49
+00:03:22,366 --> 00:03:25,733
+The App Store review process reality
+
+50
+00:03:25,833 --> 00:03:28,400
+And key takeaways
+
+51
+00:03:28,400 --> 00:03:31,533
+Alright, let’s start with something fun.
+
+52
+00:03:31,533 --> 00:03:35,300
+ Can I ask everyone  to raise your hand up?
+
+53
+00:03:35,300 --> 00:03:37,300
+ Yes, everyone.
+
+54
+00:03:37,300 --> 00:03:38,633
+ Thank you very much.
+
+55
+00:03:38,633 --> 00:03:40,766
+ Now, Keep your hand up ...
+
+56
+00:03:40,766 --> 00:03:45,833
+if you know which In-App Purchase framework your company is  using
+
+57
+00:03:45,833 --> 00:03:46,766
+ If you don't know,
+
+58
+00:03:46,766 --> 00:03:48,766
+ just put your hand down.
+
+59
+00:03:48,766 --> 00:03:51,100
+I won’t tell your boss.. It's okay.
+
+60
+00:03:51,966 --> 00:03:53,833
+ We still have many hands here. 
+
+61
+00:03:53,833 --> 00:03:56,200
+Now, keep your hands up
+
+62
+00:03:56,200 --> 00:03:58,766
+If you're already started using StoreKit 2.
+
+63
+00:04:00,233 --> 00:04:01,533
+Wow
+
+64
+00:04:01,533 --> 00:04:03,466
+ It's more than my imagination.
+
+65
+00:04:03,466 --> 00:04:04,133
+Okay
+
+66
+00:04:04,133 --> 00:04:05,300
+ Thank you very much.
+
+67
+00:04:05,300 --> 00:04:06,766
+ You can all put your hands down.
+
+68
+00:04:08,766 --> 00:04:10,666
+ what I've seen
+
+69
+00:04:10,666 --> 00:04:15,366
+We don't have all people here starting using StoreKit 2 yet
+
+70
+00:04:15,366 --> 00:04:20,000
+ which is great. It means this  talk is still useful for many  of you. 
+
+71
+00:04:20,000 --> 00:04:20,700
+Now
+
+72
+00:04:20,700 --> 00:04:24,133
+let's start to see how StoreKit has evolved. 
+
+73
+00:04:24,400 --> 00:04:27,900
+Actually, there’s no “official StoreKit 1.”
+
+74
+00:04:27,900 --> 00:04:30,766
+Its real name is...
+
+75
+00:04:30,766 --> 00:04:33,766
+Original API for In-App Purchase
+
+76
+00:04:33,766 --> 00:04:35,766
+but that’s a bit too long
+
+77
+00:04:35,933 --> 00:04:38,500
+So I’ll just call it StoreKit 1.
+
+78
+00:04:39,766 --> 00:04:42,766
+StoreKit 1 was introduced in 2009
+
+79
+00:04:42,766 --> 00:04:44,766
+ It is delegate based
+
+80
+00:04:44,766 --> 00:04:49,333
+and requires manual management of the payment queue.
+
+81
+00:04:49,333 --> 00:04:52,100
+ If you want to make a purchase
+
+82
+00:04:52,100 --> 00:04:56,533
+You have to make a payment with the product
+
+83
+00:04:57,100 --> 00:05:00,566
+And add the payment to the paymentQueue.
+
+84
+00:05:00,666 --> 00:05:03,766
+And there’s even more after that.
+
+85
+00:05:04,766 --> 00:05:08,033
+Don’t worry you don’t have to learn this
+
+86
+00:05:08,033 --> 00:05:11,566
+and hopefully you’ll never need to in your whole life
+
+87
+00:05:11,566 --> 00:05:18,766
+All I want to show is: StoreKit 1 is wordy and fragile.
+
+88
+00:05:20,466 --> 00:05:23,966
+StoreKit 2 came out in 2021
+
+89
+00:05:23,966 --> 00:05:29,400
+built on Swift Concurrency, making everything straightforward
+
+90
+00:05:29,400 --> 00:05:31,700
+If you want to make a purchase
+
+91
+00:05:31,700 --> 00:05:35,400
+just call product.purchase()
+
+92
+00:05:35,400 --> 00:05:36,666
+ That's it
+
+93
+00:05:36,666 --> 00:05:39,633
+One single line, you get a result.
+
+94
+00:05:39,633 --> 00:05:42,333
+it’s fully scoped and type safe.
+
+95
+00:05:42,866 --> 00:05:44,100
+Sweet!
+
+96
+00:05:45,433 --> 00:05:46,766
+ For receipt
+
+97
+00:05:46,766 --> 00:05:52,366
+StoreKit 1 gives you a unified receipt that
+containing all purchases in the app,
+
+98
+00:05:52,533 --> 00:05:56,200
+you have to parse and validate yourself
+
+99
+00:05:57,600 --> 00:06:01,300
+StoreKit 2 provides Transaction objects
+
+100
+00:06:01,300 --> 00:06:09,566
+which contain productID, purchaseDate, and many other information.
+
+101
+00:06:09,566 --> 00:06:16,766
+Unlike StoreKit 1, StoreKit 2 allows you to directly access one transaction at a time.
+
+102
+00:06:16,766 --> 00:06:24,366
+It is much more easier to retrieve detailed information and customize your purchase flow
+
+103
+00:06:25,200 --> 00:06:32,300
+I used two examples to show how StoreKit2 provides easier and modern way to handle purchases.
+
+104
+00:06:32,300 --> 00:06:37,966
+Now, let’s move on to KKBOX implementation context.
+
+105
+00:06:38,766 --> 00:06:41,033
+ For music streaming,
+
+106
+00:06:41,733 --> 00:06:46,766
+we use StoreKit 1 with the verifyReceipt API.
+
+107
+00:06:46,766 --> 00:06:49,666
+Both subscriptions types are supported
+
+108
+00:06:49,666 --> 00:06:52,766
+We didn’t have consumable product.
+
+109
+00:06:54,266 --> 00:07:00,433
+It works with our legacy billing system which only handles music transactions.
+
+110
+00:07:01,233 --> 00:07:07,100
+The system works reliably in production for many many years.
+
+111
+00:07:09,233 --> 00:07:10,533
+FanKlub
+
+112
+00:07:10,533 --> 00:07:15,900
+our new business model, works differently from music streaming
+
+113
+00:07:16,666 --> 00:07:21,900
+it uses consumable, built with Swift Concurrency.
+
+114
+00:07:22,600 --> 00:07:28,133
+And we have a new billing system that only handles FanKlub transactions.
+
+115
+00:07:28,566 --> 00:07:33,066
+With so many differences in logic and architecture
+
+116
+00:07:33,066 --> 00:07:38,033
+we needed to find an approach that cost the least development effort
+
+117
+00:07:38,033 --> 00:07:42,500
+To figure that out, we explored three options.
+
+118
+00:07:44,233 --> 00:07:45,766
+Option 1
+
+119
+00:07:45,766 --> 00:07:48,066
+Fully move to StoreKit 2.
+
+120
+00:07:48,300 --> 00:07:50,766
+But this is risky
+
+121
+00:07:50,766 --> 00:07:56,766
+Because it changes important parts of our app that have been stable for years
+
+122
+00:07:57,466 --> 00:08:05,566
+ And you would need to have very close teamwork, with the billing and App team
+
+123
+00:08:06,333 --> 00:08:12,400
+ The timeline is hard to predict, and it could delay the FanKlub launch
+
+124
+00:08:12,400 --> 00:08:15,233
+So option 2,
+
+125
+00:08:15,233 --> 00:08:17,566
+ stay with StoreKit 1.
+
+126
+00:08:17,566 --> 00:08:22,466
+It sounds safer, but it actually has a big problem.
+
+127
+00:08:23,066 --> 00:08:28,766
+StoreKit 1 and the verifyReceipt API are already deprecated
+
+128
+00:08:30,066 --> 00:08:31,433
+ Option 3
+
+129
+00:08:31,433 --> 00:08:32,766
+Hybrid approach! 
+
+130
+00:08:32,766 --> 00:08:35,800
+and that’s the one we chose.
+
+131
+00:08:35,800 --> 00:08:42,233
+We use StoreKit 1 for music streaming and StoreKit 2 for FanKlub.
+
+132
+00:08:42,233 --> 00:08:50,700
+Apple allows mixing both API if we support iOS 15 or later, which we do.
+
+133
+00:08:50,766 --> 00:08:55,033
+This way, we can keep our stable legacy flow,
+
+134
+00:08:55,033 --> 00:08:58,766
+adopt StoreKit 2 for our new features
+
+135
+00:08:58,766 --> 00:09:02,333
+take advantage of Swift Concurrency
+
+136
+00:09:02,333 --> 00:09:07,466
+and reduce risk while preparing for a future migration.
+
+137
+00:09:09,200 --> 00:09:10,766
+ To recap
+
+138
+00:09:11,666 --> 00:09:19,600
+StoreKit 2 provide a modern and easier way compared to StoreKit 1 to handle purchase
+
+139
+00:09:20,100 --> 00:09:26,033
+To balance stability and innovation, we chose a hybrid approach.
+
+140
+00:09:26,333 --> 00:09:35,166
+The trade-off is that now we have to maintain two flows, which means more complexity
+
+141
+00:09:35,300 --> 00:09:38,833
+ Next, I’ll walk you through how we handle that.
+
+142
+00:09:40,433 --> 00:09:46,400
+Let’s start with a quick overview of how StoreKit handles transaction history
+
+143
+00:09:46,766 --> 00:09:51,566
+All transactions—whether using StoreKit 1 or StoreKit 2
+
+144
+00:09:51,566 --> 00:09:54,533
+are visible across both APIs
+
+145
+00:09:54,533 --> 00:10:01,433
+which means purchases made with StoreKit 1 can be accessed through StoreKit 2
+
+146
+00:10:01,433 --> 00:10:08,133
+and StoreKit 2 purchases also appear in the unified receipt used by StoreKit 1
+
+147
+00:10:08,133 --> 00:10:14,300
+This cross-visibility is intentional and documented by Apple
+
+148
+00:10:14,500 --> 00:10:23,766
+But when both APIs used in the same app, it requires careful handling to avoid duplicate processing.
+
+149
+00:10:24,600 --> 00:10:27,366
+So here comes the first problem.
+
+150
+00:10:28,500 --> 00:10:35,766
+StoreKit 1 receives updates from StoreKit 2 purchases—and vice versa
+
+151
+00:10:35,766 --> 00:10:41,966
+There’s no built in separation, which could easily lead to double-processing.
+
+152
+00:10:42,600 --> 00:10:48,000
+To fix this, we use productID to filter logic
+
+153
+00:10:48,366 --> 00:10:52,566
+ All FanKlub productIDs contain fanKlub
+
+154
+00:10:52,700 --> 00:10:54,766
+In StoreKit 1
+
+155
+00:10:55,833 --> 00:10:58,700
+we skip fanKlub products
+
+156
+00:10:58,700 --> 00:11:04,200
+In StoreKit 2, we only handle fanKlub products.
+
+157
+00:11:04,400 --> 00:11:08,433
+ filtering gives us a clear separation.
+
+158
+00:11:09,966 --> 00:11:11,500
+ Problem 2.
+
+159
+00:11:11,500 --> 00:11:14,000
+Mixed Receipt Validation
+
+160
+00:11:14,000 --> 00:11:20,333
+StoreKit 1 gives you a unified receipt that contains all purchases in the app
+
+161
+00:11:20,400 --> 00:11:27,366
+ So it contains music streaming and  FanKlub transactions
+
+162
+00:11:27,366 --> 00:11:32,866
+which our legacy billing system wasn't designed to handle that
+
+163
+00:11:33,166 --> 00:11:34,766
+ To fix this,
+
+164
+00:11:35,900 --> 00:11:43,966
+we update our backend to ignore any transactions  related to FanKlub.
+
+165
+00:11:43,966 --> 00:11:48,766
+This way, the receipt upload won't break legacy logic.
+
+166
+00:11:49,700 --> 00:11:54,366
+Above challenges are the traits documented by Apple.
+
+167
+00:11:54,500 --> 00:11:59,200
+But there’s no document that covers all scenarios.
+
+168
+00:12:00,100 --> 00:12:06,400
+The tools provided by Apple really helped us a lot.
+
+169
+00:12:06,400 --> 00:12:12,766
+They affect In-App Purchase behavior whether we use StoreKit 1 or StoreKit 2
+
+170
+00:12:14,300 --> 00:12:20,166
+In the early development stage, we use StoreKit Testing in Xcode.
+
+171
+00:12:20,433 --> 00:12:24,866
+It doesn’t require internet or App Store Connect.
+
+172
+00:12:24,866 --> 00:12:27,633
+It’s like an offline playground
+
+173
+00:12:28,400 --> 00:12:32,666
+The testing configuration file provides many different options
+
+174
+00:12:32,666 --> 00:12:37,433
+that can remind you to handle scenarios that may happen.
+
+175
+00:12:37,433 --> 00:12:38,766
+ In our case,
+
+176
+00:12:38,766 --> 00:12:44,766
+ it reminded us to handle the “Ask to Buy” flow, which we hadn’t planned for
+
+177
+00:12:46,400 --> 00:12:49,533
+Once the flow is planned and built,
+
+178
+00:12:49,533 --> 00:12:56,133
+We use App Store sandbox with App Store Connect productID to test the flow
+
+179
+00:12:56,900 --> 00:12:58,233
+ In this stage
+
+180
+00:12:58,233 --> 00:13:02,833
+we test both the legacy flow and the new FanKlub flow 
+
+181
+00:13:02,833 --> 00:13:04,400
+ including
+
+182
+00:13:04,766 --> 00:13:09,066
+ sending sandbox receipts to our server.
+
+183
+00:13:09,233 --> 00:13:15,500
+Most of the issues with the app server are discovered and solved in this stage
+
+184
+00:13:15,600 --> 00:13:17,000
+ In our case,
+
+185
+00:13:17,000 --> 00:13:21,766
+we found a FanKlub transaction inside the unified receipt
+
+186
+00:13:21,766 --> 00:13:27,566
+and when it was sent to our backend, it caused backend errors
+
+187
+00:13:27,900 --> 00:13:28,766
+ Finally
+
+188
+00:13:28,766 --> 00:13:33,733
+we uploaded to TestFlight for internal testers to test the flow.
+
+189
+00:13:33,733 --> 00:13:39,333
+Because all transactions are in a sandbox environment for TestFlight reviewers
+
+190
+00:13:39,333 --> 00:13:43,700
+so people can test whatever they want without being charged
+
+191
+00:13:44,200 --> 00:13:48,233
+It helped us improve the user experience
+
+192
+00:13:48,233 --> 00:13:53,900
+Once everything was set up, we submitted our product to app review.
+
+193
+00:13:54,100 --> 00:14:01,433
+Normally, the review process is straightforward and doesn’t require any extra steps.
+
+194
+00:14:01,433 --> 00:14:04,800
+ so we thought we were finally done
+
+195
+00:14:04,800 --> 00:14:06,233
+But then
+
+196
+00:14:06,233 --> 00:14:07,933
+Apple said
+
+197
+00:14:08,433 --> 00:14:10,166
+No.
+
+198
+00:14:10,166 --> 00:14:13,366
+It was really upsetting
+
+199
+00:14:13,366 --> 00:14:14,766
+ I don't have...
+
+200
+00:14:14,766 --> 00:14:19,333
+I only have Mandarin screenshot, but I can read the message for you.
+
+201
+00:14:19,333 --> 00:14:22,000
+ The In-App Purchase has been  rejected
+
+202
+00:14:22,000 --> 00:14:26,266
+For more information, refer to the App Review Notes
+
+203
+00:14:26,266 --> 00:14:31,033
+All productIDs showed: “Developer action needed.”
+
+204
+00:14:31,033 --> 00:14:33,300
+ So, what happened?
+
+205
+00:14:33,300 --> 00:14:36,200
+Let’s refer to App Review Notes.
+
+206
+00:14:36,766 --> 00:14:38,400
+There are too many words here. 
+
+207
+00:14:38,400 --> 00:14:41,500
+We can only focus on the key words.
+
+208
+00:14:41,500 --> 00:14:43,633
+ Apple rejected our submission
+
+209
+00:14:43,633 --> 00:14:46,766
+because we introduced a new business model
+
+210
+00:14:46,766 --> 00:14:52,333
+moving from subscriptions to including consumable products
+
+211
+00:14:52,433 --> 00:14:59,466
+Apple wanted us to upload a new binary where FanKlub products are available to buy
+
+212
+00:14:59,466 --> 00:15:01,433
+ But at that time,
+
+213
+00:15:01,433 --> 00:15:04,700
+only the purchase flow was implemented
+
+214
+00:15:04,766 --> 00:15:08,466
+All other FanKlub features were still in progress
+
+215
+00:15:08,466 --> 00:15:09,933
+We wondered 
+
+216
+00:15:09,933 --> 00:15:15,300
+Would unlocking a placeholder feature be enough to pass review?
+
+217
+00:15:15,300 --> 00:15:16,766
+ To be safe,
+
+218
+00:15:16,766 --> 00:15:22,400
+we waited and resubmitted after the full feature was ready.
+
+219
+00:15:22,400 --> 00:15:24,366
+Before resubmission
+
+220
+00:15:24,366 --> 00:15:30,400
+We confirm with our backend which APIs needed to go live in production
+
+221
+00:15:30,633 --> 00:15:36,166
+We also enabled our billing system to handle the  sandbox transactions
+
+222
+00:15:36,166 --> 00:15:42,200
+because initially, our production backend ignored sandbox transactions
+
+223
+00:15:42,633 --> 00:15:47,466
+ We also recorded a demo video showing the full purchase flow
+
+224
+00:15:47,466 --> 00:15:49,433
+ with detailed explanation
+
+225
+00:15:49,700 --> 00:15:53,933
+And shared it with the App Review Notes
+
+226
+00:15:54,166 --> 00:15:57,766
+ Finally, we renamed localized product name
+
+227
+00:15:57,766 --> 00:15:59,933
+which I'll explain next.
+
+228
+00:16:01,833 --> 00:16:03,333
+ At submission time,
+
+229
+00:16:03,333 --> 00:16:07,600
+ we were blocked by the persistent productID error
+
+230
+00:16:07,600 --> 00:16:11,000
+and we couldn't find any way to clear it.
+
+231
+00:16:11,000 --> 00:16:12,766
+ After several days,
+
+232
+00:16:12,766 --> 00:16:15,133
+ we finally found a fix.
+
+233
+00:16:15,600 --> 00:16:16,766
+ Just editing
+
+234
+00:16:16,766 --> 00:16:20,333
+ the rejected products localized name
+
+235
+00:16:20,333 --> 00:16:22,766
+ even just retype it,
+
+236
+00:16:22,766 --> 00:16:26,400
+ reset the products and clear the error.
+
+237
+00:16:27,133 --> 00:16:28,333
+ Finally, 
+
+238
+00:16:28,333 --> 00:16:30,266
+ we resubmitted
+
+239
+00:16:30,266 --> 00:16:31,333
+And
+
+240
+00:16:32,366 --> 00:16:35,066
+we finally passed the review
+
+241
+00:16:35,566 --> 00:16:38,300
+ Thank you.
+
+242
+00:16:38,766 --> 00:16:41,100
+ But there's still a surprise.
+
+243
+00:16:41,200 --> 00:16:42,766
+ Surprisingly
+
+244
+00:16:42,766 --> 00:16:46,766
+ Our backend showed no purchase activity.
+
+245
+00:16:49,366 --> 00:16:52,066
+ how did Apple verify it?
+
+246
+00:16:52,066 --> 00:16:57,633
+The demo video? Or were we just super lucky?
+
+247
+00:16:57,633 --> 00:16:59,466
+ We'll never know.
+
+248
+00:16:59,466 --> 00:17:01,933
+ But the lesson is  clear.
+
+249
+00:17:03,300 --> 00:17:05,300
+ Submit early.
+
+250
+00:17:05,500 --> 00:17:09,766
+ Apple review process can be full of surprises.
+
+251
+00:17:11,266 --> 00:17:12,500
+ After sharing
+
+252
+00:17:12,500 --> 00:17:16,833
+our implementation, there’s one more thing I want to stress.
+
+253
+00:17:16,833 --> 00:17:21,433
+Before the United States allowed external checkout links this year
+
+254
+00:17:21,433 --> 00:17:25,866
+ they are actually some regions already permitted external payments
+
+255
+00:17:25,866 --> 00:17:29,333
+ like the European Union and Korea.
+
+256
+00:17:29,333 --> 00:17:30,766
+ In Taiwan,
+
+257
+00:17:30,766 --> 00:17:36,533
+In-App Purchase is still mandatory, but this global trend might eventually reach us
+
+258
+00:17:36,533 --> 00:17:39,500
+ It's something we can keep an eye on.
+
+259
+00:17:41,300 --> 00:17:43,600
+ To summarize the key takeaway
+
+260
+00:17:43,600 --> 00:17:49,400
+here's a checklist for anyone who wishes to use a similar approach.
+
+261
+00:17:49,800 --> 00:17:54,700
+First, coordinate with your backend about handling mixed receipts.
+
+262
+00:17:55,333 --> 00:17:58,766
+Filter purchases by productID.
+
+263
+00:17:58,766 --> 00:18:02,933
+ Test both flows using the tools we covered earlier.
+
+264
+00:18:03,800 --> 00:18:07,266
+ Leave buffer time  for app review process.
+
+265
+00:18:08,433 --> 00:18:09,566
+ And
+
+266
+00:18:09,566 --> 00:18:15,600
+ ensure your product  is available to purchase during the app review process.
+
+267
+00:18:15,866 --> 00:18:18,400
+The hybrid approach isn’t perfect
+
+268
+00:18:18,500 --> 00:18:20,233
+it adds complexity
+
+269
+00:18:20,466 --> 00:18:26,166
+but it gave us a low risk way to adopt StoreKit 2 for our new feature
+
+270
+00:18:28,466 --> 00:18:31,000
+The issues we faced were small,
+
+271
+00:18:31,100 --> 00:18:34,133
+ but difficult to find solutions on the internet.
+
+272
+00:18:34,300 --> 00:18:37,300
+I hope this session saves you time
+
+273
+00:18:38,033 --> 00:18:41,433
+Before we wrap up, I want to introduce FanKlub
+
+274
+00:18:41,433 --> 00:18:45,566
+ a brand new feature in the KKBOX app.
+
+275
+00:18:45,566 --> 00:18:51,333
+ FanKlub helps fans feel a deeper intimacy with their idols
+
+276
+00:18:52,333 --> 00:18:54,766
+There are two QR codes on the screen
+
+277
+00:18:54,766 --> 00:18:59,100
+one to access my slides and another to check out FanKlub
+
+278
+00:18:59,100 --> 00:19:02,166
+ And in case some of you want to know more about Tonku
+
+279
+00:19:02,333 --> 00:19:04,366
+ here's her Instagram
+
+280
+00:19:04,366 --> 00:19:07,700
+And while you are all scanning the QR code,
+
+281
+00:19:07,700 --> 00:19:08,766
+ I have a little wish.
+
+282
+00:19:08,766 --> 00:19:13,100
+ As a first time speaker, I want to have a selfie with all of you.
+
+283
+00:19:13,466 --> 00:19:14,766
+ Is that okay?
+
+284
+00:19:16,000 --> 00:19:16,766
+ Oh, please,
+
+285
+00:19:16,766 --> 00:19:18,566
+ come on, thank you
+
+286
+00:19:18,566 --> 00:19:20,766
+Say cheese!
+
+287
+00:19:21,133 --> 00:19:23,166
+ Thank you!
+
+288
+00:19:23,366 --> 00:19:28,500
+ Okay, a big thank you to  all the staff who worked so hard behind the scenes
+
+289
+00:19:28,533 --> 00:19:31,433
+ And thank you for listening.
+

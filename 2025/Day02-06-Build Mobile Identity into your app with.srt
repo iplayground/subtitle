@@ -1,0 +1,823 @@
+1
+00:00:03,000 --> 00:00:07,000
+下一位講者是遠道從東京而來
+
+2
+00:00:07,000 --> 00:00:11,000
+也是 try! Swift Tokyo 的主辦人 Daiki Matsudate
+
+3
+00:00:11,000 --> 00:00:15,000
+他擁有 14 年以上的 App 開發經驗
+
+4
+00:00:15,000 --> 00:00:21,000
+目前從事從新創到公共數位服務的各種專案
+
+5
+00:00:21,000 --> 00:00:25,000
+今天演講一樣是用英文來進行
+
+6
+00:00:25,000 --> 00:00:29,000
+讓我們用最最熱烈的掌聲歡迎我們國外的朋友 Daiki
+
+7
+00:00:43,000 --> 00:00:50,000
+ Hi, I'm Daiki from Tokyo, Japan, where I organize try! Swift, an international Swift conference
+
+8
+00:00:50,000 --> 00:00:56,000
+ It's my first time back in Taipei since speaking at iPlayground in 2019
+
+9
+00:00:56,000 --> 00:01:00,000
+ I'm happy to reconnect with many friends from Taiwan
+
+10
+00:01:00,000 --> 00:01:04,000
+ Thank you to the organizers for such a great event
+
+11
+00:01:04,000 --> 00:01:10,000
+ Today, I'll talk about identity verification on mobile devices
+
+12
+00:01:10,000 --> 00:01:16,000
+ We prove who are using identity documents issued by public authorities
+
+13
+00:01:16,000 --> 00:01:18,000
+ For example, this is my passport
+
+14
+00:01:18,000 --> 00:01:24,000
+ It's an official document issued by the Japanese government that certifies who I am
+
+15
+00:01:24,000 --> 00:01:34,000
+ With this, even here in Taipei, I can prove that I am Daiki Matsudate, born in January 31, 1991, and citizen of Japan
+
+16
+00:01:34,000 --> 00:01:40,000
+ And this is Japan's My Number card, another official identity document issued by the government
+
+17
+00:01:40,000 --> 00:01:47,000
+ On the surface, it shows my name, address, date of birth, gender, and identification number
+
+18
+00:01:47,000 --> 00:01:57,000
+ But more importantly, it contains a tamper-resistant IC chip that securely stores this information, along with two digital certificates
+
+19
+00:01:57,000 --> 00:02:07,000
+ These certificates make it possible not only to visually check the card, but also to electronically verify my identity and even create digital signatures
+
+20
+00:02:08,000 --> 00:02:18,000
+ All of these are called identity documents, and identity documents are used to uniquely identify a person
+
+21
+00:02:18,000 --> 00:02:32,000
+ It must be issued by an authorized organization, and it typically includes portrait and personal information, either printed on the card or stored in an electronic method
+
+22
+00:02:33,000 --> 00:02:41,000
+ Now, this is a scene from a Netflix drama called Tokyo Swindlers, which became a hot topic in Japan
+
+23
+00:02:41,000 --> 00:02:51,000
+ In this story, a certificate issued by a local government and a driver's license issued by the police office are used for identity verification
+
+24
+00:02:51,000 --> 00:02:56,000
+ But in fact, there were fake documents created by swindlers
+
+25
+00:02:56,000 --> 00:03:04,000
+ They even hired a homeless person to use a fake name and portrait as a property owner in order to say the land actually did not exist
+
+26
+00:03:06,000 --> 00:03:10,000
+ This drama is fictional, but based on true events
+
+27
+00:03:10,000 --> 00:03:16,000
+ In reality, document forgery like this has been a serious problem in Japan
+
+28
+00:03:16,000 --> 00:03:26,000
+ To prevent such crimes, we need stronger measures, such as using IC chips to electronically verify identity, not just checking the card surface
+
+29
+00:03:28,000 --> 00:03:44,000
+ Against this backdrop, many countries began exploring ways to store a driver's license on mobile devices, and in 2021, this effort was standardized internationally as ISO 18013-5
+
+30
+00:03:46,000 --> 00:03:52,000
+ When the mDL standard was created, several key features were introduced
+
+31
+00:03:52,000 --> 00:03:55,000
+ First is selective data disclosure of elements
+
+32
+00:03:55,000 --> 00:04:15,000
+ For example, if all you need to know is whether someone is over 18 to buy alcohol in-store, there is no need to reveal their date of birth
+
+33
+00:04:15,000 --> 00:04:21,000
+ Instead, the mDL can list only the elements that say age over 18
+
+34
+00:04:22,000 --> 00:04:25,000
+ Next is cryptographic security
+
+35
+00:04:25,000 --> 00:04:31,000
+ The mDL is structured in a format called C-B-O-R, which pronounces CBOR
+
+36
+00:04:31,000 --> 00:04:40,000
+ The signatures are encoded using C-O-S-E, which pronounces COSE, which stands for CBOR Object Signing and Encryption
+
+37
+00:04:41,000 --> 00:04:46,000
+ Some of you may be hearing about CBOR for the first time
+
+38
+00:04:46,000 --> 00:04:48,000
+ CBOR is a type of date format
+
+39
+00:04:48,000 --> 00:04:54,000
+ It has a structure similar to JSON, but while JSON is expressed, CBOR is a binary format
+
+40
+00:04:54,000 --> 00:05:03,000
+ Because of this, data encoded in CBOR is typically 30 to 50 percent smaller compared to JSON
+
+41
+00:05:03,000 --> 00:05:15,000
+ This compact size makes CBOR especially suitable for IoT devices and mobile platforms, where efficiency matters and battery life can be improved
+
+42
+00:05:17,000 --> 00:05:20,000
+ There is also cross-platform interoperability
+
+43
+00:05:20,000 --> 00:05:28,000
+ mDLs can be used over NFC, BLE, QR codes, and the internet, so they work seamlessly across different platforms
+
+44
+00:05:29,000 --> 00:05:33,000
+ Privacy is also a key focus
+
+45
+00:05:33,000 --> 00:05:42,000
+ No data can be accessed without the user consent, which is enforced through biometric authentications like Face ID or Touch ID
+
+46
+00:05:44,000 --> 00:05:54,000
+ Based on this standard, Apple and Google have begun working with the U.S. states to store driver's licenses as mDLs in their wallet apps
+
+47
+00:05:54,000 --> 00:06:04,000
+ Since driver's licenses in the United States are issued by each individual state, support differs depending on the state
+
+48
+00:06:04,000 --> 00:06:11,000
+ In some states, they can use Apple wallets, in others, Google wallets, and in some cases, both
+
+49
+00:06:12,000 --> 00:06:19,000
+ The standard for mDL was later expanded for more use with other identity documents
+
+50
+00:06:19,000 --> 00:06:25,000
+ In 2023, this became standard as a mobile identity document, mDOC for short
+
+51
+00:06:27,000 --> 00:06:36,000
+ For such as passports, insurance cards, and student IDs beyond driver's licenses, the feature is the same as mDL
+
+52
+00:06:38,000 --> 00:06:46,000
+ Using these two standards, Our Japan enabled the My Number Card to be used on iPhones, starting in June this year
+
+53
+00:06:47,000 --> 00:06:53,000
+ This was made possible through collaboration between the Digital Agency, the government of Japan, and Apple
+
+54
+00:06:53,000 --> 00:07:00,000
+ It's the first case in the world where a national ID has been stored on an Apple wallet as mDOC
+
+55
+00:07:03,000 --> 00:07:10,000
+ This card integrates both mDOC functionality and electronic certificates into a single device-bound wallet item
+
+56
+00:07:11,000 --> 00:07:17,000
+ This digital credential adheres to global world ID standards, as I mentioned
+
+57
+00:07:19,000 --> 00:07:23,000
+ Apps can access mDOC using APIs from Apple
+
+58
+00:07:24,000 --> 00:07:30,000
+ These allow apps to request identity or age data within wallets, prompting user consent
+
+59
+00:07:32,000 --> 00:07:38,000
+ I won't go into the details of certificates today, since it's specific to our local use cases
+
+60
+00:07:38,000 --> 00:07:44,000
+ Instead, I'd like to show you how we can use Apple's API to retrieve an mDOC
+
+61
+00:07:47,000 --> 00:07:49,000
+ The Apple provides three main APIs
+
+62
+00:07:50,000 --> 00:07:52,000
+ Each is provided by the...
+
+63
+00:07:53,000 --> 00:07:54,000
+ Sorry
+
+64
+00:07:55,000 --> 00:07:59,000
+ Also, different contexts in app, in person, and in the web browser
+
+65
+00:08:01,000 --> 00:08:03,000
+ So today, I want to be covering the third one
+
+66
+00:08:03,000 --> 00:08:07,000
+ This was introduced at this year's WWDC session
+
+67
+00:08:07,000 --> 00:08:12,000
+ It allows you to request an mDOC directly from the browser, even without an iPhone
+
+68
+00:08:13,000 --> 00:08:16,000
+ Check it out if you are interested
+
+69
+00:08:18,000 --> 00:08:20,000
+ So let's start with Verify with Wallet
+
+70
+00:08:22,000 --> 00:08:27,000
+ Verify with Wallet is a method for requesting an mDOC from wallets within your app
+
+71
+00:08:29,000 --> 00:08:33,000
+ The retrieved data can then be used directly inside the app
+
+72
+00:08:34,000 --> 00:08:39,000
+ Because of this, using this API requires a special entitlement for app
+
+73
+00:08:41,000 --> 00:08:44,000
+ The data is encrypted in HPKE format
+
+74
+00:08:45,000 --> 00:08:50,000
+ And neither Apple nor Wallet can decrypt the information inside
+
+75
+00:08:52,000 --> 00:08:54,000
+ Verify with... Oh, sorry
+
+76
+00:08:55,000 --> 00:08:56,000
+ Yes
+
+77
+00:08:57,000 --> 00:09:00,000
+ There are two entitlements required to call this API
+
+78
+00:09:01,000 --> 00:09:04,000
+ The first one is In-App Identity Presentment
+
+79
+00:09:06,000 --> 00:09:11,000
+ With this entitlement, you must specify which documents you want to access
+
+80
+00:09:11,000 --> 00:09:15,000
+ For example, US driver's license or Japan's national ID
+
+81
+00:09:17,000 --> 00:09:23,000
+ You also need to specify which elements you plan to read, such as name, portrait, or age
+
+82
+00:09:24,000 --> 00:09:30,000
+ If what you request at runtime doesn't match what you applied for in advance
+
+83
+00:09:31,000 --> 00:09:33,000
+ the API call will be rejected
+
+84
+00:09:35,000 --> 00:09:42,000
+ The other entitlement requires you to specify a merchant ID
+
+85
+00:09:42,000 --> 00:09:50,000
+ This merchant ID is different from the app ID, you use for Apple Pay or Apple Wallet
+
+86
+00:09:50,000 --> 00:09:57,000
+ When you generate it from the Apple developer portal, you link it to bundle ID of the app
+
+87
+00:09:58,000 --> 00:10:05,000
+ To use Verify with Wallet, your app must call the API and request the user's approval
+
+88
+00:10:06,000 --> 00:10:11,000
+ Once approved, Wallet returns an object encrypted with HPKE
+
+89
+00:10:13,000 --> 00:10:17,000
+ You then send this object to your own server where it's decrypted
+
+90
+00:10:18,000 --> 00:10:22,000
+ After decryption, the payload is in C format
+
+91
+00:10:23,000 --> 00:10:27,000
+ From it, you can obtain the elements you requested
+
+92
+00:10:29,000 --> 00:10:32,000
+ The API provided by Apple is included in PassKit
+
+93
+00:10:35,000 --> 00:10:38,000
+ In the descriptor, you specify the element you need
+
+94
+00:10:40,000 --> 00:10:46,000
+ In the request object, you set the descriptor and the region
+
+95
+00:10:46,000 --> 00:10:49,000
+ At this point, you also configure the merchant ID
+
+96
+00:10:50,000 --> 00:10:53,000
+ When you send the data request to the controller
+
+97
+00:10:54,000 --> 00:10:57,000
+ the user screen  a seed asking for permission to share the information
+
+98
+00:10:58,000 --> 00:11:01,000
+ They will approve it with Face ID or Touch ID
+
+99
+00:11:03,000 --> 00:11:10,000
+ Once the user approves, you receive an HPKE envelope, as defined in RFC 9180
+
+100
+00:11:11,000 --> 00:11:16,000
+ This envelope combines public key encryption with symmetric encryption
+
+101
+00:11:17,000 --> 00:11:19,000
+ providing a secure way to encrypt and decrypt the data
+
+102
+00:11:20,000 --> 00:11:25,000
+ You then send this envelope to your server for decryption
+
+103
+00:11:26,000 --> 00:11:32,000
+ When you decrypt this data, the resulting structure is C-Board
+
+104
+00:11:32,000 --> 00:11:38,000
+ As you look into the data, you'll find that the given name field contains a value
+
+105
+00:11:38,000 --> 00:11:44,000
+ This is the kind of data your app can then use directly
+
+106
+00:11:45,000 --> 00:11:46,000
+ And that's Verify with Wallet
+
+107
+00:11:47,000 --> 00:11:52,000
+ It's an API you can use for in-app identity verification
+
+108
+00:11:52,000 --> 00:11:55,000
+ For more details, please check out the WWDC 22 session
+
+109
+00:11:56,000 --> 00:11:58,000
+ What's New in Wallet and Apple Pay
+
+110
+00:12:02,000 --> 00:12:10,000
+ I didn't go into details today about how to request entitlements or how to test with a simulator or on devices
+
+111
+00:12:10,000 --> 00:12:15,000
+ But you can find all of this explained in more details on Apple developers' website
+
+112
+00:12:18,000 --> 00:12:22,000
+ So next, let's talk about ID Verifier API
+
+113
+00:12:23,000 --> 00:12:25,000
+ This API uses two iPhones
+
+114
+00:12:25,000 --> 00:12:26,000
+ The reader iPhone sends an ID to the reader
+
+115
+00:12:26,000 --> 00:12:30,000
+ The reader iPhone sends an mDOC request to the holder
+
+116
+00:12:30,000 --> 00:12:34,000
+ and the user presents their iPhone in response
+
+117
+00:12:36,000 --> 00:12:39,000
+ When the iPhone is tapped to the reader
+
+118
+00:12:39,000 --> 00:12:42,000
+ NFC is used to initiate a BLE connection
+
+119
+00:12:44,000 --> 00:12:49,000
+ Through this BLE connection, the mDOC is transmitted
+
+120
+00:12:49,000 --> 00:12:52,000
+ The API provides two modes
+
+121
+00:12:52,000 --> 00:12:56,000
+ display request and data transfer
+
+122
+00:12:57,000 --> 00:12:59,000
+ With the display request
+
+123
+00:13:00,000 --> 00:13:03,000
+ you can retrieve elements like portrait, age, and name
+
+124
+00:13:04,000 --> 00:13:08,000
+ For age, you can specify whether you want the actual age
+
+125
+00:13:09,000 --> 00:13:11,000
+ or just checking over a certain age
+
+126
+00:13:13,000 --> 00:13:16,000
+ The requested information is shown on the screen only
+
+127
+00:13:17,000 --> 00:13:20,000
+ Your app itself does not retrieve the data
+
+128
+00:13:22,000 --> 00:13:25,000
+ No special entitlement request is required
+
+129
+00:13:26,000 --> 00:13:30,000
+ As long as you enable the ID Verifier display capability in your app
+
+130
+00:13:31,000 --> 00:13:33,000
+ you can use this feature right away
+
+131
+00:13:34,000 --> 00:13:36,000
+ On the other hand, with data transfer
+
+132
+00:13:37,000 --> 00:13:41,000
+ you can obtain additional elements such as date of birth
+
+133
+00:13:41,000 --> 00:13:45,000
+ address, and sex on the top, the ones I mentioned earlier
+
+134
+00:13:47,000 --> 00:13:51,000
+ Their elements are then transferred directly into your app
+
+135
+00:13:52,000 --> 00:13:56,000
+ Unlike the display request
+
+136
+00:13:56,000 --> 00:13:59,000
+ this mode lets your app actually access the data
+
+137
+00:13:59,000 --> 00:14:06,000
+ That means you need to request a special entitlement from Apple called Proximity Reader Identity Lead
+
+138
+00:14:07,000 --> 00:14:15,000
+ The ID Verifier API is provided through a framework called Proximity Reader
+
+139
+00:14:15,000 --> 00:14:21,000
+ Compared to PassKit, it looks and feels like a much more modern API
+
+140
+00:14:22,000 --> 00:14:26,000
+ Just like with Verify with Wallet
+
+141
+00:14:26,000 --> 00:14:28,000
+ we specify the elements we want to retrieve
+
+142
+00:14:29,000 --> 00:14:32,000
+ When we call prepare on the reader
+
+143
+00:14:32,000 --> 00:14:33,000
+ we get the session needs for the request
+
+144
+00:14:35,000 --> 00:14:37,000
+ Then we call the request on this session
+
+145
+00:14:37,000 --> 00:14:44,000
+ The user is asked to present their ID by holding the iPhone for the reader
+
+146
+00:14:47,000 --> 00:14:48,000
+ Next is a data request
+
+147
+00:14:48,000 --> 00:14:50,000
+ It has almost the same as the previous one
+
+148
+00:14:51,000 --> 00:14:57,000
+ but the difference is whether the requested information can be retained for a certain period of time
+
+149
+00:14:58,000 --> 00:15:01,000
+ A small detail, but starting from iOS 26
+
+150
+00:15:02,000 --> 00:15:05,000
+ we can use a protocol so that calls can be more shortened
+
+151
+00:15:07,000 --> 00:15:11,000
+ With a data request, the response is strongly typed
+
+152
+00:15:12,000 --> 00:15:14,000
+ so you can retrieve the data easily
+
+153
+00:15:18,000 --> 00:15:22,000
+ In most cases, using the reader requires issuing a token
+
+154
+00:15:22,000 --> 00:15:24,000
+ to authenticate the reader itself
+
+155
+00:15:26,000 --> 00:15:31,000
+ This token is passed into the prepare method to be verified
+
+156
+00:15:33,000 --> 00:15:35,000
+ This is also a raw data request
+
+157
+00:15:36,000 --> 00:15:38,000
+ In addition to the standard data request
+
+158
+00:15:39,000 --> 00:15:41,000
+ it handles raw mDOC data
+
+159
+00:15:42,000 --> 00:15:46,000
+ but there is no time to introduce you to it at this time
+
+160
+00:15:47,000 --> 00:15:53,000
+ I have shown you how to perform in-person identity verification sing the ID Verifier API
+
+161
+00:15:55,000 --> 00:15:57,000
+ For more details, please check out the WWDC23 session
+
+162
+00:15:58,000 --> 00:16:00,000
+ What's New in Wallet and Apple Pay
+
+163
+00:16:02,000 --> 00:16:04,000
+ Just like with Verify with Wallet
+
+164
+00:16:05,000 --> 00:16:07,000
+ details such as how to request entitlements
+
+165
+00:16:08,000 --> 00:16:11,000
+ or how to test are available from the Apple Developer website
+
+166
+00:16:13,000 --> 00:16:14,000
+ Now in Japan
+
+167
+00:16:15,000 --> 00:16:20,000
+ the digital agency has released an in-person verification app
+
+168
+00:16:21,000 --> 00:16:25,000
+ This app uses the ID Verifier API
+
+169
+00:16:25,000 --> 00:16:28,000
+ Let's take a look at how it works in practice
+
+170
+00:16:32,000 --> 00:16:34,000
+ Can I use the stand
+
+171
+00:16:35,000 --> 00:16:37,000
+ Or somebody may help
+
+172
+00:16:55,000 --> 00:16:56,000
+ Thank you
+
+173
+00:16:56,000 --> 00:17:00,000
+ There are two iPhones in my hand
+
+174
+00:17:01,000 --> 00:17:03,000
+ This is a holder
+
+175
+00:17:04,000 --> 00:17:06,000
+ which has my number card inside Wallet
+
+176
+00:17:07,000 --> 00:17:09,000
+ This is a reader
+
+177
+00:17:09,000 --> 00:17:11,000
+ which shows installed apps to verify
+
+178
+00:17:11,000 --> 00:17:17,000
+ In the app, select the use case what we want to get from the holder
+
+179
+00:17:19,000 --> 00:17:21,000
+ Then tap Start
+
+180
+00:17:22,000 --> 00:17:25,000
+ The reader shows the UI to be tapped to the iPhone
+
+181
+00:17:25,000 --> 00:17:29,000
+ The holder taps the iPhone on the top
+
+182
+00:17:42,000 --> 00:17:46,000
+ My phone requires passcode, sorry
+
+183
+00:18:02,000 --> 00:18:05,000
+ Okay, this is my ID
+
+184
+00:18:06,000 --> 00:18:10,000
+ The reader requests a tapped iPhone here
+
+185
+00:18:14,000 --> 00:18:18,000
+ The holder has requested authentication with FaceID
+
+186
+00:18:20,000 --> 00:18:22,000
+ The reader shows the UI
+
+187
+00:18:25,000 --> 00:18:27,000
+ And it says I'm over 20
+
+188
+00:18:30,000 --> 00:18:32,000
+ That's it
+
+189
+00:18:35,000 --> 00:18:37,000
+ Let me recap this session
+
+190
+00:18:39,000 --> 00:18:42,000
+ By using the ID card inside the iPhone
+
+191
+00:18:42,000 --> 00:18:45,000
+ we can protect ourselves from more security and safety
+
+192
+00:18:46,000 --> 00:18:50,000
+ Apple provides three kinds of APIs for the situation
+
+193
+00:18:51,000 --> 00:18:53,000
+ In-app, in-person, and web browser
+
+194
+00:18:54,000 --> 00:19:01,000
+ ID Verifier for in-person provides three kinds of APIs, display data request and load data request
+
+195
+00:19:02,000 --> 00:19:06,000
+ And these APIs are compatible with ISO standards
+
+196
+00:19:06,000 --> 00:19:14,000
+ So we can use three APIs even if published by US driver's license or Japan's my number card
+
+197
+00:19:14,000 --> 00:19:17,000
+ or some new ID card in other countries in future
+
+198
+00:19:19,000 --> 00:19:20,000
+ So that's all
+
+199
+00:19:20,000 --> 00:19:23,000
+ So it was happy to hear and see you again
+
+200
+00:19:24,000 --> 00:19:26,000
+ And hope to see you in Tokyo next time
+
+201
+00:19:26,000 --> 00:19:27,000
+ Thank you so much
+
+202
+00:19:46,000 --> 00:19:50,000
+謝謝 Daiki 為我們帶來這麼精彩的演講還有Live coding
+
+203
+00:19:50,000 --> 00:19:55,000
+而且他還特地把 Slides 翻成中文 
+
+204
+00:19:55,000 --> 00:19:57,000
+Thank you for Chinese slide
+
+205
+00:19:57,000 --> 00:19:59,000
+優しい
+
+206
+00:19:59,000 --> 00:20:05,000
+再給他最最熱烈的掌聲謝謝我們日本的朋友
