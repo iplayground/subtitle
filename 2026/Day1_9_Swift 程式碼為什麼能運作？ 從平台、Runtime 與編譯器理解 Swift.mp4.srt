@@ -1,0 +1,1300 @@
+1
+00:00:05,620 --> 00:00:08,320
+Hello everyone, and thank
+you for joining my session.
+
+2
+00:00:08,520 --> 00:00:09,180
+My name is Yuki.
+
+3
+00:00:09,440 --> 00:00:14,900
+Today, we're diving into looking
+at how and why your Swift code
+
+4
+00:00:14,940 --> 00:00:16,000
+works in your app.
+
+5
+00:00:17,940 --> 00:00:23,680
+Here's today's agenda. First, I'll
+talk about why it's worth going deeper
+
+6
+00:00:23,720 --> 00:00:24,700
+into Swift.
+
+7
+00:00:25,340 --> 00:00:30,400
+Next, we'll look at how your Swift
+program runs on each platform, from
+
+8
+00:00:30,440 --> 00:00:32,400
+the perspective of the Runtime.
+
+9
+00:00:32,640 --> 00:00:37,180
+and we'll see how the compiler
+handles your Swift code safely.
+
+10
+00:00:37,780 --> 00:00:43,130
+And finally, I'll share some practical
+tips to help you become friends
+
+11
+00:00:43,170 --> 00:00:46,940
+with Swift. Let's start with the motivation.
+
+12
+00:00:47,200 --> 00:00:48,660
+Where should we go deeper into Swift?
+
+13
+00:00:50,580 --> 00:00:53,800
+As you know, Swift is now
+a multi-platform language.
+
+14
+00:00:54,140 --> 00:00:57,920
+Every day, we build apps for
+Apple platforms with Swift.
+
+15
+00:00:58,800 --> 00:01:00,380
+But Swift doesn't stop there.
+
+16
+00:01:00,620 --> 00:01:02,920
+It also runs beyond Apple platforms.
+
+17
+00:01:04,040 --> 00:01:09,540
+They're still experimental, but Swift
+is coming to embedded systems, and even
+
+18
+00:01:09,580 --> 00:01:10,120
+Android.
+
+19
+00:01:12,060 --> 00:01:15,780
+With Swift reaching all these
+platforms, it's a great time to look at
+
+20
+00:01:15,820 --> 00:01:17,440
+what's going on under the hood.
+
+21
+00:01:18,680 --> 00:01:21,920
+So, why should we go deeper into Swift?
+
+22
+00:01:22,980 --> 00:01:28,040
+First, Swift is growing into a true
+multi-platform language, as we just saw.
+
+23
+00:01:28,540 --> 00:01:33,000
+Second, a platform-native development really
+benefits from knowing what's underneath.
+
+24
+00:01:33,520 --> 00:01:38,980
+And finally, it shapes your
+developer experience in meaningful
+
+25
+00:01:39,020 --> 00:01:39,540
+ways.
+
+26
+00:01:40,900 --> 00:01:44,020
+As an example, let's look at API availability.
+
+27
+00:01:44,060 --> 00:01:48,900
+This one feels less like a benefit
+and more like a frustration, until
+
+28
+00:01:48,940 --> 00:01:50,900
+you understand what's happening underneath.
+
+29
+00:01:52,020 --> 00:01:55,735
+I'm sure many of you have hit this wall.
+
+30
+00:01:55,775 --> 00:01:59,220
+Your app's deployment target
+caps which APIs you can call.
+
+31
+00:01:59,740 --> 00:02:05,560
+And without the available keyword,
+code like this simply won't compile.
+
+32
+00:02:06,960 --> 00:02:12,760
+For example, let's say we have this code using
+@Observable, and we're building for iOS 15.
+
+33
+00:02:14,060 --> 00:02:19,820
+Then we get this error, telling us that
+@Observable isn't available on our target OS.
+
+34
+00:02:21,280 --> 00:02:23,820
+So we need to mark it with available iOS 17,
+
+35
+00:02:23,940 --> 00:02:27,060
+to get this code to compile.
+
+36
+00:02:29,040 --> 00:02:35,500
+And there's one more: our Swift
+code comes with invisible costs.
+
+37
+00:02:35,500 --> 00:02:39,500
+As an example, let's take
+ARC—Automatic Reference Counting.
+
+38
+00:02:40,440 --> 00:02:44,860
+At compile time, the compiler inserts
+extra code into yours to manage reference
+
+39
+00:02:44,900 --> 00:02:45,500
+counts.
+
+40
+00:02:46,280 --> 00:02:49,080
+And it's not just ARC.
+
+41
+00:02:49,480 --> 00:02:53,540
+All kinds of code instructions
+get injected at compile time.
+
+42
+00:02:55,400 --> 00:03:02,220
+So, look beyond the code you write,
+and understand how the compiler really
+
+43
+00:03:02,260 --> 00:03:03,120
+handles it.
+
+44
+00:03:04,060 --> 00:03:06,560
+That's a big step toward better performance.
+
+45
+00:03:08,580 --> 00:03:10,860
+For example, take the code on the left.
+
+46
+00:03:11,160 --> 00:03:15,000
+At compile time, code like the
+one on the right gets inserted.
+
+47
+00:03:15,000 --> 00:03:20,000
+These are the calls that manage reference
+counts.
+
+48
+00:03:20,000 --> 00:03:22,970
+When you're writing everyday app code,
+
+49
+00:03:22,970 --> 00:03:23,300
+you'd never notice them.
+
+50
+00:03:23,920 --> 00:03:28,460
+But in performance-critical code,
+they can become a real problem.
+
+51
+00:03:30,180 --> 00:03:35,220
+These problems, and the reasons behind
+them, are invisible when you're looking at
+
+52
+00:03:35,260 --> 00:03:38,660
+your everyday Swift code.
+
+53
+00:03:39,200 --> 00:03:43,460
+To see them, we need to dig
+into what Swift really is.
+
+54
+00:03:43,500 --> 00:03:46,160
+And that's exactly what we do today.
+
+55
+00:03:46,900 --> 00:03:51,060
+I’ll give you the background, and the
+tools to face these problems head-on.
+
+56
+00:03:57,020 --> 00:04:00,480
+Now, let's begin our first journey
+into the mechanism of Swift:
+the Runtime.
+
+57
+00:04:00,520 --> 00:04:04,760
+We'll see how it works, and the
+benefits it brings along the way.
+
+58
+00:04:07,000 --> 00:04:09,740
+Imagine the Swift app you work on every day.
+
+59
+00:04:09,780 --> 00:04:15,120
+Your app gets installed on an
+Apple platform, and it runs
+
+60
+00:04:15,160 --> 00:04:20,440
+freely on top of the OS. It
+all feels natural, right?
+
+61
+00:04:20,440 --> 00:04:25,800
+But there's a secret
+hiding in this simple flow.
+
+62
+00:04:25,840 --> 00:04:27,260
+This is where Swift Runtime comes in.
+
+63
+00:04:27,300 --> 00:04:31,220
+It ships with the OS, and it
+plays the vital role in making
+
+64
+00:04:31,260 --> 00:04:33,000
+your Swift app run.
+
+65
+00:04:35,000 --> 00:04:37,460
+So, what is the Runtime?
+
+66
+00:04:39,100 --> 00:04:43,220
+It's a program that supports how
+your Swift code behaves at runtime.
+
+67
+00:04:43,260 --> 00:04:47,540
+In short, it's the heart of Swift.
+
+68
+00:04:47,580 --> 00:04:48,200
+It's what makes Swift feel like Swift.
+
+69
+00:04:49,000 --> 00:04:52,820
+That might sound abstract,
+so let's make it concrete.
+
+70
+00:04:54,860 --> 00:04:57,040
+Here, it helps to clarify the roles of the
+
+71
+00:04:57,080 --> 00:05:01,700
+compiler and the Runtime. It makes
+the whole picture much easier.
+
+72
+00:05:03,000 --> 00:05:04,420
+Think of it this way.
+
+73
+00:05:04,460 --> 00:05:09,100
+The compiler paves a safe road with
+signals and signs, showing how your
+
+74
+00:05:09,140 --> 00:05:13,660
+code should proceed. And the Runtime is
+the driver, actually driving the truck on
+
+75
+00:05:13,700 --> 00:05:19,020
+that road. Let's start with the relationship
+between your app and the Runtime.
+
+76
+00:05:19,060 --> 00:05:23,860
+The compiled Swift code in your app
+calls into the Runtime, and that's
+
+77
+00:05:23,900 --> 00:05:25,280
+what keeps your program running.
+
+78
+00:05:25,320 --> 00:05:32,920
+So, what exactly is your code
+calling from the Runtime?
+
+79
+00:05:32,920 --> 00:05:35,070
+Let's take a look.
+
+80
+00:05:35,110 --> 00:05:40,020
+When your Swift code creates an instance,
+it calls the Runtime to allocate
+
+81
+00:05:40,060 --> 00:05:45,640
+memory. Retaining and releasing reference
+counts goes through swift_retain
+
+82
+00:05:45,680 --> 00:05:49,160
+and swift_release instructions. Casts like as?
+
+83
+00:05:49,200 --> 00:05:51,840
+and is also rely deeply on the Runtime.
+
+84
+00:05:52,780 --> 00:05:54,840
+And your async code?
+
+85
+00:05:54,880 --> 00:05:59,600
+That's actually executed
+by the Concurrency runtime.
+
+86
+00:06:00,180 --> 00:06:03,200
+So, the Runtime is always
+working behind your code.
+
+87
+00:06:05,420 --> 00:06:08,320
+The Runtime has evolved over time.
+
+88
+00:06:09,380 --> 00:06:14,200
+Before iOS 12.2, every app
+bundled its own copy of Runtime.
+
+89
+00:06:14,240 --> 00:06:17,520
+And that came at a cost.
+
+90
+00:06:17,560 --> 00:06:20,480
+Each app got larger, just to carry it.
+
+91
+00:06:22,160 --> 00:06:27,520
+Starting with iOS 12.2, the OS
+ships the Swift Runtime as a dynamic
+
+92
+00:06:27,560 --> 00:06:30,720
+library. As a result, our apps got smaller.
+
+93
+00:06:33,100 --> 00:06:35,180
+Of course, there's a trade-off.
+
+94
+00:06:35,280 --> 00:06:39,860
+A newer OS ships a newer
+Runtime, so your app can call the
+
+95
+00:06:39,900 --> 00:06:41,000
+newer APIs.
+
+96
+00:06:41,880 --> 00:06:45,240
+But an older OS still
+carries an older Runtime.
+
+97
+00:06:45,820 --> 00:06:49,260
+There, the newer APIs simply don't exist.
+
+98
+00:06:49,580 --> 00:06:53,660
+And this is exactly why we need
+the available keyword, like we saw
+
+99
+00:06:53,700 --> 00:06:54,840
+at the beginning.
+
+100
+00:06:57,200 --> 00:06:59,580
+Let's take a little detour here.
+
+101
+00:06:59,860 --> 00:07:03,000
+Earlier, I said the Runtime
+ships as a dynamic library.
+
+102
+00:07:03,360 --> 00:07:05,960
+But actually, there are
+two kinds of libraries.
+
+103
+00:07:06,220 --> 00:07:08,260
+Static libraries, and dynamic libraries.
+
+104
+00:07:08,740 --> 00:07:13,600
+A static library gets baked into
+your app binary, and ships as one
+
+105
+00:07:13,640 --> 00:07:14,540
+piece with your app.
+
+106
+00:07:15,940 --> 00:07:20,480
+A dynamic library stays separate,
+and gets loaded at runtime.
+
+107
+00:07:22,560 --> 00:07:27,680
+And the Swift Runtime is exactly this:
+a dynamic library owned by the OS,
+
+108
+00:07:27,720 --> 00:07:33,140
+loaded when your app launches. The
+Swift Runtime is available dynamically,
+
+109
+00:07:33,180 --> 00:07:38,180
+Dynamic, but whether you create static or
+dynamic library in your library creation,
+
+110
+00:07:38,220 --> 00:07:39,460
+depends on your case.
+
+111
+00:07:39,500 --> 00:07:44,380
+But as I mentioned, a dynamic
+library gets loaded at launch.
+
+112
+00:07:44,420 --> 00:07:47,560
+And that adds a cost to your launch time.
+
+113
+00:07:47,600 --> 00:07:51,640
+To tackle this, Apple
+introduced mergeable libraries.
+
+114
+00:07:51,680 --> 00:07:56,200
+For the details, check out the
+session Meet Mergeable Libraries from
+
+115
+00:07:56,240 --> 00:08:02,120
+WWDC23. Now, let's get back on track.
+
+116
+00:08:02,520 --> 00:08:07,680
+Here's the thing. If the Runtime
+comes from the OS, what happens when
+
+117
+00:08:07,720 --> 00:08:10,020
+your app is built with a
+different Swift version?
+
+118
+00:08:10,880 --> 00:08:13,560
+In the past, this was a real problem.
+
+119
+00:08:13,820 --> 00:08:18,540
+Without a stable ABI, a mismatched
+Swift version simply couldn't load
+
+120
+00:08:18,580 --> 00:08:20,380
+the Runtime.
+
+121
+00:08:22,300 --> 00:08:25,280
+This is where ABI Stability comes in.
+
+122
+00:08:25,540 --> 00:08:30,900
+Achieved in Swift 5, it lets apps
+built with different Swift versions
+
+123
+00:08:30,940 --> 00:08:32,420
+all share the same Runtime.
+
+124
+00:08:34,800 --> 00:08:38,460
+So, what exactly is ABI Stability?
+
+125
+00:08:39,940 --> 00:08:44,040
+ABI stands for Application Binary Interface.
+
+126
+00:08:44,780 --> 00:08:48,853
+It's the contract between Swift binaries
+and the Runtime, and it's now set in stone.
+
+127
+00:08:50,800 --> 00:08:55,180
+Thanks to this, a newer Runtime
+can always load your app.
+
+128
+00:08:55,180 --> 00:08:58,000
+No matter which version is.
+
+129
+00:09:00,000 --> 00:09:04,940
+And there's one more piece.
+
+130
+00:09:04,980 --> 00:09:08,640
+Module Stability, introduced in Swift 5.1.
+
+131
+00:09:09,500 --> 00:09:12,380
+While ABI Stability works at runtime,
+
+132
+00:09:13,280 --> 00:09:14,600
+this one works at build time.
+
+133
+00:09:14,640 --> 00:09:20,300
+It lets you import a framework
+built with a different compiler version.
+
+134
+00:09:23,000 --> 00:09:25,980
+For example, let's go back to
+
+135
+00:09:26,020 --> 00:09:28,000
+the days before Swift 5.1,
+
+136
+00:09:28,000 --> 00:09:32,280
+and see what happens when we import a framework
+
+137
+00:09:32,320 --> 00:09:34,320
+across different compiler versions.
+
+138
+00:09:36,260 --> 00:09:38,840
+in this case, we get an error,
+
+139
+00:09:39,680 --> 00:09:41,000
+and the import fails.
+
+140
+00:09:41,600 --> 00:09:44,780
+The swiftmodule file acts as
+the interface of the framework.
+
+141
+00:09:44,880 --> 00:09:49,160
+The problem is, its format is
+tied to each compiler version.
+
+142
+00:09:49,440 --> 00:09:53,540
+So compiler from a different
+version simply can't read it.
+
+143
+00:09:55,380 --> 00:10:00,032
+After Module Stability arrived, the
+swiftmodule still works as before, as long as
+
+144
+00:10:00,072 --> 00:10:01,640
+the compiler versions match.
+
+145
+00:10:04,020 --> 00:10:05,940
+But here is a new part.
+
+146
+00:10:06,100 --> 00:10:11,500
+When you build your library with
+BUILD_LIBRARY_FOR_DISTRIBUTION set to YES, it also
+
+147
+00:10:11,540 --> 00:10:13,280
+emits a swiftinterface file.
+
+148
+00:10:13,320 --> 00:10:17,720
+And this one is readable across
+the different compiler versions.
+
+149
+00:10:18,460 --> 00:10:19,380
+That's your stable interface.
+
+150
+00:10:22,460 --> 00:10:27,560
+So, if you're maintaining a framework
+or library, does this mean you can
+
+151
+00:10:27,600 --> 00:10:31,380
+leave it untouched, and head off on vacation?
+
+152
+00:10:34,520 --> 00:10:36,920
+Yes, stability keeps your old binaries
+
+153
+00:10:36,960 --> 00:10:41,624
+working. But it's a safety net, not a goal.
+
+154
+00:10:41,664 --> 00:10:46,660
+If you're on the side of shipping
+libraries, keep your code base and
+
+155
+00:10:46,700 --> 00:10:48,240
+your binaries up to date.
+
+156
+00:10:50,420 --> 00:10:55,420
+Finally, let's look at how the Runtime
+works across other operating systems.
+
+157
+00:10:55,900 --> 00:11:00,500
+First up Linux. On Linux, you get a choice.
+
+158
+00:11:00,740 --> 00:11:05,900
+You can link the Runtime statically,
+or load it as dynamic library.
+
+159
+00:11:08,020 --> 00:11:10,000
+Next up is Windows.
+
+160
+00:11:11,300 --> 00:11:15,000
+Here, dynamic linking is the
+mainly supported path today.
+
+161
+00:11:18,500 --> 00:11:23,940
+Next is Wasm. Here, libswiftCore.a
+gets baked right into
+
+162
+00:11:23,940 --> 00:11:29,590
+the Wasm module, and that's
+how Swift runs on Wasm.
+
+163
+00:11:30,480 --> 00:11:36,300
+And to talk to the JavaScript hosts like
+Node.js, it goes through JavaScriptKit.
+
+164
+00:11:37,900 --> 00:11:43,100
+For the details, check out the session "Introduction
+to WebAssembly for Swift Developers",
+
+165
+00:11:43,140 --> 00:11:45,000
+from SwiftLeeds 2024.
+
+166
+00:11:47,500 --> 00:11:49,080
+Next up is Android.
+
+167
+00:11:49,120 --> 00:11:54,520
+Your Swift code, along with the
+Runtime, gets built in a shared library
+
+168
+00:11:54,560 --> 00:11:59,960
+inside the APK. And it talks
+to Java and Kotlin through
+
+169
+00:12:00,000 --> 00:12:05,640
+swift-java, using JNI.
+And last, Embedded Swift.
+
+170
+00:12:05,680 --> 00:12:10,700
+On the left, this is what Swift
+has looked like so far, with
+
+171
+00:12:10,740 --> 00:12:13,340
+Runtime sitting alongside your code.
+
+172
+00:12:14,140 --> 00:12:19,568
+With Embedded Swift, a slimmed-down set
+of Swift features gets embedded right
+
+173
+00:12:19,608 --> 00:12:23,980
+into your code. There's no
+type metadata, for example.
+
+174
+00:12:25,100 --> 00:12:30,090
+And in exchange for being this
+lightweight, it becomes a subset of the
+
+175
+00:12:30,130 --> 00:12:34,660
+Swift language. For example,
+take a look at this table.
+
+176
+00:12:35,120 --> 00:12:40,840
+Without type metadata, features like
+Reflection are simply unavailable in embedded Swift.
+
+177
+00:12:42,700 --> 00:12:51,000
+But Embedded Swift is evolving fast.
+As announced at WWDC26, the subset expanded.
+
+178
+00:12:51,000 --> 00:12:55,000
+Existentials and untyped throws
+are now available too.
+
+179
+00:12:58,900 --> 00:13:04,280
+Now, for our last stop, let's look
+at what the compiler really does.
+
+180
+00:13:06,200 --> 00:13:11,100
+Earlier, I said Runtime is a driver,
+and the compiler paves the road.
+
+181
+00:13:11,380 --> 00:13:15,980
+So, how exactly does the compiler
+pave a safe road for our code?
+
+182
+00:13:18,020 --> 00:13:22,380
+To answer that, we need to see how
+our code actually gets compiled,
+
+183
+00:13:22,420 --> 00:13:27,420
+step by step. When Swift code enters the compiler
+
+184
+00:13:27,420 --> 00:13:31,360
+the Parser turns it into a
+structure that's easy to analyze, called
+
+185
+00:13:31,400 --> 00:13:35,440
+the Abstract Syntax Tree(AST).
+
+186
+00:13:35,820 --> 00:13:39,140
+Then, a module called Sema
+fills in the type information.
+
+187
+00:13:40,040 --> 00:13:45,620
+Next, SILGen lowers it into an
+intermediate representation called SIL.
+
+188
+00:13:46,420 --> 00:13:48,640
+This happens in two steps.
+
+189
+00:13:48,840 --> 00:13:54,395
+First raw SIL, and then canonical
+SIL, with the first optimizations
+
+190
+00:13:54,435 --> 00:13:55,120
+applied.
+
+191
+00:13:56,040 --> 00:13:59,520
+From there, it becomes LLVM IR,
+
+192
+00:13:59,960 --> 00:14:05,500
+then object files, and finally,
+the linker puts everything together
+
+193
+00:14:05,540 --> 00:14:07,200
+into your binary.
+
+194
+00:14:11,840 --> 00:14:16,820
+Out of all these phases, let's
+zoom in on type checking.
+
+195
+00:14:18,140 --> 00:14:22,467
+Sometimes, type checking comes with a cost.
+
+196
+00:14:22,507 --> 00:14:27,620
+Code that relies heavily on type
+inference can slow the compiler down.
+
+197
+00:14:30,620 --> 00:14:35,620
+And that means there's room for you to optimize.
+
+198
+00:14:35,900 --> 00:14:39,620
+Here is an example, a chain
+of closures like this.
+
+199
+00:14:39,660 --> 00:14:44,120
+When I compile it on my
+machine, I get this error.
+
+200
+00:14:45,440 --> 00:14:50,320
+The compiler is unable to type-check
+this expression in reasonable time.
+
+201
+00:14:50,600 --> 00:14:55,987
+In other words, type inference hits
+its time limit before it can finish.
+
+202
+00:14:56,027 --> 00:15:02,072
+Code like this needs a helping hand, so
+type inference doesn't take too long.
+
+203
+00:15:03,300 --> 00:15:06,220
+type annotation helps a little.
+
+204
+00:15:07,040 --> 00:15:10,000
+But breaking up the expression?
+
+205
+00:15:10,040 --> 00:15:12,120
+That helps a lot.
+
+206
+00:15:13,000 --> 00:15:15,640
+Some code fails with an error like this.
+
+207
+00:15:15,700 --> 00:15:19,000
+But that's not always the case.
+
+208
+00:15:19,340 --> 00:15:25,200
+Even without an error, your
+build can quietly get slower.
+
+209
+00:15:25,400 --> 00:15:27,620
+To hunt down these hot spots,
+
+210
+00:15:28,220 --> 00:15:31,120
+pass these flags at build time.
+
+211
+00:15:31,120 --> 00:15:35,520
+The compiler will then warn you
+about code that's slow to type-check.
+
+212
+00:15:36,120 --> 00:15:37,620
+Give them a try.
+
+213
+00:15:51,980 --> 00:15:56,880
+Next, let's move on to SIL,
+and what it can show us.
+
+214
+00:15:57,280 --> 00:16:00,440
+SIL stands for Swift Intermediate Language.
+
+215
+00:16:00,440 --> 00:16:06,340
+It's the intermediate language
+that sits right before LLVM.
+
+216
+00:16:06,340 --> 00:16:11,940
+It understands the Swift
+semantics, and that lets
+
+217
+00:16:11,980 --> 00:16:17,000
+Swift-specific optimizations run here.
+
+218
+00:16:17,220 --> 00:16:20,619
+This is where the SIL Optimizer comes in.
+
+219
+00:16:21,640 --> 00:16:27,265
+It is on between SILGen and IRGen,
+so everything happens before we reach
+
+220
+00:16:27,305 --> 00:16:27,840
+LLVM.
+
+221
+00:16:28,860 --> 00:16:33,160
+And it doesn't just run optimizations.
+
+222
+00:16:33,160 --> 00:16:38,640
+It also runs diagnostics, catching problems at compile time
+
+223
+00:16:38,640 --> 00:16:40,640
+before your code ever runs.
+
+224
+00:16:42,920 --> 00:16:50,120
+And as you can see, the SIL Optimizer
+runs a whole lot of optimizations.
+
+225
+00:16:50,660 --> 00:16:54,320
+And many of these are unique to Swift and SIL.
+
+226
+00:16:55,220 --> 00:16:59,220
+So now, let's take this greet function
+
+227
+00:16:59,260 --> 00:17:01,420
+and actually lower it into SIL.
+
+228
+00:17:01,420 --> 00:17:05,460
+What will we find there?
+
+229
+00:17:07,080 --> 00:17:13,120
+First, let's look at the raw SIL.
+
+230
+00:17:13,120 --> 00:17:16,440
+This is the SIL before any
+optimization runs
+
+231
+00:17:16,480 --> 00:17:18,620
+so it's a bit hard on the eyes.
+
+232
+00:17:19,220 --> 00:17:25,320
+Now, let's look at the canonical
+SIL, where some optimization has been applied.
+
+233
+00:17:25,620 --> 00:17:28,820
+There's a lot going on here.
+
+234
+00:17:28,820 --> 00:17:35,620
+But what stands out are these two,
+strong_retain, and strong_release.
+
+235
+00:17:35,620 --> 00:17:39,020
+These are the reference
+counting operations of ARC.
+
+236
+00:17:39,060 --> 00:17:43,171
+So at the SIL level, you can already
+see the extra code the compiler
+
+237
+00:17:43,171 --> 00:17:45,200
+inserts for you, ARC included.
+
+238
+00:17:46,460 --> 00:17:52,240
+Depending on the context, the
+optimizer removes redundant ARC
+
+239
+00:17:52,240 --> 00:17:53,040
+pairs for you.
+
+240
+00:17:53,860 --> 00:17:59,360
+And this is done by optimizer
+passes like SemanticARCOpts and
+
+241
+00:17:59,400 --> 00:18:01,980
+ARCSequenceOpts.
+
+242
+00:18:02,880 --> 00:18:06,820
+But, don't over-trust the optimizer.
+
+243
+00:18:06,820 --> 00:18:09,310
+These optimizations are best-effort
+
+244
+00:18:09,310 --> 00:18:12,020
+and the results can change from one compiler
+
+245
+00:18:12,020 --> 00:18:13,498
+version to the next.
+
+246
+00:18:13,498 --> 00:18:18,976
+So, express your performance intent
+in your source code, and then
+
+247
+00:18:18,976 --> 00:18:22,500
+inspect what actually comes out.
+
+248
+00:18:23,820 --> 00:18:26,320
+From here, let's focus on ARC.
+
+249
+00:18:27,120 --> 00:18:28,120
+Because ARC also has a cost.
+
+250
+00:18:28,820 --> 00:18:30,620
+It's invisible in your code.
+
+251
+00:18:30,620 --> 00:18:34,220
+And it impacts performance.
+
+252
+00:18:34,400 --> 00:18:37,820
+Take this simple Swift function.
+
+253
+00:18:38,120 --> 00:18:39,520
+And here's its SIL.
+
+254
+00:18:39,900 --> 00:18:45,340
+Even with optimizations turned on, the
+retain and release calls are still there.
+
+255
+00:18:46,400 --> 00:18:49,780
+For example, one tool we
+have here is Ownership.
+
+256
+00:18:52,160 --> 00:18:57,540
+With the consuming keyword, you can
+move ownership to the callee. Once
+
+257
+00:18:57,580 --> 00:19:01,520
+you do that, this strong
+retain simply disappears.
+
+258
+00:19:03,920 --> 00:19:07,300
+Today, we focused on type
+checking and the optimizer.
+
+259
+00:19:07,340 --> 00:19:13,020
+But there's still more to
+explore, like linker, and
+
+260
+00:19:13,060 --> 00:19:18,700
+LLVM itself. So take this diagram
+as your map, and go on your
+
+261
+00:19:18,740 --> 00:19:20,740
+own tour of the compiler.
+
+262
+00:19:20,780 --> 00:19:26,340
+And if you want to dive deeper
+into optimization, check out my
+
+263
+00:19:26,380 --> 00:19:30,860
+session from NSSpain 2020, Swift
+Optimizing at Compiler World.
+
+264
+00:19:34,980 --> 00:19:39,920
+Finally, let's talk about actions
+we can take, now that we know all
+
+265
+00:19:39,960 --> 00:19:43,540
+of this. First, go deeper.
+
+266
+00:19:43,700 --> 00:19:45,060
+The details are worth knowing.
+
+267
+00:19:45,100 --> 00:19:50,760
+Every new Swift feature has
+a design reason behind it.
+
+268
+00:19:50,800 --> 00:19:55,420
+And what you learned today
+helps you see those reasons.
+
+269
+00:19:55,460 --> 00:20:00,100
+Use it as a lens, and you'll
+enjoy the next feature even more.
+
+270
+00:20:01,060 --> 00:20:03,460
+Here is an example, some and any.
+
+271
+00:20:03,660 --> 00:20:08,060
+The some keyword shipped alongside
+SwiftUI as Opaque Result Types.
+
+272
+00:20:08,120 --> 00:20:12,140
+It was designed to overcome several
+limitations of existential types.
+
+273
+00:20:12,720 --> 00:20:18,220
+behind these keywords lives the
+Existential Container, a runtime mechanism.
+
+274
+00:20:18,260 --> 00:20:23,760
+So this is exactly where today's
+knowledge becomes your lens.
+
+275
+00:20:24,120 --> 00:20:28,380
+If you want the full story,
+check out this keyword
+
+276
+00:20:29,460 --> 00:20:35,104
+and my session Deep Dive into any
+and some, from SwiftHeroes 2023.
+
+277
+00:20:35,144 --> 00:20:39,300
+And one more example: build artifact caching.
+
+278
+00:20:39,340 --> 00:20:44,160
+Swift library and frameworks and build
+outputs can be cached effectively.
+
+279
+00:20:44,200 --> 00:20:49,620
+And many tools out there
+take advantage of this,
+
+280
+00:20:49,660 --> 00:20:51,120
+like Tuist, and Scipio.
+
+281
+00:20:51,160 --> 00:20:56,040
+Try exploring them, with the
+knowledge you gained today.
+
+282
+00:20:57,460 --> 00:21:02,180
+So, here's what I want to leave you:
+understand Swift from the inside.
+
+283
+00:21:02,220 --> 00:21:07,020
+Optimize through the lens of
+the Runtime and the Compiler.
+
+284
+00:21:07,120 --> 00:21:08,620
+And, enjoy your Swift life!
+
+285
+00:21:08,620 --> 00:21:11,340
+Thank you so much for listening.
+
+286
+00:21:11,380 --> 00:21:15,360
+I know this session went a little
+deep, but I hope you enjoyed
+
+287
+00:21:15,400 --> 00:21:20,120
+the ride. The conference keeps going,
+so please enjoy the sessions ahead!
