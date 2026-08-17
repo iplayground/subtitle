@@ -44,7 +44,7 @@ we are only going to talk about agents.
 
 12
 00:00:34,880 --> 00:00:38,000
-So my talk is about four agents and by agents.
+So my talk is about for agents and by agents.
 
 13
 00:00:38,000 --> 00:00:39,760
@@ -112,7 +112,7 @@ the whole presentation is made with Fable 5
 
 29
 00:01:14,080 --> 00:01:16,640
-in Claude Code with the translations and animations
+in Claude Code with the transitions and animations
 
 30
 00:01:16,640 --> 00:01:20,800
@@ -140,7 +140,7 @@ I worked with Apple Cupertino and the voice
 
 36
 00:01:32,320 --> 00:01:35,360
-controller and the Mac OS CD team,
+control and the macOS Siri team,
 
 37
 00:01:35,360 --> 00:01:37,520
@@ -172,7 +172,7 @@ Publishing as well as the iOS app.
 
 44
 00:01:53,280 --> 00:01:56,080
-I have been a consistent speaker in different cities.
+I have been a constant speaker in different cities.
 
 45
 00:01:56,240 --> 00:01:58,960
@@ -304,7 +304,7 @@ And I made sure that I took full advantage of it.
 
 77
 00:03:13,520 --> 00:03:17,120
-And that's how I got to be known as the App Strore Connect
+And that's how I got to be known as the App Store Connect
 
 78
 00:03:17,280 --> 00:03:18,480
@@ -312,7 +312,7 @@ CLI guy.
 
 79
 00:03:18,800 --> 00:03:22,000
-I created the CLI six ... months ago,
+I created this CLI six months ago,
 
 80
 00:03:22,000 --> 00:03:25,600
@@ -336,7 +336,7 @@ I was so tired of this ...
 
 85
 00:03:35,024 --> 00:03:37,029
-Looking at the spinner when I working with the website
+Looking at the spinner when I'm working with the website
 
 86
 00:03:37,280 --> 00:03:38,640
@@ -388,7 +388,7 @@ So I can go and back and enjoy my life.
 
 98
 00:03:54,880 --> 00:03:58,800
-And this was possible because App Stroe Connect has an API.
+And this was possible because App Store Connect has an API.
 
 99
 00:03:59,280 --> 00:04:00,320
@@ -404,11 +404,11 @@ me a lot of feedback on TestFlight.
 
 102
 00:04:04,720 --> 00:04:07,280
-I was very lazy to open the App Stroe Connect website
+I was very lazy to open the App Store Connect website
 
 103
 00:04:07,280 --> 00:04:09,120
-or go to the Xcode organizer.
+or go through the Xcode Organizer.
 
 104
 00:04:09,120 --> 00:04:11,280
@@ -428,7 +428,7 @@ I was creating it,
 
 108
 00:04:17,440 --> 00:04:20,160
-and there was a craz(y) of CLI in January.
+and there was a craze of CLI in January.
 
 109
 00:04:20,320 --> 00:04:23,520
@@ -636,7 +636,7 @@ there's a market gap because FastLane does
 
 160
 00:06:18,640 --> 00:06:22,080
-not cover everything that App Stroe Connect has to provide.
+not cover everything that App Store Connect has to provide.
 
 161
 00:06:22,240 --> 00:06:22,400
@@ -1416,7 +1416,7 @@ I wanted to ship the same way and keep it open
 
 355
 00:13:00,560 --> 00:13:03,280
-source that we all can take benefit from it.
+source so that we all can take benefit from it.
 
 356
 00:13:04,560 --> 00:13:07,920
@@ -1444,7 +1444,7 @@ of maintaining the CLI.
 
 362
 00:13:20,320 --> 00:13:24,240
-And I read this quote on threats recently.
+And I read this quote on Threads recently.
 
 363
 00:13:24,400 --> 00:13:25,520
@@ -1528,7 +1528,7 @@ maintain itself.
 
 383
 00:14:08,160 --> 00:14:11,120
-Because I realize at this point I am spending
+Because I realized at this point I am spending
 
 384
 00:14:11,120 --> 00:14:12,160
@@ -1784,7 +1784,7 @@ which is kind of redundant now,
 
 447
 00:16:25,280 --> 00:16:26,960
-which is how good the models are.
+with how good the models are.
 
 448
 00:16:27,120 --> 00:16:29,200
@@ -1820,7 +1820,7 @@ to have that green check.
 
 456
 00:16:42,480 --> 00:16:45,040
-And one thing that I learned was sosumi.ai,
+And one thing that I loved was sosumi.ai,
 
 457
 00:16:45,360 --> 00:16:48,160
@@ -2124,7 +2124,7 @@ what the direction was good,
 
 532
 00:19:35,840 --> 00:19:38,400
-but it wasn't what I would want as the standard
+but it wasn't what I would want at the standard
 
 533
 00:19:38,400 --> 00:19:40,400
@@ -2132,7 +2132,7 @@ to maintain because in the beginning I was
 
 534
 00:19:40,400 --> 00:19:42,320
-okay vibe coding this CLI,
+okay vibe coding the CLI,
 
 535
 00:19:42,320 --> 00:19:42,560
@@ -2312,7 +2312,7 @@ So it would create a new app and add App Clips,
 
 579
 00:21:20,480 --> 00:21:22,720
-try it to submit to the App Store and see the
+try to submit it to the App Store and see the
 
 580
 00:21:22,720 --> 00:21:24,000
@@ -2372,7 +2372,7 @@ And then I would ask the same question to both
 
 594
 00:21:51,520 --> 00:21:54,400
-Codex and Claude because I realize these two
+Codex and Claude because I realized these two
 
 595
 00:21:54,400 --> 00:21:56,000
@@ -2424,7 +2424,7 @@ where we can fix it in our CLI itself,
 
 607
 00:22:20,960 --> 00:22:23,040
-and then it would go through and write the whole
+and then it would go through and write a whole
 
 608
 00:22:23,040 --> 00:22:23,840
@@ -2864,7 +2864,7 @@ but I can fix my CLI.
 
 717
 00:25:59,200 --> 00:26:01,680
-So something I think I came up with as when
+So something I think I came up with when
 
 718
 00:26:01,680 --> 00:26:05,440
@@ -2920,7 +2920,7 @@ and then open PR.
 
 731
 00:26:29,440 --> 00:26:31,920
-And then the release cycle release automation
+And then the release automation
 
 732
 00:26:31,920 --> 00:26:34,160
@@ -2960,7 +2960,7 @@ zero open PRs right now, this morning,
 
 741
 00:26:52,480 --> 00:26:54,800
-and I realize at this point I can have the
+and I realized at this point I can have the
 
 742
 00:26:54,800 --> 00:26:56,960
@@ -2968,7 +2968,7 @@ agents maintain the product and not me,
 
 743
 00:26:56,960 --> 00:26:59,600
-even though I realize that I have to be in
+even though I realized that I have to be in
 
 744
 00:26:59,600 --> 00:27:01,520
@@ -3028,7 +3028,7 @@ ask it to go through your local Codex chats
 
 758
 00:27:19,440 --> 00:27:22,080
-or your local Claude chats and what you can automate.
+or your local Claude chats on what you can automate.
 
 759
 00:27:22,240 --> 00:27:25,360
@@ -3252,7 +3252,7 @@ Orchestrator sounds very fancy,
 
 814
 00:29:15,040 --> 00:29:16,480
-but just a mean agent,
+but just a main agent,
 
 815
 00:29:16,640 --> 00:29:18,240
@@ -3268,7 +3268,7 @@ I asked it to spawn different threads per feature
 
 818
 00:29:24,480 --> 00:29:27,280
-because I realized that the main each.. the main
+because I realized that the main
 
 819
 00:29:27,440 --> 00:29:29,680
@@ -3336,7 +3336,7 @@ and then ask it to fix it.
 
 835
 00:29:56,240 --> 00:29:59,120
-And one of the cool things was that this recovery
+And one of the cool thing was that this recovery
 
 836
 00:29:59,120 --> 00:30:01,120
