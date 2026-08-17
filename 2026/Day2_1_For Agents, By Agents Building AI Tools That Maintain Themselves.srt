@@ -2320,7 +2320,7 @@ whole process is working or not.
 
 581
 00:21:24,160 --> 00:21:26,320
-So this was a dear loop I wanted,
+So this was a real loop I wanted,
 
 582
 00:21:26,560 --> 00:21:29,520
