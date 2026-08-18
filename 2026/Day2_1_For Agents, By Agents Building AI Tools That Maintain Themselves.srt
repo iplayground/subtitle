@@ -1,0 +1,3499 @@
+1
+00:00:07,840 --> 00:00:10,320
+I have been practicing this for the whole morning,
+
+2
+00:00:10,320 --> 00:00:12,880
+so I hope it got it ... correct.
+
+3
+00:00:13,040 --> 00:00:13,200
+Uh,
+
+4
+00:00:13,360 --> 00:00:16,080
+this is my second time in Taipei and my first
+
+5
+00:00:16,080 --> 00:00:17,280
+iPlayground
+
+6
+00:00:17,280 --> 00:00:20,160
+and I thank the organizers for inviting me.
+
+7
+00:00:20,400 --> 00:00:23,600
+So I heard that the way to the heart of the
+
+8
+00:00:23,600 --> 00:00:25,920
+Taiwanese audience is through food.
+
+9
+00:00:26,080 --> 00:00:28,640
+So I hope you all had some good breakfast in
+
+10
+00:00:28,640 --> 00:00:31,360
+the morning because for the next 40 minutes
+
+11
+00:00:31,360 --> 00:00:33,600
+we are only going to talk about agents.
+
+12
+00:00:34,880 --> 00:00:38,000
+So my talk is about for agents and by agents.
+
+13
+00:00:38,000 --> 00:00:39,760
+I have divided into two stories.
+
+14
+00:00:39,920 --> 00:00:42,320
+The first is the inspiring part of building
+
+15
+00:00:42,320 --> 00:00:44,960
+in public so you can be inspired and go back
+
+16
+00:00:44,960 --> 00:00:46,960
+home and do a lot of open source work.
+
+17
+00:00:47,120 --> 00:00:49,360
+And the second part is on the technicals on
+
+18
+00:00:49,360 --> 00:00:51,760
+how I was able to get the agents to do a lot
+
+19
+00:00:51,760 --> 00:00:52,640
+of work for me,
+
+20
+00:00:52,800 --> 00:00:54,320
+still under my name.
+
+21
+00:00:54,640 --> 00:00:56,400
+And in 2026,
+
+22
+00:00:56,400 --> 00:00:57,760
+we use the agents,
+
+23
+00:00:57,920 --> 00:01:01,040
+we are not only working on the terminal by ourselves,
+
+24
+00:01:01,040 --> 00:01:04,240
+but we are also building tools for the developers
+
+25
+00:01:04,240 --> 00:01:06,400
+that are using these agents to use
+
+26
+00:01:06,880 --> 00:01:08,080
+the AI tools.
+
+27
+00:01:08,080 --> 00:01:10,640
+So before I start my presentation,
+
+28
+00:01:11,280 --> 00:01:14,080
+the whole presentation is made with Fable 5
+
+29
+00:01:14,080 --> 00:01:16,640
+in Claude Code with the transitions and animations
+
+30
+00:01:16,640 --> 00:01:20,800
+and Codex 5.6 with this computer use to verify
+
+31
+00:01:20,800 --> 00:01:21,200
+everything.
+
+32
+00:01:21,360 --> 00:01:24,240
+So if you find me saying you are absolutely right,
+
+33
+00:01:24,400 --> 00:01:26,400
+you know where that is coming from.
+
+34
+00:01:27,360 --> 00:01:29,680
+So a bit of introduction about myself.
+
+35
+00:01:29,680 --> 00:01:32,320
+I worked with Apple Cupertino and the voice
+
+36
+00:01:32,320 --> 00:01:35,360
+control and the macOS Siri team,
+
+37
+00:01:35,360 --> 00:01:37,520
+and I worked with startups that went on to
+
+38
+00:01:37,520 --> 00:01:39,600
+become Apple Design Award finalist.
+
+39
+00:01:39,760 --> 00:01:41,760
+Last year I worked with Alex Sidebar,
+
+40
+00:01:41,920 --> 00:01:45,440
+which was cursor for Xcode and got acquired by OpenAI.
+
+41
+00:01:45,440 --> 00:01:47,200
+And right now I work for Rork,
+
+42
+00:01:47,360 --> 00:01:50,160
+where I manage the App Store and the Android
+
+43
+00:01:50,160 --> 00:01:52,240
+Publishing as well as the iOS app.
+
+44
+00:01:53,280 --> 00:01:56,080
+I have been a constant speaker in different cities.
+
+45
+00:01:56,240 --> 00:01:58,960
+I was invited for iPlayground to talk about
+
+46
+00:01:58,960 --> 00:01:59,920
+building in public,
+
+47
+00:01:59,920 --> 00:02:01,680
+which unfortunately did not happen.
+
+48
+00:02:01,840 --> 00:02:05,600
+But I'm very happy to kind of have the same
+
+49
+00:02:05,600 --> 00:02:08,080
+talk and back on the stage again.
+
+50
+00:02:08,960 --> 00:02:10,400
+Back in 2019,
+
+51
+00:02:10,400 --> 00:02:12,560
+I won the WWDC Scholarship,
+
+52
+00:02:12,800 --> 00:02:15,840
+which kind of changed my trajectory of my life
+
+53
+00:02:16,000 --> 00:02:17,548
+because after going to DubDub
+
+54
+00:02:17,920 --> 00:02:19,280
+and meeting the developers there,
+
+55
+00:02:19,440 --> 00:02:21,120
+I started building in public.
+
+56
+00:02:21,280 --> 00:02:22,000
+And later,
+
+57
+00:02:22,000 --> 00:02:23,680
+after almost seven years,
+
+58
+00:02:23,920 --> 00:02:26,400
+earlier this year I was recognized as a community
+
+59
+00:02:26,400 --> 00:02:28,240
+leader at WWDC,
+
+60
+00:02:28,400 --> 00:02:30,720
+and you can see me at the corner there.
+
+61
+00:02:33,520 --> 00:02:36,240
+And everything in this talk is about building
+
+62
+00:02:36,240 --> 00:02:38,240
+in public and how I got the recognition from
+
+63
+00:02:38,240 --> 00:02:40,480
+the open source work I do and the community
+
+64
+00:02:40,480 --> 00:02:41,840
+building efforts.
+
+65
+00:02:43,200 --> 00:02:47,040
+I heard that MBTI is very popular in Taiwan.
+
+66
+00:02:47,200 --> 00:02:49,520
+So I wanted to mention that when you see me
+
+67
+00:02:49,520 --> 00:02:52,080
+on stage or when you're talking to me at the conference,
+
+68
+00:02:52,240 --> 00:02:54,240
+I'm actually an ENTJ.
+
+69
+00:02:54,880 --> 00:02:55,200
+But
+
+70
+00:02:56,160 --> 00:02:58,160
+I'm actually an INFP.
+
+71
+00:02:58,480 --> 00:03:01,360
+Like I would rather enjoy the midnight marina
+
+72
+00:03:01,360 --> 00:03:03,760
+in Singapore and enjoy the moments there.
+
+73
+00:03:04,160 --> 00:03:04,480
+And
+
+74
+00:03:04,880 --> 00:03:07,520
+I realized that posting online for me is much,
+
+75
+00:03:07,520 --> 00:03:10,320
+much easier than talking to people in real life.
+
+76
+00:03:10,320 --> 00:03:13,360
+And I made sure that I took full advantage of it.
+
+77
+00:03:13,520 --> 00:03:17,120
+And that's how I got to be known as the App Store Connect
+
+78
+00:03:17,280 --> 00:03:18,480
+CLI guy.
+
+79
+00:03:18,800 --> 00:03:22,000
+I created this CLI six months ago,
+
+80
+00:03:22,000 --> 00:03:25,600
+and I feel like I've already aged a year in this time.
+
+81
+00:03:25,760 --> 00:03:28,080
+And the motivation behind this was
+
+82
+00:03:28,480 --> 00:03:30,800
+the App Store Connect website.
+
+83
+00:03:31,200 --> 00:03:32,880
+You already know the motivation.
+
+84
+00:03:33,297 --> 00:03:34,670
+I was so tired of this ...
+
+85
+00:03:35,024 --> 00:03:37,029
+Looking at the spinner when I'm working with the website
+
+86
+00:03:37,280 --> 00:03:38,640
+So I wanted Claude Code,
+
+87
+00:03:38,640 --> 00:03:39,200
+Codex,
+
+88
+00:03:39,360 --> 00:03:39,840
+Cursor,
+
+89
+00:03:39,840 --> 00:03:42,960
+all the agents out there to just use the like
+
+90
+00:03:42,960 --> 00:03:45,600
+I don't like skip the manual tapping around
+
+91
+00:03:45,760 --> 00:03:47,520
+and just say that for builds,
+
+92
+00:03:47,520 --> 00:03:48,320
+localization,
+
+93
+00:03:48,320 --> 00:03:49,040
+screenshots,
+
+94
+00:03:49,040 --> 00:03:49,760
+metadata,
+
+95
+00:03:49,920 --> 00:03:50,400
+upload,
+
+96
+00:03:50,400 --> 00:03:51,840
+everything is from a CLI.
+
+97
+00:03:51,840 --> 00:03:54,560
+So I can go and back and enjoy my life.
+
+98
+00:03:54,880 --> 00:03:58,800
+And this was possible because App Store Connect has an API.
+
+99
+00:03:59,280 --> 00:04:00,320
+So at the same time,
+
+100
+00:04:00,320 --> 00:04:02,640
+I was working for a client and they would send
+
+101
+00:04:02,640 --> 00:04:04,560
+me a lot of feedback on TestFlight.
+
+102
+00:04:04,720 --> 00:04:07,280
+I was very lazy to open the App Store Connect website
+
+103
+00:04:07,280 --> 00:04:09,120
+or go through the Xcode Organizer.
+
+104
+00:04:09,120 --> 00:04:11,280
+I haven't opened Xcode in a long while.
+
+105
+00:04:11,440 --> 00:04:14,320
+So what I would do is I got to know about this endpoint.
+
+106
+00:04:14,560 --> 00:04:16,640
+Fastlane did not have this at the point when
+
+107
+00:04:16,640 --> 00:04:17,440
+I was creating it,
+
+108
+00:04:17,440 --> 00:04:20,160
+and there was a craze of CLI in January.
+
+109
+00:04:20,320 --> 00:04:23,520
+So what I did was create a very small CLI which
+
+110
+00:04:23,520 --> 00:04:24,880
+would take the webhook,
+
+111
+00:04:24,880 --> 00:04:26,640
+like every time there's a new endpoint,
+
+112
+00:04:26,880 --> 00:04:27,920
+give it to Claude,
+
+113
+00:04:27,920 --> 00:04:29,120
+and then create a PR.
+
+114
+00:04:29,120 --> 00:04:31,360
+I wanted to create an automation loop.
+
+115
+00:04:32,080 --> 00:04:34,720
+And I wanted this to be AI native from day
+
+116
+00:04:34,720 --> 00:04:37,280
+one because I have not written a single line
+
+117
+00:04:37,280 --> 00:04:38,800
+of code in the past two years.
+
+118
+00:04:38,960 --> 00:04:40,720
+And while I'm proud to say that,
+
+119
+00:04:40,960 --> 00:04:43,680
+I feel like this is how we are going into this
+
+120
+00:04:43,840 --> 00:04:45,680
+world of agentic coding.
+
+121
+00:04:46,720 --> 00:04:48,400
+So back in January,
+
+122
+00:04:48,400 --> 00:04:52,320
+uh a popular AI tool gave me $25,000 in credits,
+
+123
+00:04:52,560 --> 00:04:55,600
+and I had access to the latest GPT and Claude models,
+
+124
+00:04:55,600 --> 00:04:57,440
+and I really wanted to do something for the
+
+125
+00:04:57,440 --> 00:05:00,240
+betterment of the iOS community and not worry
+
+126
+00:05:00,240 --> 00:05:01,360
+about tokens at all.
+
+127
+00:05:01,520 --> 00:05:04,240
+So at that time I started working with a model,
+
+128
+00:05:04,400 --> 00:05:05,680
+a MiniMax model,
+
+129
+00:05:06,000 --> 00:05:08,560
+which is a very nice fast model.
+
+130
+00:05:08,800 --> 00:05:11,680
+And then I also learned a bit of Mandarin in between.
+
+131
+00:05:11,840 --> 00:05:14,400
+And what I realized is that it said you should
+
+132
+00:05:14,400 --> 00:05:18,480
+not create the CLI in Swift and write it in Go itself,
+
+133
+00:05:18,640 --> 00:05:20,720
+which was very difficult for me because as
+
+134
+00:05:20,720 --> 00:05:21,680
+iOS developers,
+
+135
+00:05:21,680 --> 00:05:24,400
+we are just so used to writing code in Swift.
+
+136
+00:05:24,560 --> 00:05:27,200
+It gave me the reasons that it's a single binary,
+
+137
+00:05:27,360 --> 00:05:28,960
+it is cross-platform,
+
+138
+00:05:29,440 --> 00:05:30,960
+you have the fast builds,
+
+139
+00:05:30,960 --> 00:05:32,080
+a standard library,
+
+140
+00:05:32,080 --> 00:05:34,160
+and it is very easy to distribute via homebrew
+
+141
+00:05:34,320 --> 00:05:37,760
+and then or do uh let's say work on Linux
+
+142
+00:05:37,760 --> 00:05:39,120
+and Windows as well.
+
+143
+00:05:39,600 --> 00:05:41,760
+And the biggest inspiration for me was the
+
+144
+00:05:41,760 --> 00:05:44,640
+GitHub CLI because it's uh open sourced and
+
+145
+00:05:44,640 --> 00:05:47,040
+I realized that it was written pre-AI,
+
+146
+00:05:47,040 --> 00:05:49,040
+so they have actually worked very hard and
+
+147
+00:05:49,040 --> 00:05:50,720
+beautifully architected it.
+
+148
+00:05:50,880 --> 00:05:53,920
+And whenever I had any issues in the architecture side,
+
+149
+00:05:53,920 --> 00:05:56,320
+I would just ask my agents to reference it.
+
+150
+00:05:56,320 --> 00:05:59,760
+And if you keep my CLI and the GitHub CLI side by side,
+
+151
+00:05:59,760 --> 00:06:02,000
+you will see a lot of things in common.
+
+152
+00:06:03,040 --> 00:06:05,840
+But one thing that the MiniMax model told me
+
+153
+00:06:05,840 --> 00:06:07,920
+is that will you actually build it?
+
+154
+00:06:08,080 --> 00:06:09,760
+Because the ideas are cheap,
+
+155
+00:06:09,920 --> 00:06:11,280
+execution is everything.
+
+156
+00:06:11,440 --> 00:06:13,200
+You know how to use Claude Code to write,
+
+157
+00:06:13,360 --> 00:06:14,320
+help you write Go,
+
+158
+00:06:14,560 --> 00:06:16,240
+even if you don't know the language,
+
+159
+00:06:16,240 --> 00:06:18,640
+there's a market gap because FastLane does
+
+160
+00:06:18,640 --> 00:06:22,080
+not cover everything that App Store Connect has to provide.
+
+161
+00:06:22,240 --> 00:06:22,400
+So,
+
+162
+00:06:22,400 --> 00:06:23,760
+where do you start?
+
+163
+00:06:24,080 --> 00:06:24,400
+So,
+
+164
+00:06:24,800 --> 00:06:25,120
+as
+
+165
+00:06:25,600 --> 00:06:27,520
+something who has been building in public,
+
+166
+00:06:27,680 --> 00:06:30,720
+I decided to just create a very small CLI with
+
+167
+00:06:30,720 --> 00:06:33,360
+one endpoint and then ask my Twitter audience,
+
+168
+00:06:33,600 --> 00:06:35,440
+would you actually want to use it?
+
+169
+00:06:35,680 --> 00:06:36,720
+And at the same time,
+
+170
+00:06:36,720 --> 00:06:38,640
+I realized that there's another platform called
+
+171
+00:06:38,640 --> 00:06:40,720
+as Threads where I can start posting.
+
+172
+00:06:40,880 --> 00:06:42,000
+And in the past few days,
+
+173
+00:06:42,000 --> 00:06:45,440
+I have realized that a lot of Taiwanese are on Threads.
+
+174
+00:06:45,440 --> 00:06:47,840
+So who all are on Threads here?
+
+175
+00:06:49,440 --> 00:06:50,640
+A lot of people.
+
+176
+00:06:50,880 --> 00:06:53,280
+So when I would post on X or Threads,
+
+177
+00:06:53,440 --> 00:06:54,880
+I would get very little response,
+
+178
+00:06:54,880 --> 00:06:57,280
+and but I still kept going because I was creating
+
+179
+00:06:57,280 --> 00:06:58,560
+it for myself.
+
+180
+00:06:59,120 --> 00:07:01,040
+I would start doing daily releases,
+
+181
+00:07:01,200 --> 00:07:03,120
+add small endpoints here and there,
+
+182
+00:07:03,120 --> 00:07:05,120
+and see what people would want,
+
+183
+00:07:05,280 --> 00:07:07,440
+and then there was still not much response,
+
+184
+00:07:07,440 --> 00:07:10,000
+but it became more than a weekend project.
+
+185
+00:07:10,240 --> 00:07:12,640
+But one of the tweets went very viral,
+
+186
+00:07:12,880 --> 00:07:14,960
+where I said that's one of the biggest releases,
+
+187
+00:07:14,960 --> 00:07:17,680
+and it covers the whole entire App Store flow.
+
+188
+00:07:17,840 --> 00:07:19,360
+And that tweet went viral,
+
+189
+00:07:19,520 --> 00:07:20,640
+got 100,000 views,
+
+190
+00:07:20,640 --> 00:07:23,040
+and then at that time I realized that the iOS
+
+191
+00:07:23,040 --> 00:07:25,280
+community has kind of noticed my work.
+
+192
+00:07:25,680 --> 00:07:27,200
+And in mid of February,
+
+193
+00:07:27,360 --> 00:07:31,680
+one of the founders of a huge company who ships
+
+194
+00:07:31,680 --> 00:07:34,640
+their SDKs to billions of devices on iPhone,
+
+195
+00:07:34,800 --> 00:07:37,440
+they told me that they personally use my CLI
+
+196
+00:07:37,440 --> 00:07:40,000
+and would want to replace Fastlane with my CLI.
+
+197
+00:07:40,160 --> 00:07:41,520
+So at that time I was like,
+
+198
+00:07:41,680 --> 00:07:42,000
+okay,
+
+199
+00:07:42,000 --> 00:07:44,160
+I have dragged something and I really want
+
+200
+00:07:44,160 --> 00:07:45,280
+to take it further.
+
+201
+00:07:45,520 --> 00:07:46,640
+And even my friend,
+
+202
+00:07:46,880 --> 00:07:49,360
+my close friend who now works in the Codex team,
+
+203
+00:07:49,520 --> 00:07:51,680
+he would hype everything I would talk about
+
+204
+00:07:51,680 --> 00:07:55,040
+and then post it and say that this is my mind is blown.
+
+205
+00:07:55,280 --> 00:07:57,040
+And then I realized another friend,
+
+206
+00:07:57,040 --> 00:07:57,440
+they would say,
+
+207
+00:07:57,600 --> 00:08:00,080
+bookmark this tweet if you are building for iOS app.
+
+208
+00:08:00,240 --> 00:08:00,720
+Nobody
+
+209
+00:08:01,200 --> 00:08:03,120
+tells you how difficult it is to do the App Store
+
+210
+00:08:03,280 --> 00:08:03,840
+submission.
+
+211
+00:08:03,840 --> 00:08:06,800
+So I got kind of a very small fan following
+
+212
+00:08:06,800 --> 00:08:08,320
+in the iOS community.
+
+213
+00:08:09,920 --> 00:08:10,640
+At that time,
+
+214
+00:08:10,640 --> 00:08:11,200
+I was like,
+
+215
+00:08:11,360 --> 00:08:11,680
+okay,
+
+216
+00:08:11,840 --> 00:08:14,800
+let's just cover everything that the App Store has to offer,
+
+217
+00:08:14,960 --> 00:08:17,440
+and I covered all the 1200 endpoints.
+
+218
+00:08:17,600 --> 00:08:19,360
+I was able to do it in less than a week.
+
+219
+00:08:19,360 --> 00:08:21,360
+I will talk about the technicals later.
+
+220
+00:08:21,520 --> 00:08:22,480
+And at this point,
+
+221
+00:08:22,480 --> 00:08:23,120
+I was like,
+
+222
+00:08:23,360 --> 00:08:26,160
+I would not renew the contract that I was working
+
+223
+00:08:26,160 --> 00:08:28,320
+on and then go full-time on this.
+
+224
+00:08:28,640 --> 00:08:29,280
+But then
+
+225
+00:08:30,000 --> 00:08:31,680
+I quit my client,
+
+226
+00:08:31,840 --> 00:08:33,760
+I was earning $15,000 a month,
+
+227
+00:08:33,760 --> 00:08:35,680
+and I went to $25
+
+228
+00:08:36,240 --> 00:08:37,200
+for sponsorship.
+
+229
+00:08:37,440 --> 00:08:41,200
+So I gave myself a month on how the CLI works out,
+
+230
+00:08:41,360 --> 00:08:42,880
+gave a big bet on this.
+
+231
+00:08:43,120 --> 00:08:44,480
+And even health-wise,
+
+232
+00:08:44,480 --> 00:08:45,200
+I gained like six,
+
+233
+00:08:45,360 --> 00:08:48,400
+seven kgs in two months because I was so addicted
+
+234
+00:08:48,400 --> 00:08:49,600
+to token maxing,
+
+235
+00:08:49,600 --> 00:08:49,760
+uh,
+
+236
+00:08:49,920 --> 00:08:52,080
+working till seven or eight in the morning.
+
+237
+00:08:52,400 --> 00:08:54,400
+And somehow next month,
+
+238
+00:08:54,560 --> 00:08:56,000
+uh random morning,
+
+239
+00:08:56,000 --> 00:08:59,920
+a startup called as Rork gave me $1,000 a month
+
+240
+00:08:59,920 --> 00:09:02,640
+as uh uh for uh GitHub sponsorship,
+
+241
+00:09:02,640 --> 00:09:04,400
+and it felt because they were already using
+
+242
+00:09:04,400 --> 00:09:07,360
+the CLI in their pipeline and they wanted to
+
+243
+00:09:07,680 --> 00:09:08,720
+pay it forward.
+
+244
+00:09:08,880 --> 00:09:11,360
+So it felt like somebody is literally paying
+
+245
+00:09:11,360 --> 00:09:13,040
+uh for me to maintain this.
+
+246
+00:09:13,280 --> 00:09:14,800
+And at the same time,
+
+247
+00:09:15,040 --> 00:09:17,840
+uh Claude started their open source program.
+
+248
+00:09:18,240 --> 00:09:20,800
+The main thing was that they would say that
+
+249
+00:09:20,800 --> 00:09:24,000
+if you have substantial uh impact in the community
+
+250
+00:09:24,000 --> 00:09:26,480
+and you have 5,000 stars on your repo,
+
+251
+00:09:26,480 --> 00:09:27,280
+you can apply.
+
+252
+00:09:27,440 --> 00:09:28,080
+At that time,
+
+253
+00:09:28,080 --> 00:09:30,800
+I only had two uh 2,500,
+
+254
+00:09:30,800 --> 00:09:32,320
+but I still went and applied,
+
+255
+00:09:32,320 --> 00:09:34,400
+and I was fortunate enough to get six months
+
+256
+00:09:34,400 --> 00:09:36,400
+of the pro plan or the max plan.
+
+257
+00:09:36,400 --> 00:09:37,360
+And at the same time,
+
+258
+00:09:37,520 --> 00:09:39,280
+OpenAI did something very similar.
+
+259
+00:09:39,280 --> 00:09:40,800
+So I had now two plans,
+
+260
+00:09:40,960 --> 00:09:42,240
+and in March itself,
+
+261
+00:09:42,240 --> 00:09:44,320
+I stopped paying for any subscriptions.
+
+262
+00:09:44,320 --> 00:09:46,400
+Like all of the work that I'm doing is now
+
+263
+00:09:46,400 --> 00:09:49,200
+funded by these two frontier labs.
+
+264
+00:09:49,440 --> 00:09:52,160
+And the biggest thing that I still cannot believe
+
+265
+00:09:52,160 --> 00:09:55,360
+is being on the OpenAI's Codex website.
+
+266
+00:09:55,520 --> 00:09:58,800
+So if you they have a page for building for iOS,
+
+267
+00:09:58,800 --> 00:10:01,760
+and they mention how to you can build the app for iOS,
+
+268
+00:10:01,760 --> 00:10:04,320
+and they mention the distribution stack where
+
+269
+00:10:04,320 --> 00:10:05,920
+for UI you have SwiftUI,
+
+270
+00:10:05,920 --> 00:10:07,280
+for working with Xcode,
+
+271
+00:10:07,280 --> 00:10:09,280
+you have uh XcodeBuildMCP,
+
+272
+00:10:09,440 --> 00:10:10,800
+and for distribution tooling,
+
+273
+00:10:10,800 --> 00:10:13,280
+you have App Store Connect CLI with and they
+
+274
+00:10:13,280 --> 00:10:15,840
+mentioned keep your agents fully in the loop
+
+275
+00:10:15,840 --> 00:10:18,240
+and send your app directly to the app store.
+
+276
+00:10:18,480 --> 00:10:19,200
+So at this point,
+
+277
+00:10:19,200 --> 00:10:19,760
+I was like,
+
+278
+00:10:19,760 --> 00:10:22,400
+if there are millions of codex users who can
+
+279
+00:10:22,400 --> 00:10:24,960
+naturally work and understand my CLI,
+
+280
+00:10:25,200 --> 00:10:27,040
+I can take it now forward.
+
+281
+00:10:27,040 --> 00:10:29,040
+I don't know what the future of the CLI was,
+
+282
+00:10:29,040 --> 00:10:31,440
+but I was still enjoying the validation that
+
+283
+00:10:31,440 --> 00:10:32,640
+I was getting.
+
+284
+00:10:33,360 --> 00:10:35,680
+And every day I would wake up and see a lot
+
+285
+00:10:35,680 --> 00:10:38,400
+of folks tagging me that this CLI has changed
+
+286
+00:10:38,400 --> 00:10:38,800
+their life.
+
+287
+00:10:38,800 --> 00:10:40,880
+I got more sponsorship at this point,
+
+288
+00:10:41,040 --> 00:10:43,760
+and I would do a lot of daily releases.
+
+289
+00:10:44,240 --> 00:10:45,120
+At the same time,
+
+290
+00:10:45,280 --> 00:10:46,000
+my friend again,
+
+291
+00:10:46,000 --> 00:10:46,640
+Thomas,
+
+292
+00:10:46,640 --> 00:10:49,360
+he would baited me into creating a new app.
+
+293
+00:10:49,360 --> 00:10:49,840
+He said,
+
+294
+00:10:50,080 --> 00:10:51,840
+Told me that you are creating a CLI.
+
+295
+00:10:52,000 --> 00:10:55,040
+Why don't you just create an App Store client on top of it?
+
+296
+00:10:55,040 --> 00:10:55,680
+So I was like,
+
+297
+00:10:55,680 --> 00:10:56,400
+I would just do it.
+
+298
+00:10:56,400 --> 00:10:58,160
+I have a lot of tokens at this point.
+
+299
+00:10:58,320 --> 00:10:59,520
+And at the same day,
+
+300
+00:10:59,520 --> 00:11:02,960
+I started getting a lot of job offers and acquisition
+
+301
+00:11:02,960 --> 00:11:03,520
+calls,
+
+302
+00:11:03,760 --> 00:11:06,320
+and I decided to do a stable release.
+
+303
+00:11:06,320 --> 00:11:09,200
+I would work very hard 10-15 hours to clean
+
+304
+00:11:09,200 --> 00:11:10,240
+up the slop code,
+
+305
+00:11:10,240 --> 00:11:11,600
+all the experimental thing I did,
+
+306
+00:11:11,600 --> 00:11:14,080
+and did a 1.0 release.
+
+307
+00:11:14,960 --> 00:11:18,000
+I had uh dozens of contributors who would work on it.
+
+308
+00:11:18,160 --> 00:11:20,560
+The issues were written by AI,
+
+309
+00:11:20,800 --> 00:11:21,840
+by their agents,
+
+310
+00:11:22,000 --> 00:11:24,880
+and my agent would then see their agents work
+
+311
+00:11:24,880 --> 00:11:25,920
+and then work on it.
+
+312
+00:11:25,920 --> 00:11:26,960
+And it literally
+
+313
+00:11:27,680 --> 00:11:30,240
+felt like we are just watching a movie of agents
+
+314
+00:11:30,240 --> 00:11:31,600
+talking to the agents.
+
+315
+00:11:32,720 --> 00:11:36,240
+I created something that was inspired by uh WWDC,
+
+316
+00:11:36,240 --> 00:11:37,520
+where you have a wall of apps,
+
+317
+00:11:37,680 --> 00:11:39,920
+so people who contribute their apps would,
+
+318
+00:11:40,080 --> 00:11:41,200
+if they use the CLI,
+
+319
+00:11:41,360 --> 00:11:43,920
+they would go and contribute on this wall of apps,
+
+320
+00:11:43,920 --> 00:11:46,240
+so that it's just a nice feeling.
+
+321
+00:11:46,480 --> 00:11:47,440
+And in the end,
+
+322
+00:11:47,440 --> 00:11:50,080
+I realized why this building in public matters
+
+323
+00:11:50,080 --> 00:11:52,480
+because all the work that I got in the past
+
+324
+00:11:52,480 --> 00:11:54,960
+few years have this has been from GitHub,
+
+325
+00:11:54,960 --> 00:11:57,920
+and I realized my GitHub has become my resume.
+
+326
+00:11:58,240 --> 00:12:00,720
+And the biggest motivation for this was because
+
+327
+00:12:00,720 --> 00:12:02,000
+I hate LeetCode.
+
+328
+00:12:02,160 --> 00:12:04,240
+I just did not want to do LeetCode at all,
+
+329
+00:12:04,240 --> 00:12:06,640
+and I realized that GitHub can be a way to
+
+330
+00:12:06,640 --> 00:12:08,160
+have employment as well.
+
+331
+00:12:09,040 --> 00:12:10,160
+So after two months,
+
+332
+00:12:10,160 --> 00:12:12,640
+I was able to get 14 job opportunities where
+
+333
+00:12:12,640 --> 00:12:13,520
+I did not apply,
+
+334
+00:12:13,520 --> 00:12:16,240
+but I got reached out on Twitter and LinkedIn.
+
+335
+00:12:16,400 --> 00:12:18,320
+Uh some from the Frontier Labs.
+
+336
+00:12:18,560 --> 00:12:20,800
+I got three acquisition offers for the CLI,
+
+337
+00:12:20,800 --> 00:12:23,600
+which is very funny because it is MIT licensed.
+
+338
+00:12:23,760 --> 00:12:25,840
+They could have just clicked on the fork button,
+
+339
+00:12:25,840 --> 00:12:27,760
+but they wanted to buy it instead.
+
+340
+00:12:27,920 --> 00:12:28,560
+And in the end,
+
+341
+00:12:28,560 --> 00:12:31,920
+I took an Acquihire where I sold the CLI uh
+
+342
+00:12:32,160 --> 00:12:34,800
+for cash and then joined the team full-time,
+
+343
+00:12:34,800 --> 00:12:35,040
+uh,
+
+344
+00:12:35,040 --> 00:12:38,640
+which is my first full-time job after seven years.
+
+345
+00:12:39,760 --> 00:12:43,040
+And I was very hell-bent on keeping it MIT
+
+346
+00:12:43,280 --> 00:12:47,040
+licensed because uh this was not possible because
+
+347
+00:12:47,040 --> 00:12:49,360
+of all the dozens of contributors from all
+
+348
+00:12:49,360 --> 00:12:50,000
+around the world.
+
+349
+00:12:50,000 --> 00:12:51,600
+I was calculating in the morning,
+
+350
+00:12:51,600 --> 00:12:53,200
+and there were like ... people,
+
+351
+00:12:53,200 --> 00:12:53,440
+uh,
+
+352
+00:12:53,600 --> 00:12:56,720
+developers from 30 countries have contributed this CLI,
+
+353
+00:12:56,720 --> 00:12:58,240
+and I really did not want to,
+
+354
+00:12:58,400 --> 00:13:00,560
+I wanted to ship the same way and keep it open
+
+355
+00:13:00,560 --> 00:13:03,280
+source so that we all can take benefit from it.
+
+356
+00:13:04,560 --> 00:13:07,920
+So from the burning room where I was just earning $25
+
+357
+00:13:08,320 --> 00:13:08,800
+a month,
+
+358
+00:13:08,960 --> 00:13:12,000
+I was now I was able to be more financially
+
+359
+00:13:12,000 --> 00:13:14,800
+secure and earn a decent San Francisco salary.
+
+360
+00:13:14,960 --> 00:13:18,480
+And my job went from creating the CLI to kind
+
+361
+00:13:18,480 --> 00:13:20,080
+of maintaining the CLI.
+
+362
+00:13:20,320 --> 00:13:24,240
+And I read this quote on Threads recently.
+
+363
+00:13:24,400 --> 00:13:25,520
+When the water arrives,
+
+364
+00:13:25,520 --> 00:13:26,640
+the channel forms.
+
+365
+00:13:26,800 --> 00:13:30,400
+I did not want to force my way into like being
+
+366
+00:13:30,400 --> 00:13:32,640
+desperate on what I want to do with the CLI,
+
+367
+00:13:32,800 --> 00:13:34,320
+but just wait for the time.
+
+368
+00:13:34,480 --> 00:13:35,840
+I just trusted the process.
+
+369
+00:13:35,840 --> 00:13:38,480
+I kept building every single day and promoting
+
+370
+00:13:38,480 --> 00:13:40,480
+my work without knowing what the
+
+371
+00:13:40,960 --> 00:13:43,120
+like expecting the destination it,
+
+372
+00:13:43,120 --> 00:13:43,760
+and in the end,
+
+373
+00:13:43,760 --> 00:13:45,920
+there are almost a hundred thousand developers
+
+374
+00:13:45,920 --> 00:13:47,520
+who are using this CLI.
+
+375
+00:13:51,840 --> 00:13:52,720
+Just give me a second.
+
+376
+00:13:52,960 --> 00:13:54,400
+大家還醒著嗎？
+
+377
+00:13:56,320 --> 00:13:58,240
+So are you all still awake?
+
+378
+00:13:58,240 --> 00:14:00,400
+Because for the first part we talked about
+
+379
+00:14:00,400 --> 00:14:01,440
+the inspiration,
+
+380
+00:14:01,600 --> 00:14:04,160
+and in the second part we talk about the technicals
+
+381
+00:14:04,160 --> 00:14:07,120
+and how you can create an AI tool that can
+
+382
+00:14:07,120 --> 00:14:08,000
+maintain itself.
+
+383
+00:14:08,160 --> 00:14:11,120
+Because I realized at this point I am spending
+
+384
+00:14:11,120 --> 00:14:12,160
+an hour a week,
+
+385
+00:14:12,320 --> 00:14:14,080
+less than an hour a week maintaining it,
+
+386
+00:14:14,080 --> 00:14:16,240
+but I'm still shipping at the same speed that
+
+387
+00:14:16,240 --> 00:14:18,080
+I was doing it before.
+
+388
+00:14:19,440 --> 00:14:20,400
+So in the beginning,
+
+389
+00:14:20,400 --> 00:14:22,880
+I realized that I have become a prompt engineer.
+
+390
+00:14:23,040 --> 00:14:25,440
+I was not an iOS engineer or anything.
+
+391
+00:14:25,440 --> 00:14:28,240
+I have become I would just write prompts and
+
+392
+00:14:28,240 --> 00:14:30,320
+then review the agent‘s code,
+
+393
+00:14:30,560 --> 00:14:33,360
+realize that the man and then manage the agents
+
+394
+00:14:33,360 --> 00:14:34,080
+as a manager.
+
+395
+00:14:34,240 --> 00:14:35,520
+I would write the rules.
+
+396
+00:14:35,680 --> 00:14:38,000
+I realized I was running the same checklist
+
+397
+00:14:38,000 --> 00:14:40,640
+every single day where I would say a daily
+
+398
+00:14:40,640 --> 00:14:43,200
+loop of please go through the PR comments and
+
+399
+00:14:43,200 --> 00:14:44,800
+loop through until it's green.
+
+400
+00:14:44,960 --> 00:14:46,720
+If somebody would send a issue,
+
+401
+00:14:46,960 --> 00:14:48,320
+like please triage it,
+
+402
+00:14:48,480 --> 00:14:49,840
+if they would send a PR,
+
+403
+00:14:49,840 --> 00:14:50,640
+please fix it,
+
+404
+00:14:50,640 --> 00:14:52,160
+see how it is working or not.
+
+405
+00:14:52,320 --> 00:14:53,600
+And when everything is green,
+
+406
+00:14:53,760 --> 00:14:55,920
+I would say please create a new release.
+
+407
+00:14:56,080 --> 00:14:58,800
+And I felt like I have become a cron job or
+
+408
+00:14:58,800 --> 00:15:01,440
+a GitHub action with feelings as a human.
+
+409
+00:15:01,680 --> 00:15:03,200
+And I wanted to change this.
+
+410
+00:15:03,200 --> 00:15:04,080
+So I was like,
+
+411
+00:15:04,240 --> 00:15:04,480
+okay,
+
+412
+00:15:04,480 --> 00:15:06,880
+what can I do with this new AI world that can
+
+413
+00:15:06,880 --> 00:15:08,960
+help me maintain on its own?
+
+414
+00:15:09,600 --> 00:15:11,120
+So to give you an idea,
+
+415
+00:15:11,360 --> 00:15:15,680
+this uh uh repository has almost 600,000 lines of code.
+
+416
+00:15:15,920 --> 00:15:17,760
+Lines of code is a bad metric,
+
+417
+00:15:17,920 --> 00:15:20,400
+but the idea is that I wanted to give an idea
+
+418
+00:15:20,400 --> 00:15:22,800
+if I can create half a million lines of code
+
+419
+00:15:22,800 --> 00:15:23,760
+in a few months.
+
+420
+00:15:23,920 --> 00:15:24,160
+Why
+
+421
+00:15:24,560 --> 00:15:25,920
+is it not breaking so much?
+
+422
+00:15:26,080 --> 00:15:28,880
+Like this is a question that I would get asked a lot.
+
+423
+00:15:29,200 --> 00:15:31,760
+And the biggest reason for this was I did a
+
+424
+00:15:31,760 --> 00:15:33,360
+lot of test-driven development.
+
+425
+00:15:33,520 --> 00:15:35,280
+Every endpoint would get a test,
+
+426
+00:15:35,280 --> 00:15:37,840
+any regressions that the people would face,
+
+427
+00:15:37,840 --> 00:15:39,040
+I would have issues.
+
+428
+00:15:39,200 --> 00:15:42,000
+And I wanted a way that the agents can verify
+
+429
+00:15:42,000 --> 00:15:44,240
+their own work as much as they can without
+
+430
+00:15:44,240 --> 00:15:45,680
+me in the process at all.
+
+431
+00:15:45,920 --> 00:15:49,360
+And this led to having a lot of rules.
+
+432
+00:15:49,760 --> 00:15:52,400
+I started with the basics where I had a normal
+
+433
+00:15:52,400 --> 00:15:55,120
+agents.md file where all the rules lived.
+
+434
+00:15:55,280 --> 00:15:56,640
+Every agent would read it,
+
+435
+00:15:56,800 --> 00:15:58,960
+but I also want it to be self-improving,
+
+436
+00:15:59,280 --> 00:16:02,640
+which means that for any change that felt very
+
+437
+00:16:02,640 --> 00:16:04,800
+weird or something that could have been or
+
+438
+00:16:04,800 --> 00:16:06,800
+is very repeatable or redundant,
+
+439
+00:16:06,800 --> 00:16:09,680
+I would ask the agent would automatically add
+
+440
+00:16:09,680 --> 00:16:10,800
+it as a new rule.
+
+441
+00:16:10,960 --> 00:16:13,040
+So I would not write the rules myself.
+
+442
+00:16:13,040 --> 00:16:15,520
+I wanted the agents to write the rules for themselves,
+
+443
+00:16:15,520 --> 00:16:17,840
+and then every week I would review if it is
+
+444
+00:16:17,840 --> 00:16:20,160
+working well or if it is not working well.
+
+445
+00:16:21,520 --> 00:16:23,360
+Few of the rules in the beginning,
+
+446
+00:16:23,520 --> 00:16:25,280
+which is kind of redundant now,
+
+447
+00:16:25,280 --> 00:16:26,960
+with how good the models are.
+
+448
+00:16:27,120 --> 00:16:29,200
+I would want it to reproduce the issue first,
+
+449
+00:16:29,200 --> 00:16:30,720
+do not take any shortcuts,
+
+450
+00:16:30,880 --> 00:16:33,120
+never bypass any checks because the models
+
+451
+00:16:33,120 --> 00:16:35,440
+in the beginning would love to do this and
+
+452
+00:16:35,440 --> 00:16:37,600
+be honest about the pre-existing issues that
+
+453
+00:16:37,600 --> 00:16:38,320
+they were facing.
+
+454
+00:16:38,320 --> 00:16:40,960
+So do not delete a test just because you want
+
+455
+00:16:40,960 --> 00:16:42,320
+to have that green check.
+
+456
+00:16:42,480 --> 00:16:45,040
+And one thing that I loved was sosumi.ai,
+
+457
+00:16:45,360 --> 00:16:48,160
+which can bypass uh the Apple JavaScript,
+
+458
+00:16:48,160 --> 00:16:50,480
+so I can get the docs directly if the open
+
+459
+00:16:50,480 --> 00:16:53,840
+API schema did not provide it for App Store Connect.
+
+460
+00:16:54,080 --> 00:16:57,360
+And the Agents.md kind of grew every month
+
+461
+00:16:57,360 --> 00:16:58,240
+with every release.
+
+462
+00:16:58,400 --> 00:17:00,880
+New incident would get added to each time,
+
+463
+00:17:00,880 --> 00:17:03,200
+and then I realized that I needed a bit of
+
+464
+00:17:03,200 --> 00:17:05,920
+refactor because we moved from agents.md to
+
+465
+00:17:05,920 --> 00:17:08,320
+something called as skills because we are still
+
+466
+00:17:08,320 --> 00:17:09,920
+in a ... hype cycle.
+
+467
+00:17:10,160 --> 00:17:13,440
+So the refactor was also done by the agents themselves.
+
+468
+00:17:13,600 --> 00:17:16,720
+I wanted something uh that the agents
+
+469
+00:17:17,360 --> 00:17:19,840
+I wanted the skills to be in a way that is
+
+470
+00:17:19,840 --> 00:17:22,720
+not invoked manually by the agents,
+
+471
+00:17:22,960 --> 00:17:25,360
+but I can create automations on top of it.
+
+472
+00:17:25,520 --> 00:17:28,400
+So all these skills that I created were automations
+
+473
+00:17:28,400 --> 00:17:31,040
+for each and that I can run and then manually
+
+474
+00:17:31,040 --> 00:17:32,480
+do it on my Mac mini.
+
+475
+00:17:34,320 --> 00:17:35,920
+I started with a very small one,
+
+476
+00:17:35,920 --> 00:17:38,320
+which was review the wall of app PRs.
+
+477
+00:17:38,480 --> 00:17:41,040
+I started as untrusted until proven,
+
+478
+00:17:41,200 --> 00:17:44,160
+which means I would just take it sounds very bad,
+
+479
+00:17:44,160 --> 00:17:47,280
+but I would take every PR that somebody would
+
+480
+00:17:47,280 --> 00:17:49,200
+put as a prompt injection.
+
+481
+00:17:49,440 --> 00:17:51,600
+I wanted to make sure that all the lines that
+
+482
+00:17:51,600 --> 00:17:52,160
+they have added,
+
+483
+00:17:52,320 --> 00:17:55,040
+which is five lines are ... can be verified.
+
+484
+00:17:55,040 --> 00:17:56,160
+It's Apple links,
+
+485
+00:17:56,400 --> 00:17:56,800
+it would go,
+
+486
+00:17:56,800 --> 00:17:59,280
+the agents would go to the link and cross-verify
+
+487
+00:17:59,280 --> 00:18:02,080
+the store page and then see the app icon as
+
+488
+00:18:02,080 --> 00:18:04,400
+well and if it matches the app as well or not.
+
+489
+00:18:04,400 --> 00:18:07,120
+I was I just wanted to make sure that uh all
+
+490
+00:18:07,120 --> 00:18:10,160
+the PRs that are on the wall of apps were verified
+
+491
+00:18:10,160 --> 00:18:11,120
+for each of the lines.
+
+492
+00:18:11,120 --> 00:18:12,640
+Because uh for this skill,
+
+493
+00:18:12,640 --> 00:18:14,080
+I gave it the
+
+494
+00:18:14,800 --> 00:18:17,680
+autonomy to actually merge on its own.
+
+495
+00:18:18,560 --> 00:18:21,680
+The second was triaging the issues that I faced,
+
+496
+00:18:21,840 --> 00:18:24,160
+all of them were from external contributors.
+
+497
+00:18:24,400 --> 00:18:26,800
+I would want to reproduce the issues and label
+
+498
+00:18:26,800 --> 00:18:28,160
+them like uh easy,
+
+499
+00:18:28,160 --> 00:18:28,480
+medium,
+
+500
+00:18:28,480 --> 00:18:28,880
+or high,
+
+501
+00:18:28,880 --> 00:18:31,520
+or if it is P0 or P1 and P2,
+
+502
+00:18:31,520 --> 00:18:33,440
+because when I was doing the automations,
+
+503
+00:18:33,440 --> 00:18:36,160
+I would want them to uh because when I have
+
+504
+00:18:36,160 --> 00:18:37,760
+like let's say five to ten PRs,
+
+505
+00:18:37,920 --> 00:18:40,080
+I want the agents to figure out what's more
+
+506
+00:18:40,080 --> 00:18:42,880
+important at that time so that if it is a P0 issue,
+
+507
+00:18:42,880 --> 00:18:45,040
+I would want the automation to just do a new
+
+508
+00:18:45,040 --> 00:18:48,400
+release at the same time versus uh P2 that
+
+509
+00:18:48,400 --> 00:18:51,120
+can be okay uh for uh doing it later on.
+
+510
+00:18:51,280 --> 00:18:52,960
+So if there's any unclear evidence,
+
+511
+00:18:52,960 --> 00:18:55,200
+I would just put as a lower priority and state
+
+512
+00:18:55,200 --> 00:18:55,760
+the assumptions.
+
+513
+00:18:55,920 --> 00:18:58,000
+And everything was something that I'm at this
+
+514
+00:18:58,000 --> 00:19:00,560
+point trust the agents as well because when
+
+515
+00:19:00,560 --> 00:19:01,520
+I cross-verify,
+
+516
+00:19:01,520 --> 00:19:03,680
+I'm very sure that they're doing a good work.
+
+517
+00:19:04,800 --> 00:19:07,440
+It was very similar for the external contributions
+
+518
+00:19:07,440 --> 00:19:08,720
+I get as a PR.
+
+519
+00:19:08,880 --> 00:19:09,680
+Like in the morning,
+
+520
+00:19:09,680 --> 00:19:10,480
+two hours ago,
+
+521
+00:19:10,480 --> 00:19:11,600
+I did a new release.
+
+522
+00:19:11,600 --> 00:19:13,520
+Uh the agents did a new release,
+
+523
+00:19:13,680 --> 00:19:16,800
+and I realized that uh that the PR that I got
+
+524
+00:19:16,800 --> 00:19:19,920
+from the external contributor was kind of incomplete.
+
+525
+00:19:19,920 --> 00:19:22,640
+So my agent would review the work and then
+
+526
+00:19:22,640 --> 00:19:23,280
+uh go through,
+
+527
+00:19:23,440 --> 00:19:27,040
+use my ASC API key to find uh what was missing
+
+528
+00:19:27,040 --> 00:19:29,200
+and then patch the PR well.
+
+529
+00:19:29,360 --> 00:19:31,680
+And because that was the evidence-first review I wanted,
+
+530
+00:19:31,680 --> 00:19:33,920
+like whatever they are submitting is actually
+
+531
+00:19:33,920 --> 00:19:35,840
+what the direction was good,
+
+532
+00:19:35,840 --> 00:19:38,400
+but it wasn't what I would want at the standard
+
+533
+00:19:38,400 --> 00:19:40,400
+to maintain because in the beginning I was
+
+534
+00:19:40,400 --> 00:19:42,320
+okay vibe coding the CLI,
+
+535
+00:19:42,320 --> 00:19:42,560
+uh,
+
+536
+00:19:42,720 --> 00:19:45,920
+but as I have more uh number of developers
+
+537
+00:19:45,920 --> 00:19:47,600
+who are actually dependent on it for their
+
+538
+00:19:47,600 --> 00:19:48,400
+daily workflow,
+
+539
+00:19:48,400 --> 00:19:51,200
+I just cannot have any mistakes done by agents
+
+540
+00:19:51,200 --> 00:19:53,200
+when I'm not the one reviewing them.
+
+541
+00:19:54,320 --> 00:19:54,880
+Finally,
+
+542
+00:19:54,880 --> 00:19:58,480
+I had a release ASC CLI which is for creating
+
+543
+00:19:58,480 --> 00:19:59,760
+the release itself,
+
+544
+00:20:00,000 --> 00:20:01,920
+which does an end-to-end test,
+
+545
+00:20:02,160 --> 00:20:04,560
+gets all the issues and PRs that were merged,
+
+546
+00:20:04,560 --> 00:20:07,360
+and make sure because it gets a new fresh context,
+
+547
+00:20:07,360 --> 00:20:09,920
+so it has a new uh fresh eyes on seeing all
+
+548
+00:20:09,920 --> 00:20:10,800
+the work that it did.
+
+549
+00:20:10,960 --> 00:20:13,920
+It checks daily for a new release and for any
+
+550
+00:20:13,920 --> 00:20:16,400
+patch or minor releases it does on its own.
+
+551
+00:20:16,560 --> 00:20:17,520
+For major releases,
+
+552
+00:20:17,520 --> 00:20:19,920
+I I'm still in the loop as a human.
+
+553
+00:20:20,080 --> 00:20:23,040
+It would download the binary and run the code
+
+554
+00:20:23,040 --> 00:20:25,920
+sign to see if nothing has been uh compromised
+
+555
+00:20:25,920 --> 00:20:28,640
+and then run all the new uh commands or anything
+
+556
+00:20:28,640 --> 00:20:30,480
+that was added to make sure that the whole
+
+557
+00:20:30,480 --> 00:20:34,080
+CLI can be uh used for production work.
+
+558
+00:20:35,040 --> 00:20:35,760
+And lastly,
+
+559
+00:20:35,920 --> 00:20:38,400
+a skill for updating the skill file.
+
+560
+00:20:38,720 --> 00:20:41,200
+So I would have a separate repo to make sure
+
+561
+00:20:41,200 --> 00:20:42,720
+that there's no drift in the command.
+
+562
+00:20:42,960 --> 00:20:45,840
+So if any external developers are using the skills,
+
+563
+00:20:46,080 --> 00:20:49,440
+they can use the the up-to-date skill.
+
+564
+00:20:51,120 --> 00:20:54,400
+So I was I tried as much as I can to use cloud
+
+565
+00:20:54,400 --> 00:20:55,120
+agents for this.
+
+566
+00:20:55,120 --> 00:20:58,400
+So each agent would get my ASC API key,
+
+567
+00:20:58,400 --> 00:20:58,640
+uh
+
+568
+00:20:59,040 --> 00:21:02,080
+separate one that would be in the environment secrets,
+
+569
+00:21:02,240 --> 00:21:04,480
+and I also created a throwaway app for testing,
+
+570
+00:21:04,640 --> 00:21:05,280
+just for testing.
+
+571
+00:21:05,280 --> 00:21:06,000
+It can do,
+
+572
+00:21:06,000 --> 00:21:08,000
+uh it can send it to waiting for review,
+
+573
+00:21:08,000 --> 00:21:09,840
+it can send for subscriptions.
+
+574
+00:21:10,000 --> 00:21:12,880
+I even gave it the autonomy to create expert projects.
+
+575
+00:21:13,040 --> 00:21:13,440
+For example,
+
+576
+00:21:13,440 --> 00:21:14,960
+when I was testing the App Clips,
+
+577
+00:21:15,120 --> 00:21:17,120
+I did not have any apps with App Clips.
+
+578
+00:21:17,360 --> 00:21:20,240
+So it would create a new app and add App Clips,
+
+579
+00:21:20,480 --> 00:21:22,720
+try to submit it to the App Store and see the
+
+580
+00:21:22,720 --> 00:21:24,000
+whole process is working or not.
+
+581
+00:21:24,160 --> 00:21:26,320
+So this was a real loop I wanted,
+
+582
+00:21:26,560 --> 00:21:29,520
+which I can run for a lot of the agents without
+
+583
+00:21:29,520 --> 00:21:30,720
+me in the loop.
+
+584
+00:21:31,200 --> 00:21:34,080
+Because I realized that my user is the agent.
+
+585
+00:21:34,240 --> 00:21:35,120
+I don't know.
+
+586
+00:21:35,360 --> 00:21:36,880
+I have talked to a lot of developers,
+
+587
+00:21:36,880 --> 00:21:38,960
+but I haven't found anybody who's actually
+
+588
+00:21:38,960 --> 00:21:41,200
+typing the commands in the terminal themselves.
+
+589
+00:21:41,360 --> 00:21:42,400
+So my user,
+
+590
+00:21:42,560 --> 00:21:44,560
+I so what I would do is ask the agent,
+
+591
+00:21:44,720 --> 00:21:46,880
+do you think if you have to use something like this,
+
+592
+00:21:47,040 --> 00:21:49,440
+would you be able like be okay using this?
+
+593
+00:21:49,600 --> 00:21:51,520
+And then I would ask the same question to both
+
+594
+00:21:51,520 --> 00:21:54,400
+Codex and Claude because I realized these two
+
+595
+00:21:54,400 --> 00:21:56,000
+models would have different opinions.
+
+596
+00:21:56,000 --> 00:21:58,240
+So I would take both of the opinions and then
+
+597
+00:21:58,240 --> 00:22:00,720
+uh form the commands or anything that I'm working on.
+
+598
+00:22:00,720 --> 00:22:03,680
+And this is kind of the way I have developed
+
+599
+00:22:03,680 --> 00:22:05,120
+for developing AI tools.
+
+600
+00:22:05,120 --> 00:22:06,320
+So because in the end,
+
+601
+00:22:06,320 --> 00:22:09,840
+the AI tools are created for the agent themselves.
+
+602
+00:22:10,880 --> 00:22:11,600
+For example,
+
+603
+00:22:11,600 --> 00:22:14,480
+this is an issue on the repo where Cursor created
+
+604
+00:22:14,480 --> 00:22:16,720
+an issue where it went through the fastlane repo,
+
+605
+00:22:16,880 --> 00:22:17,760
+found an issue
+
+606
+00:22:18,240 --> 00:22:20,800
+where we can fix it in our CLI itself,
+
+607
+00:22:20,960 --> 00:22:23,040
+and then it would go through and write a whole
+
+608
+00:22:23,040 --> 00:22:23,840
+spec itself,
+
+609
+00:22:24,000 --> 00:22:24,720
+summarize,
+
+610
+00:22:24,960 --> 00:22:25,760
+find the problem,
+
+611
+00:22:25,760 --> 00:22:26,320
+the link,
+
+612
+00:22:26,320 --> 00:22:27,360
+and the proposal,
+
+613
+00:22:27,520 --> 00:22:29,600
+and then it would use my name and say,
+
+614
+00:22:29,760 --> 00:22:31,280
+please implement this end-to-end.
+
+615
+00:22:31,600 --> 00:22:34,240
+Then the Cursor cloud agent would implement it,
+
+616
+00:22:34,400 --> 00:22:37,120
+and then overnight it would create and reproduce
+
+617
+00:22:37,120 --> 00:22:37,680
+everything,
+
+618
+00:22:37,920 --> 00:22:38,240
+and
+
+619
+00:22:38,960 --> 00:22:39,280
+uh
+
+620
+00:22:39,920 --> 00:22:43,200
+it says the rudrankriyam and then it's a fixed in 5.30,
+
+621
+00:22:43,200 --> 00:22:44,480
+but it is actually the agent.
+
+622
+00:22:44,480 --> 00:22:45,920
+So even if it says my name,
+
+623
+00:22:45,920 --> 00:22:48,720
+it is still cursor who did the whole implementation.
+
+624
+00:22:48,960 --> 00:22:51,600
+And I would in the beginning run a lot of agents
+
+625
+00:22:51,760 --> 00:22:52,960
+6-7 overnight,
+
+626
+00:22:53,120 --> 00:22:55,440
+where I would brainstorm with the first agent
+
+627
+00:22:55,440 --> 00:22:57,360
+and it would create different cloud agents,
+
+628
+00:22:57,360 --> 00:22:59,520
+and in the morning I would wake up to 5-10
+
+629
+00:22:59,520 --> 00:23:01,280
+PRs ready to review,
+
+630
+00:23:01,280 --> 00:23:04,160
+which is already tested on my live production data.
+
+631
+00:23:04,880 --> 00:23:07,360
+So I ended up creating something called a factory
+
+632
+00:23:07,360 --> 00:23:09,680
+of agents where I have wall of apps that run
+
+633
+00:23:09,840 --> 00:23:10,400
+twice a day,
+
+634
+00:23:10,560 --> 00:23:12,160
+the skill drift daily for the issue,
+
+635
+00:23:12,320 --> 00:23:13,040
+hygiene daily,
+
+636
+00:23:13,200 --> 00:23:14,480
+bug scanner releases,
+
+637
+00:23:14,480 --> 00:23:16,400
+everything runs uh daily.
+
+638
+00:23:16,800 --> 00:23:19,200
+And I did not want it to have something that's
+
+639
+00:23:19,200 --> 00:23:19,840
+very technical,
+
+640
+00:23:19,840 --> 00:23:21,600
+or very complicated system,
+
+641
+00:23:21,840 --> 00:23:24,160
+just something that I can reuse with what Claude
+
+642
+00:23:24,160 --> 00:23:26,080
+or Codex offers or Cursor offers,
+
+643
+00:23:26,240 --> 00:23:27,520
+what the automation offers.
+
+644
+00:23:27,680 --> 00:23:29,520
+So I don't have to spend much time.
+
+645
+00:23:29,520 --> 00:23:32,880
+Like my main idea after selling the CLI was
+
+646
+00:23:32,880 --> 00:23:34,800
+not to spend much more time on it.
+
+647
+00:23:34,960 --> 00:23:35,840
+And in the end,
+
+648
+00:23:35,840 --> 00:23:38,320
+I was able to create an autonomous release
+
+649
+00:23:38,320 --> 00:23:40,240
+cycle where the new submission would go through
+
+650
+00:23:40,240 --> 00:23:40,640
+the diff,
+
+651
+00:23:40,880 --> 00:23:41,760
+find the PR.
+
+652
+00:23:41,920 --> 00:23:43,120
+If the diff was clean,
+
+653
+00:23:43,280 --> 00:23:44,000
+merge everything,
+
+654
+00:23:44,160 --> 00:23:47,040
+see the I can sometimes have to find the SHA is wrong,
+
+655
+00:23:47,040 --> 00:23:48,880
+then redo the release cycle again,
+
+656
+00:23:49,040 --> 00:23:50,240
+check for everything is good.
+
+657
+00:23:50,400 --> 00:23:52,640
+So it felt like I had many agents just to make
+
+658
+00:23:52,640 --> 00:23:55,520
+sure that the release is something I can fully trust.
+
+659
+00:23:55,680 --> 00:23:58,560
+And last month there was a time when Codex
+
+660
+00:23:58,560 --> 00:24:01,760
+did a release overnight with a huge line of PRs,
+
+661
+00:24:01,760 --> 00:24:02,960
+I think 16 PRs,
+
+662
+00:24:02,960 --> 00:24:05,680
+and I woke up in the morning at the same time
+
+663
+00:24:05,680 --> 00:24:07,600
+as others reading the release notes.
+
+664
+00:24:07,760 --> 00:24:10,160
+And it felt very cool on surface,
+
+665
+00:24:10,160 --> 00:24:12,800
+but I realized that I felt like a stranger
+
+666
+00:24:12,800 --> 00:24:14,960
+to my own product because I was reading the
+
+667
+00:24:14,960 --> 00:24:17,440
+release notes without knowing what happened overnight.
+
+668
+00:24:17,600 --> 00:24:19,920
+So for all the small patches or minor patches,
+
+669
+00:24:19,920 --> 00:24:22,160
+I make sure that it is automated for anything
+
+670
+00:24:22,160 --> 00:24:23,200
+that's major now.
+
+671
+00:24:23,360 --> 00:24:24,800
+I am sure that I'm involved,
+
+672
+00:24:24,800 --> 00:24:26,560
+so it still feels like even though because
+
+673
+00:24:26,560 --> 00:24:28,960
+it is still using my name when it's doing a release,
+
+674
+00:24:28,960 --> 00:24:31,120
+so I want to be in the loop.
+
+675
+00:24:32,000 --> 00:24:32,960
+And finally,
+
+676
+00:24:33,840 --> 00:24:36,080
+one thing I want to share is something I have
+
+677
+00:24:36,080 --> 00:24:38,320
+discovered called as agentception.
+
+678
+00:24:40,880 --> 00:24:44,640
+So last WWDC I was talking to a lot of developers
+
+679
+00:24:44,800 --> 00:24:47,280
+and they mentioned that Claude does not work
+
+680
+00:24:47,280 --> 00:24:48,480
+well with the CLI,
+
+681
+00:24:48,480 --> 00:24:50,720
+and I had no idea how to debug that.
+
+682
+00:24:50,880 --> 00:24:53,920
+So what I did was because even at work we use
+
+683
+00:24:53,920 --> 00:24:55,920
+Claude models as the default one.
+
+684
+00:24:56,080 --> 00:24:58,480
+So I could I was going to the tool calls and
+
+685
+00:24:58,480 --> 00:25:00,160
+realized that it is doing a lot of
+
+686
+00:25:00,560 --> 00:25:01,920
+hallucinated tool calls,
+
+687
+00:25:01,920 --> 00:25:03,360
+and I don't know how to fix it.
+
+688
+00:25:03,360 --> 00:25:06,160
+So I added analytics to understand how the
+
+689
+00:25:06,160 --> 00:25:07,120
+users are using it.
+
+690
+00:25:07,280 --> 00:25:08,160
+It's anonymous,
+
+691
+00:25:08,160 --> 00:25:10,480
+there's no there's no confidential data that
+
+692
+00:25:10,480 --> 00:25:11,120
+is being sent,
+
+693
+00:25:11,120 --> 00:25:12,000
+no app ID,
+
+694
+00:25:12,000 --> 00:25:12,800
+no arguments,
+
+695
+00:25:12,960 --> 00:25:14,960
+just the command that is being invoked.
+
+696
+00:25:15,120 --> 00:25:16,080
+And in the end,
+
+697
+00:25:16,080 --> 00:25:19,200
+I realized over the past month that the  Claude
+
+698
+00:25:19,360 --> 00:25:22,240
+models had two times more errors than Codex.
+
+699
+00:25:22,400 --> 00:25:24,960
+And this was very fascinating for me because
+
+700
+00:25:24,960 --> 00:25:26,160
+Claude models,
+
+701
+00:25:26,320 --> 00:25:27,840
+this was not tested on Fable 5,
+
+702
+00:25:27,840 --> 00:25:29,760
+I'm sure Fable 5 would do better.
+
+703
+00:25:29,920 --> 00:25:32,800
+But Claude models would were so overconfident
+
+704
+00:25:32,960 --> 00:25:35,120
+that they would just make up the commands themselves
+
+705
+00:25:35,120 --> 00:25:37,040
+and then later realize that okay,
+
+706
+00:25:37,040 --> 00:25:38,320
+they did something wrong,
+
+707
+00:25:38,320 --> 00:25:41,120
+and then search the CLI and try to find it.
+
+708
+00:25:41,120 --> 00:25:42,960
+But Codex was much slower,
+
+709
+00:25:43,200 --> 00:25:44,080
+more wise.
+
+710
+00:25:44,320 --> 00:25:46,720
+It would use the dash dash help for each of
+
+711
+00:25:46,720 --> 00:25:48,640
+the commands and then say that okay,
+
+712
+00:25:48,640 --> 00:25:50,480
+this is the command that it should use,
+
+713
+00:25:50,640 --> 00:25:52,560
+and then be more accurate,
+
+714
+00:25:52,560 --> 00:25:54,480
+even though it takes a bit more time.
+
+715
+00:25:54,720 --> 00:25:57,440
+So I realized I cannot fix the model itself,
+
+716
+00:25:57,440 --> 00:25:59,040
+but I can fix my CLI.
+
+717
+00:25:59,200 --> 00:26:01,680
+So something I think I came up with when
+
+718
+00:26:01,680 --> 00:26:05,440
+I was showering is I can take all the hallucinated
+
+719
+00:26:05,440 --> 00:26:07,600
+commands and add it as a type alias.
+
+720
+00:26:07,600 --> 00:26:11,200
+So whenever Claude would do the wrong uh hallucinated
+
+721
+00:26:11,200 --> 00:26:11,520
+command,
+
+722
+00:26:11,520 --> 00:26:14,080
+that would actually point to the actual command.
+
+723
+00:26:14,080 --> 00:26:16,880
+And I felt that was very cool because in the end,
+
+724
+00:26:17,040 --> 00:26:19,200
+I was able to create an autonomous loop for
+
+725
+00:26:19,200 --> 00:26:19,760
+this as well.
+
+726
+00:26:20,000 --> 00:26:21,760
+Every day it reads the analytics,
+
+727
+00:26:22,000 --> 00:26:24,240
+adds any type alias that it should add,
+
+728
+00:26:24,400 --> 00:26:27,360
+fixes any error messages or any description
+
+729
+00:26:27,360 --> 00:26:28,240
+that it should do,
+
+730
+00:26:28,240 --> 00:26:29,440
+and then open PR.
+
+731
+00:26:29,440 --> 00:26:31,920
+And then the release automation
+
+732
+00:26:31,920 --> 00:26:34,160
+would pick up these changes and then create
+
+733
+00:26:34,160 --> 00:26:36,560
+an autonomous loop where I can say that it
+
+734
+00:26:36,560 --> 00:26:39,680
+is kind of a self-improving CLI that is getting
+
+735
+00:26:39,680 --> 00:26:41,120
+better every day.
+
+736
+00:26:41,920 --> 00:26:42,800
+And with this,
+
+737
+00:26:42,960 --> 00:26:46,480
+I was able to do 186 releases over six months,
+
+738
+00:26:46,480 --> 00:26:48,400
+which is almost one a day.
+
+739
+00:26:48,880 --> 00:26:49,920
+Zero open issues,
+
+740
+00:26:50,080 --> 00:26:52,320
+zero open PRs right now, this morning,
+
+741
+00:26:52,480 --> 00:26:54,800
+and I realized at this point I can have the
+
+742
+00:26:54,800 --> 00:26:56,960
+agents maintain the product and not me,
+
+743
+00:26:56,960 --> 00:26:59,600
+even though I realized that I have to be in
+
+744
+00:26:59,600 --> 00:27:01,520
+the loop just to cross-verify the work that
+
+745
+00:27:01,520 --> 00:27:02,800
+it's doing is well or not.
+
+746
+00:27:02,960 --> 00:27:05,200
+And the way that we're exploiting with the models,
+
+747
+00:27:05,200 --> 00:27:07,360
+I don't think I even have to do that anymore.
+
+748
+00:27:07,600 --> 00:27:07,840
+So,
+
+749
+00:27:08,080 --> 00:27:09,520
+how do you even start?
+
+750
+00:27:09,760 --> 00:27:12,480
+So the first question that I realized is just
+
+751
+00:27:12,480 --> 00:27:13,200
+ask your model.
+
+752
+00:27:13,200 --> 00:27:14,240
+If you're using Codex,
+
+753
+00:27:14,400 --> 00:27:15,280
+just ask Codex.
+
+754
+00:27:15,600 --> 00:27:16,320
+Start small,
+
+755
+00:27:16,480 --> 00:27:16,800
+ask,
+
+756
+00:27:16,960 --> 00:27:17,120
+go,
+
+757
+00:27:17,440 --> 00:27:19,440
+ask it to go through your local Codex chats
+
+758
+00:27:19,440 --> 00:27:22,080
+or your local Claude chats on what you can automate.
+
+759
+00:27:22,240 --> 00:27:25,360
+Have some daily tasks that you can automate.
+
+760
+00:27:25,360 --> 00:27:27,920
+Like one thing I realized is at work is that
+
+761
+00:27:27,920 --> 00:27:30,080
+I would miss a lot of the work that somebody
+
+762
+00:27:30,080 --> 00:27:30,960
+would tag me on.
+
+763
+00:27:30,960 --> 00:27:33,440
+So every morning I have forgotten work skill
+
+764
+00:27:33,440 --> 00:27:35,600
+that would run and go through my Slack and
+
+765
+00:27:35,600 --> 00:27:37,760
+then debrief me what went wrong,
+
+766
+00:27:37,760 --> 00:27:40,960
+and I would have the same for my PR that I would do.
+
+767
+00:27:41,280 --> 00:27:43,920
+The automation should take care of itself at
+
+768
+00:27:43,920 --> 00:27:45,520
+a point where I'm very confident.
+
+769
+00:27:45,680 --> 00:27:48,640
+And I now have been experimenting with something
+
+770
+00:27:48,640 --> 00:27:51,760
+called as uh automation on the top of the automation,
+
+771
+00:27:51,760 --> 00:27:54,160
+which means that it would go through all the
+
+772
+00:27:54,160 --> 00:27:56,800
+automations that ran and check which ones were
+
+773
+00:27:56,800 --> 00:27:58,960
+doing well and which were not doing well and
+
+774
+00:27:58,960 --> 00:28:00,320
+how to improve that as well.
+
+775
+00:28:00,560 --> 00:28:00,880
+So,
+
+776
+00:28:01,120 --> 00:28:01,600
+my role,
+
+777
+00:28:01,600 --> 00:28:03,840
+as Gyuri said yesterday in her talk,
+
+778
+00:28:04,000 --> 00:28:06,480
+is that I'm now something who is maintaining
+
+779
+00:28:06,480 --> 00:28:09,600
+the direction of the CLI or the AI tools that
+
+780
+00:28:09,600 --> 00:28:11,680
+I'm creating and not worrying about the small
+
+781
+00:28:11,680 --> 00:28:14,320
+stuff that we used to worry about earlier.
+
+782
+00:28:14,560 --> 00:28:15,440
+And with that,
+
+783
+00:28:15,440 --> 00:28:17,520
+I'm done with my talk.
+
+784
+00:28:18,080 --> 00:28:18,640
+What?
+
+785
+00:28:18,960 --> 00:28:20,960
+Did the agents take over my slides?
+
+786
+00:28:21,200 --> 00:28:21,440
+So,
+
+787
+00:28:21,440 --> 00:28:23,440
+what is this one more thing?
+
+788
+00:28:24,800 --> 00:28:28,560
+I realized I can extend this idea to iOS development
+
+789
+00:28:28,560 --> 00:28:29,120
+as well.
+
+790
+00:28:29,120 --> 00:28:29,280
+Uh,
+
+791
+00:28:29,440 --> 00:28:30,480
+because last week,
+
+792
+00:28:30,720 --> 00:28:31,760
+just a few days ago,
+
+793
+00:28:31,760 --> 00:28:34,640
+we released an iOS app which runs an app,
+
+794
+00:28:34,800 --> 00:28:36,240
+the actual native app,
+
+795
+00:28:36,240 --> 00:28:37,600
+inside the native app.
+
+796
+00:28:37,760 --> 00:28:38,800
+And from the phone itself,
+
+797
+00:28:38,800 --> 00:28:40,720
+you can do the whole App Store publishing.
+
+798
+00:28:40,880 --> 00:28:43,600
+And I'm very proud to do this using the agents,
+
+799
+00:28:43,600 --> 00:28:44,960
+even though I say that I did it.
+
+800
+00:28:45,120 --> 00:28:46,880
+So you can have the build screenshots,
+
+801
+00:28:46,880 --> 00:28:47,520
+metadata,
+
+802
+00:28:47,680 --> 00:28:49,440
+everything from the phone itself.
+
+803
+00:28:49,680 --> 00:28:52,640
+And the idea of agentception is something
+
+804
+00:28:52,640 --> 00:28:54,800
+I could apply here as well with something using
+
+805
+00:28:54,800 --> 00:28:56,080
+called as agent device,
+
+806
+00:28:56,560 --> 00:28:59,760
+which can run the automation on my iPhone and
+
+807
+00:28:59,760 --> 00:29:02,320
+then verify everything that's it is being done.
+
+808
+00:29:02,320 --> 00:29:04,960
+It is a bit slow when you're doing the UI testing,
+
+809
+00:29:04,960 --> 00:29:06,400
+but it's something that I wanted.
+
+810
+00:29:06,560 --> 00:29:10,000
+So one example that I did was I was brainstorming
+
+811
+00:29:10,160 --> 00:29:13,040
+everything that I wanted with the main orchestrator
+
+812
+00:29:13,040 --> 00:29:13,440
+agent.
+
+813
+00:29:13,680 --> 00:29:15,040
+Orchestrator sounds very fancy,
+
+814
+00:29:15,040 --> 00:29:16,480
+but just a main agent,
+
+815
+00:29:16,640 --> 00:29:18,240
+and then ask it to spawn.
+
+816
+00:29:18,400 --> 00:29:20,720
+Instead of asking it to spawn sub-agents,
+
+817
+00:29:20,880 --> 00:29:24,240
+I asked it to spawn different threads per feature
+
+818
+00:29:24,480 --> 00:29:27,280
+because I realized that the main
+
+819
+00:29:27,440 --> 00:29:29,680
+thread can also message the different threads.
+
+820
+00:29:29,840 --> 00:29:33,120
+So it was it would run the app on my phone,
+
+821
+00:29:33,280 --> 00:29:34,160
+take the screenshot,
+
+822
+00:29:34,160 --> 00:29:35,040
+keep the evidence,
+
+823
+00:29:35,200 --> 00:29:36,160
+look at the screenshots,
+
+824
+00:29:36,320 --> 00:29:38,400
+and see if anything is going wrong or not.
+
+825
+00:29:38,560 --> 00:29:40,160
+And then if it found any bad code,
+
+826
+00:29:40,160 --> 00:29:40,880
+any slop,
+
+827
+00:29:40,880 --> 00:29:44,000
+it would the main orchestrator agent would
+
+828
+00:29:44,000 --> 00:29:46,080
+fix it and it would write such good prompts
+
+829
+00:29:46,240 --> 00:29:48,560
+that I cannot even think about in this life.
+
+830
+00:29:48,720 --> 00:29:50,320
+It would get uh go through the
+
+831
+00:29:50,720 --> 00:29:52,000
+human interface guidelines,
+
+832
+00:29:52,000 --> 00:29:53,280
+see if a button is like let's say
+
+833
+00:29:53,840 --> 00:29:54,720
+32 points,
+
+834
+00:29:54,720 --> 00:29:56,240
+and then ask it to fix it.
+
+835
+00:29:56,240 --> 00:29:59,120
+And one of the cool thing was that this recovery
+
+836
+00:29:59,120 --> 00:30:01,120
+agent that I have grayed out is something that
+
+837
+00:30:01,120 --> 00:30:03,920
+it wanted to uh uh work on,
+
+838
+00:30:03,920 --> 00:30:05,760
+and then it's like this is something that's
+
+839
+00:30:05,760 --> 00:30:07,520
+not achievable in this release,
+
+840
+00:30:07,520 --> 00:30:09,360
+so we are going to stop it and focus on the
+
+841
+00:30:09,360 --> 00:30:10,400
+other ones that we have.
+
+842
+00:30:10,560 --> 00:30:11,360
+And in the end,
+
+843
+00:30:11,360 --> 00:30:13,840
+I was able to run it for seven hours straight
+
+844
+00:30:14,000 --> 00:30:17,520
+with GPT-5.6 sold running on my iPhone,
+
+845
+00:30:17,680 --> 00:30:20,080
+and it almost gave me perfect work where I
+
+846
+00:30:20,080 --> 00:30:22,800
+had to fix the the some changes or polish my
+
+847
+00:30:22,800 --> 00:30:24,000
+work for one hour,
+
+848
+00:30:24,160 --> 00:30:26,560
+and the best part was during the seven hours
+
+849
+00:30:26,560 --> 00:30:29,280
+I was able to play my PlayStation straight,
+
+850
+00:30:29,280 --> 00:30:31,520
+even though I was the one who delivered the work.
+
+851
+00:30:31,760 --> 00:30:35,920
+And the best part of all of this is the models Fable 5,
+
+852
+00:30:36,080 --> 00:30:36,880
+Opus 5,
+
+853
+00:30:36,880 --> 00:30:37,920
+GPT 5.6,
+
+854
+00:30:38,080 --> 00:30:40,880
+even Kimi K3 is the worst that we will ever get,
+
+855
+00:30:41,040 --> 00:30:44,000
+and because we still have five months in this uh year.
+
+856
+00:30:44,160 --> 00:30:46,320
+Like this chart shows how the length of the
+
+857
+00:30:46,320 --> 00:30:50,720
+task the AI agents can do is growing every every month,
+
+858
+00:30:50,880 --> 00:30:52,400
+and the quality is also increasing,
+
+859
+00:30:52,560 --> 00:30:53,840
+just not the time itself.
+
+860
+00:30:54,080 --> 00:30:54,720
+And for me,
+
+861
+00:30:54,880 --> 00:30:55,360
+personally,
+
+862
+00:30:55,520 --> 00:30:58,080
+my deadline for making the most out of all
+
+863
+00:30:58,080 --> 00:31:00,320
+these agents is November 19th,
+
+864
+00:31:00,480 --> 00:31:02,800
+because that matter that date really matters
+
+865
+00:31:02,800 --> 00:31:05,840
+for me because I want to play GTA 6 as much
+
+866
+00:31:05,840 --> 00:31:08,800
+as I can without worrying about uh the agents
+
+867
+00:31:08,800 --> 00:31:09,760
+working for me,
+
+868
+00:31:10,000 --> 00:31:11,920
+and it's still under my name.
+
+869
+00:31:12,080 --> 00:31:12,880
+And with that,
+
+870
+00:31:13,040 --> 00:31:14,240
+I finished my talk.
+
+871
+00:31:14,240 --> 00:31:14,480
+Uh,
+
+872
+00:31:14,480 --> 00:31:17,600
+you can find me on Twitter and thread with my name,
+
+873
+00:31:17,600 --> 00:31:20,240
+and I am very active there to talk a lot about
+
+874
+00:31:20,240 --> 00:31:21,520
+everything that I'm talking about,
+
+875
+00:31:21,680 --> 00:31:24,480
+share all the things that I can with that, 謝謝.
