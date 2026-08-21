@@ -1,0 +1,751 @@
+1
+00:00:05,419 --> 00:00:07,003
+Good afternoon
+
+2
+00:00:07,003 --> 00:00:09,003
+大家好
+
+3
+00:00:09,860 --> 00:00:12,000
+我是 Thiago Komeno
+
+4
+00:00:12,000 --> 00:00:16,000
+Today, my talk is going to be on How to win the Swift Student Challenge
+
+5
+00:00:16,522 --> 00:00:19,000
+So let's get start it
+
+6
+00:00:19,000 --> 00:00:22,000
+First of all, I'd like to thank my friend YC
+
+7
+00:00:22,000 --> 00:00:26,000
+for introducing me the opportunity to be speaking today in Taiwan
+
+8
+00:00:26,000 --> 00:00:28,000
+So, thank you so much
+
+9
+00:00:28,000 --> 00:00:29,000
+He's not present here today
+
+10
+00:00:29,000 --> 00:00:31,000
+I think he's in America right now
+
+11
+00:00:31,000 --> 00:00:34,000
+But thank you so much YC
+
+12
+00:00:34,000 --> 00:00:37,000
+And now a little bit about myself
+
+13
+00:00:37,000 --> 00:00:39,000
+My name is Thiago Komeno
+
+14
+00:00:39,469 --> 00:00:41,000
+Thiago is my first name
+
+15
+00:00:41,000 --> 00:00:42,000
+It's Portuguese
+
+16
+00:00:42,000 --> 00:00:43,000
+Komeno is my last name
+
+17
+00:00:43,000 --> 00:00:45,000
+It's Japanese
+
+18
+00:00:45,000 --> 00:00:48,000
+In Chinese, it would be 米野雅各
+
+19
+00:00:48,000 --> 00:00:50,000
+And I am Japanese-Brazilian
+
+20
+00:00:50,000 --> 00:00:52,000
+Currently, I live in Tokyo
+
+21
+00:00:52,000 --> 00:00:54,000
+I'm a university student over there
+
+22
+00:00:54,000 --> 00:00:58,000
+I've been studying Mandarin Chinese for four to five years already
+
+23
+00:00:58,000 --> 00:01:00,000
+Traditional Chinese
+
+24
+00:01:00,000 --> 00:01:01,000
+I really like Zhuyin
+
+25
+00:01:01,000 --> 00:01:03,451
+Last year, I came to Taiwan
+
+26
+00:01:03,451 --> 00:01:04,999
+I bought this postcard
+
+27
+00:01:04,999 --> 00:01:08,415
+I was learning Zhuyin at that time
+
+28
+00:01:08,415 --> 00:01:10,538
+Now I already can type on my phone
+
+29
+00:01:10,538 --> 00:01:14,478
+But on my computer, unfortunately, I use Pinyin
+
+30
+00:01:14,478 --> 00:01:16,000
+Sorry
+
+31
+00:01:16,000 --> 00:01:23,000
+So, a little bit about my process on how did I get into coding
+
+32
+00:01:24,000 --> 00:01:27,000
+I learned to program in this school
+
+33
+00:01:27,000 --> 00:01:30,000
+It's a French coding school called École 42
+
+34
+00:01:30,000 --> 00:01:36,000
+And last year, I was also a Google Student Ambassador at Google Japan
+
+35
+00:01:36,414 --> 00:01:41,414
+And early this year, I was an iOS developer intern at MIXI Inc.
+
+36
+00:01:41,414 --> 00:01:44,608
+It's a Japanese company in Shibuya
+
+37
+00:01:44,608 --> 00:01:51,000
+And currently, I'm a full-stack developer at a startup called BaseMe Inc.
+
+38
+00:01:51,000 --> 00:01:53,000
+Also in Shibuya, Japan
+
+39
+00:01:53,000 --> 00:01:58,287
+And from next month, I'll be going to this company called Sansan Inc.
+
+40
+00:01:58,287 --> 00:02:01,000
+Also as an iOS developer intern
+
+41
+00:02:01,000 --> 00:02:04,000
+And also LINE Yahoo! (LY Corporation) in Fukuoka, Japan
+
+42
+00:02:04,000 --> 00:02:05,000
+This is from next month
+
+43
+00:02:05,000 --> 00:02:07,260
+I didn't begin yet
+
+44
+00:02:07,260 --> 00:02:11,000
+I'm excited for those opportunities
+
+45
+00:02:11,458 --> 00:02:19,000
+In Japan, I usually attend to a lot of community events for Swift students
+
+46
+00:02:19,000 --> 00:02:23,918
+And one of those events that I attended last year
+
+47
+00:02:24,393 --> 00:02:28,425
+I got to know about the Swift Student Challenge through one of those events
+
+48
+00:02:28,425 --> 00:02:33,734
+And I decided to participate because I always wanted to build my own apps
+
+49
+00:02:33,734 --> 00:02:38,989
+And, like, personally, I like personal development (indie development)
+
+50
+00:02:38,989 --> 00:02:43,502
+And that sounded like a good opportunity to get into
+
+51
+00:02:43,502 --> 00:02:49,000
+as a motivation to get into those apps and developing those apps
+
+52
+00:02:49,000 --> 00:02:51,000
+So, yeah
+
+53
+00:02:51,000 --> 00:02:56,000
+Now, just briefly about what is the Swift Student Challenge
+
+54
+00:02:56,000 --> 00:02:58,000
+This is the main topic for today
+
+55
+00:02:58,000 --> 00:03:05,000
+So, the Swift Student Challenge is an annual coding competition hosted by Apple for students
+
+56
+00:03:05,000 --> 00:03:14,000
+The challenge encourages students to showcase their coding skills by creating an interactive and creative Swift playground project
+
+57
+00:03:14,000 --> 00:03:17,734
+So, if you never heard about the Swift Student Challenge, you might be thinking
+
+58
+00:03:17,734 --> 00:03:25,384
+oh, maybe I can build a social media app or like a live streaming app or even like a music player app
+
+59
+00:03:25,384 --> 00:03:31,000
+But there are some important constraints we have to mind
+
+60
+00:03:31,000 --> 00:03:40,000
+First of all, the app has to be submitted in a zip file, and the file can't be over 25 MB
+
+61
+00:03:40,000 --> 00:03:48,000
+Second, the whole core experience of the app has to be done in under three minutes
+
+62
+00:03:48,000 --> 00:03:55,000
+And third, the whole app experience, the whole playground has to be completely offline
+
+63
+00:03:55,000 --> 00:04:01,565
+So, with those constraints in mind, I submitted my first app in 2025
+
+64
+00:04:01,565 --> 00:04:05,348
+Last year, it was called NeoMnemo
+
+65
+00:04:05,348 --> 00:04:09,000
+This app, the idea behind this app was really simple
+
+66
+00:04:09,000 --> 00:04:13,389
+So, you would just type a keyword you wanted to memorize
+
+67
+00:04:13,389 --> 00:04:19,532
+and then you would, like, imagine a story in your mind to help you memorize that keyword
+
+68
+00:04:19,532 --> 00:04:27,451
+And I used the image playground API to generate an image based on the concept you wanted to memorize
+
+69
+00:04:28,014 --> 00:04:35,907
+So, this was basically a flashcards app that would help you memorize some abstract or hard-to-memorize concepts
+
+70
+00:04:35,907 --> 00:04:40,939
+And, yeah, that idea was based on my personal story
+
+71
+00:04:40,939 --> 00:04:47,463
+When I was going to enter university in Japan, I had to study Japanese history
+
+72
+00:04:47,463 --> 00:04:50,420
+And that was really hard for me because I grew up in Brazil
+
+73
+00:04:50,420 --> 00:04:52,623
+My whole life I spent in Brazil
+
+74
+00:04:52,623 --> 00:04:59,619
+So, studying Japanese history was really hard, especially to memorize like people's name, event's name and dates
+
+75
+00:04:59,619 --> 00:05:07,000
+So, I decided to create short stories to kind of like help me memorize those concepts in Japanese history
+
+76
+00:05:07,000 --> 00:05:12,516
+And this method was really effective because in the entrance exam for my university in Japan
+
+77
+00:05:12,516 --> 00:05:14,965
+I scored like 98 out of 100
+
+78
+00:05:14,965 --> 00:05:21,809
+So, this was a pretty good methodology that I used to study Japanese history
+
+79
+00:05:21,809 --> 00:05:27,230
+But unfortunately, my app NeoMnemo ended up not winning last year
+
+80
+00:05:27,230 --> 00:05:31,880
+And those are some of the reasons why I think my app didn't win
+
+81
+00:05:31,880 --> 00:05:33,000
+The first one
+
+82
+00:05:33,000 --> 00:05:39,259
+So, as you guys just saw the app was kind of like a good tool to use
+
+83
+00:05:39,259 --> 00:05:41,535
+But yeah, it was just a tool
+
+84
+00:05:41,535 --> 00:05:50,734
+It wasn't like some kind of experience that people could like get to know more about myself, my personal story
+
+85
+00:05:50,734 --> 00:05:52,774
+or like who I am
+
+86
+00:05:52,774 --> 00:05:57,862
+So, this was the first reason why I think I didn't get to win last year
+
+87
+00:05:57,862 --> 00:06:06,000
+And the second one was that even though the concept that inspired me to make this app was based on a personal story
+
+88
+00:06:06,000 --> 00:06:12,687
+that didn't reflect in the app's design and implementation and interactions
+
+89
+00:06:12,687 --> 00:06:18,316
+So, those are the reasons why I think I didn't win last year
+
+90
+00:06:18,316 --> 00:06:27,642
+This year, I decided to try once again to participate into the challenge for my second time with my app called Diary
+
+91
+00:06:28,072 --> 00:06:36,740
+And, basically, the inspiration behind this app was that last year I went back to my hometown, São Paulo in Brazil
+
+92
+00:06:36,740 --> 00:06:45,636
+And when I was in my home. My dad, he came to me and he was holding, like three diaries from my grandfather
+
+93
+00:06:45,636 --> 00:06:50,142
+And he asked me, Can you read those diaries? They're all in Japanese
+
+94
+00:06:50,142 --> 00:06:52,000
+Maybe you can read them
+
+95
+00:06:52,000 --> 00:06:58,229
+And then I looked at the diaries. I can speak Japanese, modern Japanese
+
+96
+00:06:58,229 --> 00:07:03,438
+but those diaries, they were written in old Japanese
+
+97
+00:07:03,438 --> 00:07:10,132
+So, the Japanese language passed through a language reform in the 50s
+
+98
+00:07:10,132 --> 00:07:13,000
+and all the characters in Japanese changed
+
+99
+00:07:13,000 --> 00:07:16,000
+So, they became kind of like simplified
+
+100
+00:07:16,000 --> 00:07:21,265
+And that gave me an idea to make an app
+
+101
+00:07:21,265 --> 00:07:26,996
+So, I wanted to combine all those elements
+
+102
+00:07:26,996 --> 00:07:34,688
+my personal story, language learning, and history of Japanese immigration to Brazil
+
+103
+00:07:34,688 --> 00:07:38,437
+So, with all those concepts in mind
+
+104
+00:07:38,437 --> 00:07:45,443
+I decided to create an experience to help Japanese Brazilians rediscover their roots
+
+105
+00:07:45,443 --> 00:07:56,758
+And while doing that, they would also learn the history of how the Japanese language changed in those 100 years
+
+106
+00:07:56,758 --> 00:08:03,265
+So, I decided to make an initial prototype for this app, and it looked like this
+
+107
+00:08:03,265 --> 00:08:07,000
+First, the data I used for the initial prototype
+
+108
+00:08:07,000 --> 00:08:12,662
+I decided to look for a conversion table between kyūjitai and shinjitai
+
+109
+00:08:12,662 --> 00:08:17,915
+In Chinese, it would be something like the traditional Chinese and simplified Chinese
+
+110
+00:08:17,915 --> 00:08:24,883
+And I just looked it up on GitHub and found this JSON table in a repository called Kyujipy
+
+111
+00:08:24,883 --> 00:08:31,669
+And yeah, I decided to build a really simple prototype for my first initial version of my app
+
+112
+00:08:31,669 --> 00:08:38,000
+It was basically a phrase in Japanese would appear containing the old character over there
+
+113
+00:08:38,000 --> 00:08:48,773
+And users would read the phrase, look for the corresponding character in modern Japanese, and select the answer
+
+114
+00:08:48,773 --> 00:08:52,715
+And I even tried to add difficulty to my app
+
+115
+00:08:52,715 --> 00:09:00,499
+so characters with similar radicals or similar components would appear in the hard version of the app
+
+116
+00:09:01,657 --> 00:09:03,319
+But there was a problem
+
+117
+00:09:03,319 --> 00:09:06,370
+This app was still not a whole experience
+
+118
+00:09:06,370 --> 00:09:11,000
+It felt more like a test or an exam or a learning tool
+
+119
+00:09:11,000 --> 00:09:15,000
+And it wasn't like an immersive experience yet
+
+120
+00:09:15,000 --> 00:09:20,938
+So yeah, from that point on, I decided to convert this game,
+
+121
+00:09:20,938 --> 00:09:28,755
+This kind of like test like experience into an immersive experience, an immersive game
+
+122
+00:09:28,755 --> 00:09:34,289
+So, I started by building my onboarding screen, and it looked like this
+
+123
+00:09:34,289 --> 00:09:36,718
+I first introduced my background, who I am
+
+124
+00:09:36,718 --> 00:09:38,000
+I'm Japanese-Brazilian
+
+125
+00:09:38,000 --> 00:09:43,000
+And then one day, I decided to go into my family's basement
+
+126
+00:09:43,000 --> 00:09:47,300
+And in the basement, when you enter, there are some objects up here
+
+127
+00:09:47,300 --> 00:09:54,000
+And users have to use their fingers to move the objects around and review the diary behind it
+
+128
+00:09:54,000 --> 00:10:02,000
+And for giving kind of like a mysterious look to the diary, I decided to use a shader, a metal shader
+
+129
+00:10:02,000 --> 00:10:07,000
+I used Paul Hudson's Inferno to add this effect
+
+130
+00:10:07,350 --> 00:10:10,350
+And also, I don't know if you guys know this game
+
+131
+00:10:10,350 --> 00:10:12,557
+I really like it. It's one of my favorite games
+
+132
+00:10:12,557 --> 00:10:14,744
+It's called Chrono Trigger
+
+133
+00:10:14,744 --> 00:10:25,000
+And I decided to add kind of like an effect for the time-traveling experience when you enter the diary and go to the past
+
+134
+00:10:25,000 --> 00:10:30,000
+So, this is just one of my inspirations for creating this theme
+
+135
+00:10:30,000 --> 00:10:32,090
+And once you get into the diary
+
+136
+00:10:32,090 --> 00:10:37,003
+you can start reading the entries that my grandfather wrote
+
+137
+00:10:37,003 --> 00:10:45,361
+and like review the modern versions of all the old Japanese characters that appears in the sentence
+
+138
+00:10:45,361 --> 00:10:48,000
+So, the app now felt more like this
+
+139
+00:10:48,000 --> 00:10:52,000
+You would see the old form and the modern form of the characters
+
+140
+00:10:52,000 --> 00:10:58,280
+And also, at the same time, you would be learning the history of Japanese immigration to Brazil
+
+141
+00:10:58,280 --> 00:11:02,000
+because all the entries are based on real entries
+
+142
+00:11:02,000 --> 00:11:09,000
+And how I did that was by actually going outside visiting museums
+
+143
+00:11:09,000 --> 00:11:15,000
+and also reading a lot of documents based on Japanese immigration
+
+144
+00:11:15,000 --> 00:11:23,000
+So, one of the places I visited was the Yokohama Japanese Overseas Migration Museum
+
+145
+00:11:23,000 --> 00:11:24,000
+It's in Yokohama
+
+146
+00:11:24,000 --> 00:11:27,000
+And I read lots of documents
+
+147
+00:11:27,000 --> 00:11:32,000
+So, you guys can see some of the images of the museum right here
+
+148
+00:11:32,000 --> 00:11:37,000
+I read some of those books to get to know more about Japanese immigration
+
+149
+00:11:37,000 --> 00:11:41,000
+And the final experience looked like this
+
+150
+00:11:41,000 --> 00:11:46,000
+So, a phrase in old Japanese based on those documents would appear
+
+151
+00:11:46,000 --> 00:11:47,000
+Users would tap the phrase
+
+152
+00:11:48,000 --> 00:11:53,000
+And in the top, I inserted a panel that would automatically scroll
+
+153
+00:11:53,000 --> 00:11:58,000
+and review the modern versions of the characters in Japanese
+
+154
+00:11:58,000 --> 00:12:01,000
+So, that's how the whole experience looks like
+
+155
+00:12:01,000 --> 00:12:05,000
+When you finish, there is an English translation that appears in the panel
+
+156
+00:12:05,000 --> 00:12:14,000
+And I also added a glowing effect to the panel when you finish all the characters in a certain page
+
+157
+00:12:14,000 --> 00:12:20,000
+So, that's the comparison between the initial prototype that I made in the beginning
+
+158
+00:12:20,000 --> 00:12:23,000
+and the final experience
+
+159
+00:12:23,000 --> 00:12:26,500
+So yeah, by creating this app
+
+160
+00:12:26,500 --> 00:12:30,000
+I could combine all of the elements I wanted to combine
+
+161
+00:12:30,000 --> 00:12:35,289
+my personal roots, my story, immigration, Japanese immigration history
+
+162
+00:12:35,289 --> 00:12:37,535
+and also language learning
+
+163
+00:12:37,535 --> 00:12:42,000
+So, the final experience looked like this
+
+164
+00:12:42,765 --> 00:12:45,461
+And with that app
+
+165
+00:12:45,461 --> 00:12:51,237
+I won the Swift Student Challenge this year and received the certificate
+
+166
+00:12:54,000 --> 00:12:55,000
+Thank you so much
+
+167
+00:12:55,000 --> 00:13:02,000
+And finally, I'd like to close this talk by telling you guys some of the things that I learned
+
+168
+00:13:02,000 --> 00:13:05,000
+by trying the challenge this year
+
+169
+00:13:05,000 --> 00:13:10,000
+And if some of you are thinking about joining the challenge, just do it
+
+170
+00:13:10,000 --> 00:13:16,360
+Because this year I was going to do an internship at a company
+
+171
+00:13:16,360 --> 00:13:20,500
+so I wasn't thinking about joining the challenge, even though I'm a student
+
+172
+00:13:20,500 --> 00:13:24,949
+Because last year I didn't win, and I was kind of not motivated to join
+
+173
+00:13:24,949 --> 00:13:30,000
+But then I decided to visit some community events in Japan
+
+174
+00:13:30,000 --> 00:13:33,472
+and this was one of the best experiences in my life
+
+175
+00:13:33,472 --> 00:13:37,000
+because it was a great experience to learn more about myself
+
+176
+00:13:37,000 --> 00:13:43,924
+to build an actual meaningful application
+
+177
+00:13:43,924 --> 00:13:48,960
+And also, if you guys are thinking about building something for your community
+
+178
+00:13:48,960 --> 00:13:51,696
+for your family members or even for yourself
+
+179
+00:13:51,696 --> 00:13:55,445
+just do it because you will learn a lot about yourself
+
+180
+00:13:55,445 --> 00:14:00,618
+You might help a family member or even someone from your community
+
+181
+00:14:00,618 --> 00:14:03,401
+So, I'd like to close with this phrase
+
+182
+00:14:03,401 --> 00:14:08,738
+Sometimes the best idea is not always the biggest idea
+
+183
+00:14:08,738 --> 00:14:14,000
+Sometimes the best idea is the one that only you could have made
+
+184
+00:14:14,000 --> 00:14:16,000
+So, thank you so much for listening
+
+185
+00:14:16,000 --> 00:14:18,000
+And those are my socials
+
+186
+00:14:18,000 --> 00:14:23,000
+If you guys want to scan and follow me on any of the social media platforms
+
+187
+00:14:23,000 --> 00:14:24,000
+feel free to do so
+
+188
+00:14:24,000 --> 00:14:25,037
+Thank you so much
