@@ -128,15 +128,15 @@ I learned to program in this school
 
 33
 00:01:27,000 --> 00:01:30,000
-It's a French coding school called ECOLE 42
+It's a French coding school called École 42
 
 34
 00:01:30,000 --> 00:01:36,000
-And last year, I was also a Google student ambassador at Google Japan
+And last year, I was also a Google Student Ambassador at Google Japan
 
 35
 00:01:36,414 --> 00:01:41,414
-And early this year, I was an iOS developer intern at MIXI INC
+And early this year, I was an iOS developer intern at MIXI Inc.
 
 36
 00:01:41,414 --> 00:01:44,608
@@ -144,7 +144,7 @@ It's a Japanese company in Shibuya
 
 37
 00:01:44,608 --> 00:01:51,000
-And currently, I'm a full-stack developer at a startup called BASEME INC
+And currently, I'm a full-stack developer at a startup called BaseMe Inc.
 
 38
 00:01:51,000 --> 00:01:53,000
@@ -152,7 +152,7 @@ Also in Shibuya, Japan
 
 39
 00:01:53,000 --> 00:01:58,287
-And from next month, I'll be going to this company called SANSAN INC
+And from next month, I'll be going to this company called Sansan Inc.
 
 40
 00:01:58,287 --> 00:02:01,000
@@ -160,7 +160,7 @@ Also as an iOS developer intern
 
 41
 00:02:01,000 --> 00:02:04,000
-And also LINE  in Fukuoka, Japan
+And also LINE Yahoo! (LY Corporation) in Fukuoka, Japan
 
 42
 00:02:04,000 --> 00:02:05,000
@@ -192,7 +192,7 @@ And I decided to participate because I always wanted to build my own apps
 
 49
 00:02:33,734 --> 00:02:38,989
-And, like, personally, I like personal development
+And, like, personally, I like personal development (indie development)
 
 50
 00:02:38,989 --> 00:02:43,502
@@ -252,7 +252,7 @@ So, with those constraints in mind, I submitted my first app in 2025
 
 64
 00:04:01,565 --> 00:04:05,348
-Last year, it was called NEOMNEMO
+Last year, it was called NeoMnemo
 
 65
 00:04:05,348 --> 00:04:09,000
@@ -272,7 +272,7 @@ And I used the image playground API to generate an image based on the concept yo
 
 69
 00:04:28,014 --> 00:04:35,907
-So, this was basically a flashcard app that would help you memorize some abstract or hard-to-memorize concepts
+So, this was basically a flashcards app that would help you memorize some abstract or hard-to-memorize concepts
 
 70
 00:04:35,907 --> 00:04:40,939
@@ -292,7 +292,7 @@ My whole life I spent in Brazil
 
 74
 00:04:52,623 --> 00:04:59,619
-So, studying Japanese history was really hard, especially to memorize like people's name, event's name and date
+So, studying Japanese history was really hard, especially to memorize like people's name, event's name and dates
 
 75
 00:04:59,619 --> 00:05:07,000
@@ -312,7 +312,7 @@ So, this was a pretty good methodology that I used to study Japanese history
 
 79
 00:05:21,809 --> 00:05:27,230
-But unfortunately, my app NEOMNEMO ended up not winning last year
+But unfortunately, my app NeoMnemo ended up not winning last year
 
 80
 00:05:27,230 --> 00:05:31,880
@@ -324,7 +324,7 @@ The first one
 
 82
 00:05:33,000 --> 00:05:39,259
-So, as you guys just saw that was kind of like a good tool to use
+So, as you guys just saw the app was kind of like a good tool to use
 
 83
 00:05:39,259 --> 00:05:41,535
@@ -332,7 +332,7 @@ But yeah, it was just a tool
 
 84
 00:05:41,535 --> 00:05:50,734
-It wasn't like some kind of experience that people could like get to know more about myself my personal story
+It wasn't like some kind of experience that people could like get to know more about myself, my personal story
 
 85
 00:05:50,734 --> 00:05:52,774
@@ -360,11 +360,11 @@ This year, I decided to try once again to participate into the challenge for my 
 
 91
 00:06:28,072 --> 00:06:36,740
-And, basically, the inspiration behind this app was that last year I went back to my hometown, Sao Paulo in Brazil
+And, basically, the inspiration behind this app was that last year I went back to my hometown, São Paulo in Brazil
 
 92
 00:06:36,740 --> 00:06:45,636
-And when I was in my home. my dad, he came to me and he was holding, like three diaries from my grandfather
+And when I was in my home. My dad, he came to me and he was holding, like three diaries from my grandfather
 
 93
 00:06:45,636 --> 00:06:50,142
@@ -416,7 +416,7 @@ I decided to create an experience to help Japanese Brazilians rediscover their r
 
 105
 00:07:45,443 --> 00:07:56,758
-And while doing that, they would also learn the history of how Japanese language changed..between in those 100 years
+And while doing that, they would also learn the history of how the Japanese language changed in those 100 years
 
 106
 00:07:56,758 --> 00:08:03,265
@@ -424,11 +424,11 @@ So, I decided to make an initial prototype for this app, and it looked like this
 
 107
 00:08:03,265 --> 00:08:07,000
-The first, the data I used for the initial prototype
+First, the data I used for the initial prototype
 
 108
 00:08:07,000 --> 00:08:12,662
-I decided to look for a conversion table between Kyujitai and Shinjitai
+I decided to look for a conversion table between kyūjitai and shinjitai
 
 109
 00:08:12,662 --> 00:08:17,915
@@ -436,7 +436,7 @@ In Chinese, it would be something like the traditional Chinese and simplified Ch
 
 110
 00:08:17,915 --> 00:08:24,883
-And I just looked it up on GitHub and found this JSON table in a repository called KYUJIPY
+And I just looked it up on GitHub and found this JSON table in a repository called Kyujipy
 
 111
 00:08:24,883 --> 00:08:31,669
@@ -476,11 +476,11 @@ And it wasn't like an immersive experience yet
 
 120
 00:09:15,000 --> 00:09:20,938
-So yeah, from that point on, I decided to convert this gaming
+So yeah, from that point on, I decided to convert this game,
 
 121
 00:09:20,938 --> 00:09:28,755
-kind of like test like experience into an immersive experience, an immersive game
+This kind of like test like experience into an immersive experience, an immersive game
 
 122
 00:09:28,755 --> 00:09:34,289
@@ -512,7 +512,7 @@ And for giving kind of like a mysterious look to the diary, I decided to use a s
 
 129
 00:10:02,000 --> 00:10:07,000
-I used PAUL HUDSON inferno to add this effect
+I used Paul Hudson's Inferno to add this effect
 
 130
 00:10:07,350 --> 00:10:10,350
@@ -520,7 +520,7 @@ And also, I don't know if you guys know this game
 
 131
 00:10:10,350 --> 00:10:12,557
-I really like one of my favorite games
+I really like it. It's one of my favorite games
 
 132
 00:10:12,557 --> 00:10:14,744
@@ -528,7 +528,7 @@ It's called Chrono Trigger
 
 133
 00:10:14,744 --> 00:10:25,000
-And I decided to add kind of like effect for the time-traveling experience when you enter the diary and go to the past
+And I decided to add kind of like an effect for the time-traveling experience when you enter the diary and go to the past
 
 134
 00:10:25,000 --> 00:10:30,000
@@ -668,7 +668,7 @@ And finally, I'd like to close this talk by telling you guys some of the things 
 
 168
 00:13:02,000 --> 00:13:05,000
-by trying this challenge this year
+by trying the challenge this year
 
 169
 00:13:05,000 --> 00:13:10,000
