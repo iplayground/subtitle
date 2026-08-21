@@ -1271,29 +1271,27 @@ the interface they need.
 
 274
 00:26:09,520 --> 00:26:11,166
-Other features cannot access.
+Other features cannot access
 
 275
-00:26:12,471 --> 00:26:18,210
-These internal package APIs so the feature
+00:26:12,471 --> 00:26:17,094
+these internal package APIs
 
 276
-00:26:18,210 --> 00:26:22,412
-can grow without expanding its public API.
+00:26:17,543 --> 00:26:22,412
+So the feature can grow without expanding its public API.
 
 277
-00:26:25,515 --> 00:26:29,940
-Clear boundaries make
-our changes safer, but
+00:26:25,515 --> 00:26:29,046
+Clear boundaries make our changes safer
 
 278
-00:26:29,940 --> 00:26:34,044
-developers also need to see results quickly.
+00:26:29,348 --> 00:26:34,044
+but developers also need to see results quickly.
 
 279
 00:26:36,005 --> 00:26:40,311
-Our feedback loop is 
-still at build and learn.
+Our feedback loop is still at build and run.
 
 280
 00:26:41,000 --> 00:26:46,226
@@ -1347,7 +1345,7 @@ Lookin, Reveal, and Xcode Previews.
 
 291
 00:27:43,820 --> 00:27:49,759
-These tools help us build, learn,
+These tools help us build, run,
 and validate UI changes faster.
 
 292
@@ -1361,409 +1359,400 @@ Each UI module provides a demo app
 with examples of each component.
 
 294
-00:28:04,420 --> 00:28:10,460
+00:28:04,420 --> 00:28:11,135
 Developers can validate the components
-before integrating them into
+before integrating them into a feature.
 
 295
-00:28:10,460 --> 00:28:12,860
-a feature.
-
-296
-00:28:12,860 --> 00:28:17,314
+00:28:12,860 --> 00:28:15,967
 We applied the same patterns
 on different levels,
 
-297
-00:28:17,702 --> 00:28:20,566
+296
+00:28:16,338 --> 00:28:20,566
 feature UI, design system,
 and individual components.
 
-298
+297
 00:28:34,581 --> 00:28:38,625
 Resources are also easy to
 duplicate across features,
 
-299
+298
 00:28:39,140 --> 00:28:44,383
 so we move shared resources
 into dedicated modules,
 
-300
+299
 00:28:44,383 --> 00:28:47,030
 and we access them through generated APIs.
 
-301
+300
 00:28:48,700 --> 00:28:51,903
 This reduces invalid resource
 reference at runtime.
 
-302
+301
 00:28:54,700 --> 00:28:58,636
 Xcode compiles asset catalogs with actool.
 
-303
+302
 00:28:59,540 --> 00:29:04,057
 As the number of images grew,
 asset compilation became slower.
 
-304
+303
 00:29:04,860 --> 00:29:08,261
 This affects app build,
 preview, and demo apps.
 
-305
+304
 00:29:09,020 --> 00:29:13,902
 So, we split a large asset catalog
 into separate resource modules.
 
-306
+305
 00:29:16,860 --> 00:29:20,060
 Storyboards and XIBs need extra care.
 
-307
+306
 00:29:20,060 --> 00:29:24,032
 Moving images to another bundle
 can break their reference.
 
-308
+307
 00:29:25,120 --> 00:29:31,073
 We verify the module settings
 after moving them, and we load
 
-309
+308
 00:29:31,073 --> 00:29:37,820
 Storyboards and XIBs in test to
 catch runtime issues before release.
 
-310
+309
 00:29:40,673 --> 00:29:44,193
-When possible, we prefer code-based UI.
+When possible we prefer code-based UI.
 
-311
+310
 00:29:44,940 --> 00:29:49,139
 It is easier to move across
 modules, provides stronger
 
-312
+311
 00:29:49,139 --> 00:29:53,260
 compile-time checks, and
 causes fewer runtime issues.
 
-313
-00:30:07,820 --> 00:30:13,341
+312
+00:30:07,820 --> 00:30:10,810
 These feedback environments
-are useful, but large-scale
+are useful
+
+313
+00:30:10,810 --> 00:30:16,245
+but large-scale demo apps also 
+create new operational challenges.
 
 314
-00:30:13,341 --> 00:30:16,245
-demo apps also create new
-operational challenges.
-
-315
 00:30:18,260 --> 00:30:21,436
 The first challenge is
-size of DerivedData.
+size of Derived Data.
 
-316
+315
 00:30:22,700 --> 00:30:29,039
 Each module can have a framework or
-demo app and one or more test targetss.
+demo app and one or more test targets.
+
+316
+00:30:31,340 --> 00:30:37,740
+When we build them, 
+Xcode stores their products
 
 317
-00:30:31,340 --> 00:30:37,740
-When we build them, Xcode
-stores their products
+00:30:37,740 --> 00:30:39,620
+in Derived Data.
 
 318
-00:30:37,740 --> 00:30:39,620
-in DerivedData.
-
-319
 00:30:39,620 --> 00:30:45,046
 Each framework creates a built product
 for each configuration and destination.
 
-320
+319
 00:30:47,660 --> 00:30:53,445
 In this example, module D
-uses about 30 megabytes.
+uses about 30 MB.
+
+320
+00:30:55,856 --> 00:30:58,952
+One copy of this framework is not a problem.
 
 321
-00:30:55,856 --> 00:30:58,952
-One copy of this framework
-is not a problem.
-
-322
 00:31:00,440 --> 00:31:04,943
 But, the unit test targets
 also needs to build module D.
 
-323
+322
 00:31:07,100 --> 00:31:10,922
 If the test uses a demo app as their host,
 
-324
+323
 00:31:11,460 --> 00:31:14,764
 the demo apps also embedded the framework.
 
-325
-00:31:15,820 --> 00:31:19,339
-The required number of
-built products increases.
+324
+00:31:15,819 --> 00:31:19,338
+The required number of built products increases.
 
-326
+325
 00:31:21,460 --> 00:31:28,396
 When other modules depend on module D,
 the build graph becomes even larger.
 
-327
+326
 00:31:30,380 --> 00:31:35,822
 The same pattern is repeated for every
 module's demo apps and test targets.
 
-328
+327
 00:31:38,062 --> 00:31:41,728
 With many modules, one
 test plan can build a large
 
-329
+328
 00:31:41,728 --> 00:31:46,117
 graph of application, demo
 apps, frameworks, and tests.
 
-330
+329
 00:31:48,265 --> 00:31:51,350
 So, the total size
 grows, with both size of
 
-331
+330
 00:31:51,350 --> 00:31:55,881
 each feature and the
 number of feature modules.
 
-332
+331
 00:31:56,516 --> 00:32:01,480
-For example, if one
-feature uses 300 megabytes,
+For example, if one feature uses 300 MB,
 
-333
+332
 00:32:01,480 --> 00:32:07,459
 200 modules can create about
-60 gigabytes of DerivedData.
+60 GB of DerivedData.
+
+333
+00:32:08,540 --> 00:32:18,848
+At 500 MB, the total
+can reach 100 GB.
 
 334
-00:32:08,540 --> 00:32:18,848
-At 500 megabytes, the total
-can reach 100 gigabytes.
-
-335
 00:32:21,191 --> 00:32:25,924
 Our solution is to use hostless
 unit tests whenever possible.
 
-336
+335
 00:32:27,180 --> 00:32:29,020
 With a hosted test,
 
-337
+336
 00:32:29,020 --> 00:32:33,871
 Xcode has to build and launch the
 demo app before running the test.
 
-338
+337
 00:32:36,320 --> 00:32:41,587
-With a hosted test, the test runs
+With a hostless test, the test runs
 directly against the target framework.
 
-339
+338
 00:32:42,620 --> 00:32:48,225
 The demo app is not launched and only
 the required framework is loaded.
 
-340
+339
 00:32:50,780 --> 00:32:54,622
 We configure the unit test
 targets to run independently.
 
-341
+340
 00:32:56,820 --> 00:33:01,235
 The Host Application setting is None.
 
-342
+341
 00:33:04,180 --> 00:33:08,129
 The second operational challenge
 is bundle ID and code signing.
 
-343
+342
 00:33:10,460 --> 00:33:16,393
 Every runnable demo app needs a bundle
 ID and the correct signing configuration.
 
-344
+343
 00:33:18,740 --> 00:33:26,800
 Every reusable demo app needs a bundle
 ID and the correct signing configuration.
 
-345
+344
 00:33:29,224 --> 00:33:33,794
-With automatic signing
-enabled, Xcode can create
+With automatic signing enabled
+Xcode can create
 
-346
+345
 00:33:33,794 --> 00:33:39,370
 App ID and provisioning
 profile for the bundle ID.
 
-347
-00:33:41,080 --> 00:33:46,912
-But with hundreds of demo
-apps, the developer's
+346
+00:33:41,077 --> 00:33:44,055
+But with hundreds of demo apps
 
-348
-00:33:47,815 --> 00:33:50,060
-portal fills up with
+347
+00:33:44,055 --> 00:33:50,061
+the developer portal fills up with
 identifiers and profiles.
 
-349
+348
 00:33:52,620 --> 00:33:56,760
 Xcode registers a bundle ID
 and creates a profile for
 
-350
+349
 00:33:56,760 --> 00:33:58,260
 every demo app.
 
-351
-00:33:58,260 --> 00:34:04,194
+350
+00:33:58,260 --> 00:34:02,578
 This increases maintenance
 work when resetting Xcode,
 
-352
-00:34:04,194 --> 00:34:07,264
+351
+00:34:02,578 --> 00:34:07,264
 onboarding developers or
 registering new test devices.
 
-353
+352
 00:34:10,240 --> 00:34:15,041
 Xcode also spends time updating
 signing information for many targets.
 
-354
+353
 00:34:17,800 --> 00:34:23,673
 Most of our demo apps are temporary
 tools for checking developed results.
 
-355
-00:34:24,460 --> 00:34:26,660
-Usually, developers
-
-356
-00:34:26,660 --> 00:34:30,139
+354
+00:34:24,460 --> 00:34:30,139
+Usually developers
 run only one at a time.
 
-357
+355
 00:34:30,720 --> 00:34:34,314
 So most demo apps can
 share the same bundle ID.
 
-358
+356
 00:34:35,140 --> 00:34:40,823
 We create a unique ID only when
 special capabilities require it.
 
-359
+357
 00:34:43,980 --> 00:34:48,460
 Oh, yeah, almost finished.
 
-360
+358
 00:34:48,460 --> 00:34:51,420
 Today, I shared many techniques.
 
-361
+359
 00:34:51,420 --> 00:34:54,980
 Module design, project
 generation, dependency injection,
 
-362
+360
 00:34:54,980 --> 00:34:58,882
 feedback environment, resource
 management, and demo apps.
 
-363
+361
 00:34:59,560 --> 00:35:05,745
 But no single tool or technique
 is the most important thing.
 
-364
+362
 00:35:07,940 --> 00:35:12,685
 On large projects, it is very easy
 to lose the overall direction.
 
-365
+363
 00:35:13,220 --> 00:35:16,682
 Each team can make
 reasonable local decisions.
 
-366
+364
 00:35:17,360 --> 00:35:24,429
 But over time, those decisions may lead
 the project in different directions.
 
-367
+365
 00:35:25,391 --> 00:35:29,906
 So before choosing tools
 or rules, we need shared
 
-368
+366
 00:35:29,906 --> 00:35:34,474
 architectural decisions,
 directions, and a clear roadmap.
 
-369
+367
 00:35:35,660 --> 00:35:41,878
 The roadmap does not need to describe
 every detail, but it should show
 
-370
+368
 00:35:41,878 --> 00:35:47,482
 where the project is now, where we want
 to go, and why we are moving there.
 
-371
+369
 00:35:48,540 --> 00:35:54,100
 We should review it regularly
 as the project and team change.
 
-372
+370
 00:35:55,257 --> 00:36:00,992
 This helps every local decision move
 the whole project in the same direction.
 
-373
+371
 00:36:03,100 --> 00:36:07,303
 Our modularization journey was
 not about creating more modules.
 
-374
+372
 00:36:08,060 --> 00:36:11,598
 It was about creating a
 better development experience,
 
-375
+373
 00:36:12,527 --> 00:36:16,284
 faster feedback, safer changes,
 and predictable results.
 
-376
+374
 00:36:17,160 --> 00:36:21,333
-Through every change, we
-must keep that direction.
+we through every change, we
+must keep the direction.
 
-377
+375
 00:36:22,920 --> 00:36:25,348
+謝謝大家的聆聽
 Thank you for listening.
 
-378
+376
 00:36:25,348 --> 00:36:26,360
+謝謝
 Thank you.
