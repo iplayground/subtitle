@@ -1,0 +1,1339 @@
+1
+00:00:06,005 --> 00:00:06,317
+Hello, everyone.
+
+2
+00:00:07,833 --> 00:00:08,500
+Hello.
+
+3
+00:00:11,466 --> 00:00:12,755
+Hello.
+
+4
+00:00:12,966 --> 00:00:13,744
+Good morning.
+
+5
+00:00:16,466 --> 00:00:17,266
+Thank you.
+
+6
+00:00:18,305 --> 00:00:21,165
+My name is Minkyung Kim from Korea.
+
+7
+00:00:21,166 --> 00:00:25,466
+You can call me MK.
+
+8
+00:00:26,133 --> 00:00:28,952
+It's a pleasure to meet you.
+
+9
+00:00:29,366 --> 00:00:32,566
+Are you ready to listen to English?
+
+10
+00:00:35,034 --> 00:00:40,970
+This is my third time being in Taiwan and
+every experience has been amazing.
+
+11
+00:00:41,000 --> 00:00:44,000
+Thank you again for inviting me.
+
+12
+00:00:44,000 --> 00:00:51,000
+And before we dive into session, I would
+like to tell you about my background
+
+13
+00:00:51,360 --> 00:00:56,000
+to help you better understand what you can
+take away from today's session.
+
+14
+00:00:57,000 --> 00:01:05,419
+I studied education and after that I
+worked as a teacher for seven years.
+
+15
+00:01:05,710 --> 00:01:13,016
+And during that time I got interested in
+coding so I decided to seriously explore
+coding.
+
+16
+00:01:13,016 --> 00:01:16,888
+So I joined Apple Developer Academy as a
+learner.
+
+17
+00:01:17,238 --> 00:01:24,000
+There with my team we made a macOS app
+called iWaver that automatically places
+
+18
+00:01:24,000 --> 00:01:27,000
+large volume of PDF pages.
+
+19
+00:01:28,298 --> 00:01:33,000
+The following year I joined the academy as
+its first learning development mentor.
+
+20
+00:01:33,584 --> 00:01:39,000
+And I acquired another degree in computer
+science after that.
+
+21
+00:01:39,000 --> 00:01:45,000
+And I'm also doing my masters in Edtech
+right now. So I'm doing research in fields
+
+22
+00:01:45,000 --> 00:01:52,000
+like learning data analytics or content
+design strategies and gamification.
+
+23
+00:01:53,000 --> 00:01:59,000
+This year I'm expanding my role as a
+learning lead overseeing learning
+experience in academy.
+
+24
+00:01:59,000 --> 00:02:03,664
+And also I'm supporting mentors'
+educational skills.
+
+25
+00:02:06,138 --> 00:02:10,000
+So as you might have guessed from my
+journey, I'm an education specialist,
+
+26
+00:02:10,000 --> 00:02:17,000
+not a technical expert, so I'm going to
+share what you can take away and apply to
+your apps.
+
+27
+00:02:17,000 --> 00:02:22,000
+And you are the technical experts and you
+are the ones who can bring these
+strategies
+
+28
+00:02:22,000 --> 00:02:24,934
+and make it real in life.
+
+29
+00:02:26,812 --> 00:02:29,871
+So what am I here to talk about?
+
+30
+00:02:29,871 --> 00:02:32,135
+Let's go back to the title.
+
+31
+00:02:32,836 --> 00:02:37,000
+Designing Adaptive UX through Learning Theory and
+AI.
+
+32
+00:02:37,701 --> 00:02:42,000
+So what does UX have to do with learning?
+
+33
+00:02:43,307 --> 00:02:46,439
+When you think about the moment
+
+34
+00:02:46,439 --> 00:02:51,000
+you first download an app, 
+you need to figure out how it works.
+
+35
+00:02:51,000 --> 00:02:54,164
+Where are the buttons? 
+What should I do?
+
+36
+00:02:54,164 --> 00:02:57,000
+How can I accomplish my goal?
+
+37
+00:02:57,000 --> 00:03:01,000
+So that is, at its core, a learning
+experience.
+
+38
+00:03:01,000 --> 00:03:08,000
+So today I'm going to view user experience
+as a form of learning experience.
+
+39
+00:03:08,000 --> 00:03:13,000
+And if we do that, we can get some help,
+we can get some hints from educators.
+
+40
+00:03:13,709 --> 00:03:19,165
+Because they have spent a lot of time
+trying to figure out
+
+41
+00:03:19,165 --> 00:03:22,520
+how to effectively support learners.
+
+42
+00:03:24,365 --> 00:03:28,000
+Let's look at some questions they have
+been trying to answer for decades.
+
+43
+00:03:28,690 --> 00:03:33,000
+How do we help learners persist instead of
+giving up?
+
+44
+00:03:33,000 --> 00:03:39,000
+How do we provide the right level of
+support so learners can learn
+independently?
+
+45
+00:03:39,366 --> 00:03:44,000
+And how do we keep learners continuously
+engaged?
+
+46
+00:03:44,000 --> 00:03:51,000
+But today we are going to use the
+perspective of viewing user experience as
+a learning experience.
+
+47
+00:03:51,000 --> 00:03:52,601
+So let's try
+
+48
+00:03:52,601 --> 00:03:56,000
+to change the word
+"learn" into "use"
+
+49
+00:03:57,000 --> 00:04:00,078
+So how do we help?
+
+50
+00:04:00,595 --> 00:04:01,363
+Can anyone guess?
+
+51
+00:04:02,875 --> 00:04:03,643
+Users, thank you.
+
+52
+00:04:04,585 --> 00:04:05,115
+Users.
+
+53
+00:04:12,733 --> 00:04:15,000
+users persist instead of
+giving up?
+
+54
+00:04:15,000 --> 00:04:19,700
+And how do we provide the right level of
+support so...
+
+55
+00:04:21,300 --> 00:04:25,000
+Great, thank you.
+Users can?
+
+56
+00:04:27,000 --> 00:04:31,000
+Use! Amazing. Use independently.
+
+57
+00:04:31,000 --> 00:04:33,396
+And the last one, how do we keep
+
+58
+00:04:34,233 --> 00:04:35,315
+Perfect.
+
+59
+00:04:35,315 --> 00:04:39,000
+How do we keep users
+continuously engaged?
+
+60
+00:04:39,000 --> 00:04:43,456
+And I hope you can now see what I'm trying
+to tell you.
+
+61
+00:04:44,566 --> 00:04:48,000
+So I'm going to introduce three learning
+theories.
+
+62
+00:04:48,000 --> 00:04:51,000
+The basic ones, I'm not going to explain
+too much.
+
+63
+00:04:51,000 --> 00:04:55,000
+I'll bring lots of examples and the
+strategies as well.
+
+64
+00:04:55,000 --> 00:05:01,000
+So I'm going to talk about the cognitive
+load theory and then ZPD,
+
+65
+00:05:01,000 --> 00:05:05,000
+Zone of Proximal Development and
+Scaffolding.
+
+66
+00:05:05,000 --> 00:05:09,000
+And the last one is the flow theory.
+
+67
+00:05:09,466 --> 00:05:13,000
+So the first one, the cognitive load
+theory.
+
+68
+00:05:13,000 --> 00:05:19,000
+This was introduced by Dr. John Sweller
+in 1988.
+
+69
+00:05:19,000 --> 00:05:23,000
+And we all know about working memory.
+
+70
+00:05:23,000 --> 00:05:27,000
+We all know that we should not exceed
+working memory.
+
+71
+00:05:27,000 --> 00:05:33,000
+So the core idea of cognitive load theory
+is that when designing for learning,
+
+72
+00:05:33,000 --> 00:05:41,000
+we should avoid exceeding the limits of
+working memory so that learners can stay
+focused on the task itself.
+
+73
+00:05:43,300 --> 00:05:46,533
+This theory introduces three types of
+load.
+
+74
+00:05:47,000 --> 00:05:52,649
+Intrinsic load, extraneous load, and
+germane load.
+
+75
+00:05:54,124 --> 00:06:00,000
+The first is intrinsic load, which refers to
+the inherent complexity of the task
+itself.
+
+76
+00:06:01,980 --> 00:06:11,253
+The second is extraneous load, which comes
+from unnecessary or inefficient elements
+that are not directly related to the task.
+
+77
+00:06:11,341 --> 00:06:13,000
+So it distracts the learner.
+
+78
+00:06:14,830 --> 00:06:20,000
+The last one, the germane load, it is the
+effort required to build schemas.
+
+79
+00:06:20,000 --> 00:06:27,000
+It's the mental structure that supports
+learning, so it links the new information
+to the current information.
+
+80
+00:06:30,978 --> 00:06:36,000
+And we should minimize one thing, maximize
+another, and manage the rest.
+
+81
+00:06:36,038 --> 00:06:40,038
+So can you guess which one we should
+minimize?
+
+82
+00:06:44,000 --> 00:06:46,000
+All of them?
+
+83
+00:06:46,000 --> 00:06:52,000
+If some things are inherent, we cannot
+really deal with it, do anything with it.
+
+84
+00:06:52,042 --> 00:06:57,042
+But we should minimize extraneous load.
+
+85
+00:06:58,599 --> 00:07:03,439
+These are unnecessary mental effort caused
+by poor instructional design
+
+86
+00:07:04,226 --> 00:07:07,271
+or distracting presentation.
+
+87
+00:07:08,332 --> 00:07:12,142
+So we should minimize it by removing irrevalant information,
+
+88
+00:07:12,147 --> 00:07:14,198
+using clear and concise information
+
+89
+00:07:14,198 --> 00:07:19,704
+and avoiding uncluttered layout or unnecessary animations.
+
+90
+00:07:27,997 --> 00:07:29,997
+Now I feel safe.
+
+91
+00:07:30,000 --> 00:07:33,000
+Can you guess which one we should
+maximize?
+
+92
+00:07:34,000 --> 00:07:36,000
+Yes.
+
+93
+00:07:36,000 --> 00:07:41,000
+Some of you were pointing, and that's
+correct.
+
+94
+00:07:41,000 --> 00:07:44,000
+We should maximize the germane load.
+
+95
+00:07:44,000 --> 00:07:46,000
+That is where learning happens.
+
+96
+00:07:46,000 --> 00:07:53,485
+So this is a productive mental effort used
+to actually process the information,
+
+97
+00:07:53,504 --> 00:07:56,000
+build schemas, and commit to long-term memory.
+
+98
+00:07:56,997 --> 00:08:03,619
+So we should maximize it by encouraging
+deep thinking or self-reflection and
+
+99
+00:08:03,635 --> 00:08:07,805
+helping learners connect new concepts to
+their prior knowledge.
+
+100
+00:08:09,000 --> 00:08:17,000
+And the last one, we should manage
+intrinsic load.
+
+101
+00:08:18,000 --> 00:08:26,000
+We should manage it because intrinsic load
+is inherent difficulty of the task itself,
+so there is not much we can do.
+
+102
+00:08:26,000 --> 00:08:30,794
+But we can help them or we can guide them
+through
+
+103
+00:08:30,871 --> 00:08:38,801
+making them in smaller digestible
+chunks and also sequencing it logically
+from simple to complex.
+
+104
+00:08:41,000 --> 00:08:44,000
+Now back to our app and the user.
+
+105
+00:08:44,000 --> 00:08:53,000
+If we throw too much at a user, they
+experience an extraneous load, they get
+overwhelmed, and they might leave.
+
+106
+00:08:53,000 --> 00:08:57,000
+So we need to minimize this so they can
+focus on the core value.
+
+107
+00:08:59,000 --> 00:09:02,213
+Now let's take a look at some examples
+
+108
+00:09:02,282 --> 00:09:07,000
+of how these strategies for reducing
+cognitive load can be applied into UX.
+
+109
+00:09:09,000 --> 00:09:11,000
+Does anyone use Chrome here?
+
+110
+00:09:12,000 --> 00:09:15,000
+Yay, thank you. I do too.
+
+111
+00:09:15,000 --> 00:09:22,000
+And when you press Command plus P, whether
+in Chrome or not, usually, can you guess
+what happens?
+
+112
+00:09:24,000 --> 00:09:26,000
+P? Print!
+
+113
+00:09:26,000 --> 00:09:28,000
+Yeah, you're right. Thank you.
+
+114
+00:09:28,000 --> 00:09:29,000
+Print!
+
+115
+00:09:29,000 --> 00:09:31,000
+So print dialog pops up.
+
+116
+00:09:31,000 --> 00:09:36,000
+But when this dialog pops up, it does not
+show you 100 settings.
+
+117
+00:09:37,000 --> 00:09:46,000
+It only asks its destination and pages,
+like the range of pages, and the layout,
+landscape or portrait.
+
+118
+00:09:46,000 --> 00:09:49,000
+So it only asks three questions.
+
+119
+00:09:49,000 --> 00:09:58,000
+But if you're a power user and if you want
+more, of course you can simply click more
+settings and then you can adjust a lot of
+things.
+
+120
+00:10:02,300 --> 00:10:07,300
+So at first, a system presents a
+simplified view.
+
+121
+00:10:07,300 --> 00:10:18,708
+If all of these detailed options were
+presented to the user at the moment they
+tried to do it the first time, it would
+create a massive cognitive bottleneck.
+
+122
+00:10:18,708 --> 00:10:23,300
+So instead, the system completely removes
+that initial mental barrier.
+
+123
+00:10:24,701 --> 00:10:30,175
+And Apple highlighted this exact concept
+back in WWDC 2022.
+
+124
+00:10:30,175 --> 00:10:37,934
+So if you're interested, you can check out
+"The Craft of SwiftUI APIs: Progressive
+Disclosure."
+
+125
+00:10:41,000 --> 00:10:43,000
+Now let's take a look at Airbnb.
+
+126
+00:10:43,000 --> 00:10:51,733
+So when I open the app and when I start
+searching, it does not overwhelm me with
+information.
+
+127
+00:10:51,733 --> 00:10:53,733
+It only asks where.
+
+128
+00:10:56,352 --> 00:10:59,484
+And then just when.
+
+129
+00:11:03,601 --> 00:11:05,601
+And next, who.
+
+130
+00:11:09,526 --> 00:11:21,956
+So by chunking the information, Airbnb
+reduces cognitive load at the beginning,
+allowing users to focus on the core task,
+which is browsing and choosing a place to
+stay.
+
+131
+00:11:24,552 --> 00:11:29,312
+But actually, if the user next time opens
+the app
+
+132
+00:11:29,312 --> 00:11:34,895
+they are given a shortcut so they can focus on what matters most, which is browsing and choosing.
+
+133
+00:11:37,267 --> 00:11:44,714
+It already has a shortcut of Taipei,
+everything, and it automatically shows the
+result right away.
+
+134
+00:11:47,300 --> 00:11:49,300
+And another example is autofill.
+
+135
+00:11:49,696 --> 00:11:57,300
+So this is something that we can go even
+further and eliminate the behavioral load
+entirely.
+
+136
+00:11:57,300 --> 00:12:07,300
+When you receive a text message with
+authentication code, we used to have to go
+to the message and maybe memorize the
+numbers and type in.
+
+137
+00:12:07,687 --> 00:12:19,741
+But now, it automatically detects the code
+and it will surface the numbers above the
+keyboard, so you can just tap it and it
+gets filled right away.
+
+138
+00:12:19,741 --> 00:12:22,148
+So this is like zero cognitive friction.
+
+139
+00:12:27,300 --> 00:12:31,300
+And let me introduce the CapWords.
+
+140
+00:12:31,300 --> 00:12:36,300
+This is a 2025 Apple design award winner
+for delight and fun.
+
+141
+00:12:36,300 --> 00:12:44,300
+And with Apple's frameworks, it replaces
+manual data input with more seamless
+interactions.
+
+142
+00:12:45,797 --> 00:12:46,797
+Let me show you.
+
+143
+00:13:33,965 --> 00:13:39,574
+It has a sound, but unfortunately, we
+can't hear it.
+
+144
+00:13:44,052 --> 00:13:45,566
+I'll just move on.
+
+145
+00:13:48,300 --> 00:13:54,300
+So let me summarize what you can apply.
+
+146
+00:13:54,300 --> 00:13:57,300
+I'm going to give you what you can apply
+to your apps.
+
+147
+00:13:57,300 --> 00:14:06,300
+So first, you should limit distractions.
+And then use clear language.
+
+148
+00:14:06,300 --> 00:14:08,142
+Group related information.
+
+149
+00:14:09,213 --> 00:14:15,300
+Avoid unnecessary details.
+And emphasize important content.
+
+150
+00:14:15,300 --> 00:14:20,678
+And beyond these, any approach that helps
+reduce cognitive load is relevant.
+
+151
+00:14:21,300 --> 00:14:26,931
+And I'm just giving you only five, but any
+approach will do.
+
+152
+00:14:26,931 --> 00:14:30,707
+Now the second theory, ZPD and
+Scaffolding.
+
+153
+00:14:32,769 --> 00:14:34,769
+The Zone of Proximal Development.
+
+154
+00:14:34,769 --> 00:14:41,300
+It was introduced by Lev Vygotsky, and the
+Scaffolding was developed by Jerome
+Bruner.
+
+155
+00:14:41,300 --> 00:14:49,671
+And these two concepts provide a clear
+framework for when and how to intervene
+when a learner is learning a new thing.
+
+156
+00:14:51,906 --> 00:14:54,906
+There are three zones.
+
+157
+00:14:55,300 --> 00:15:02,712
+Zone A is something a learner can do alone
+without any help, so a learner has already
+mastered it.
+
+158
+00:15:04,300 --> 00:15:09,300
+Zone C is something a learner cannot do
+even with the help.
+
+159
+00:15:09,300 --> 00:15:13,269
+This is beyond their level, so they cannot
+do even with the guidance.
+
+160
+00:15:15,667 --> 00:15:21,300
+And Zone B is where a learner can do with
+proper help.
+
+161
+00:15:21,300 --> 00:15:28,300
+So this is where the learning happens, and
+this is called the Zone of Proximal
+Development.
+
+162
+00:15:28,300 --> 00:15:35,080
+And this is the sweet spot that we need to
+focus and provide proper guidance and
+help.
+
+163
+00:15:38,023 --> 00:15:42,024
+Can anyone guess what these structures are
+outside of the building?
+
+164
+00:15:42,607 --> 00:15:46,607
+It's called scaffolding, yes.
+
+165
+00:15:46,607 --> 00:15:49,300
+These are scaffolding.
+
+166
+00:15:49,300 --> 00:15:56,943
+So you use scaffoldings when you're
+constructing so that workers can go higher and
+build a building.
+
+167
+00:15:56,943 --> 00:16:03,300
+And after a building can stand on its own,
+after it's stable, then you take these
+scaffoldings away.
+
+168
+00:16:03,300 --> 00:16:11,555
+So like this, we should provide proper
+help and guidance, but as the learner
+progresses, we should take them away.
+
+169
+00:16:13,300 --> 00:16:20,300
+So at first we provide full support, and
+then we slightly decrease the assistance.
+
+170
+00:16:20,300 --> 00:16:28,300
+And then the final goal will be for the
+users to do things independently.
+
+171
+00:16:28,300 --> 00:16:33,300
+Let's take a look at some examples.
+
+172
+00:16:33,300 --> 00:16:35,300
+Swift Playground.
+
+173
+00:16:35,300 --> 00:16:39,300
+This helps through a series of dynamic
+scaffolds.
+
+174
+00:16:39,300 --> 00:16:47,300
+The app provides glossary popovers and
+code completion bars that suggest the
+exact syntax needed at first.
+
+175
+00:16:47,300 --> 00:16:55,300
+But as the user progresses to later
+chapters, the hints become less
+prescriptive and more conceptual.
+
+176
+00:16:55,300 --> 00:17:04,060
+So eventually the guided completion bar is
+replaced by a standard keyboard, removing
+the entire scaffolding.
+
+177
+00:17:07,300 --> 00:17:14,300
+Tips from Apple is also a great example of
+scaffolding and also reducing cognitive
+load.
+
+178
+00:17:14,300 --> 00:17:24,300
+Instead of overwhelming the user with a
+full manual or complex documentation, it
+delivers small, digestible tips over time.
+
+179
+00:17:24,300 --> 00:17:35,300
+So it introduces features gradually, often
+through short, focused pieces of guidance
+or occasional notification.
+
+180
+00:17:35,300 --> 00:17:45,300
+And as users become familiar, that support
+fades away. And if the user uses
+shortcuts, then they do not give you any
+more tips.
+
+181
+00:17:45,300 --> 00:17:58,300
+So it appears when you are near the skill
+but haven't mastered it yet. And when the
+user has mastered it, then it stops.
+
+182
+00:17:58,300 --> 00:18:01,300
+The scaffolding doesn't have to be a text
+tooltip.
+
+183
+00:18:01,300 --> 00:18:14,300
+So if you look at the Goodnotes, when a
+user draws a crooked shape, then algorithm
+detects it and makes it into a perfect
+shape.
+
+184
+00:18:14,300 --> 00:18:26,300
+It acts as an invisible scaffold for
+drawing beginners, and it makes them feel
+capable.
+
+185
+00:18:26,300 --> 00:18:38,300
+Notion is actually a very interesting
+example because it's a powerful and quite
+complex tool, yet it works hard to reduce
+that complexity for new users.
+
+186
+00:18:38,300 --> 00:18:43,300
+So when you first start, Notion doesn't
+overwhelm you with all the features.
+
+187
+00:18:43,300 --> 00:18:45,468
+It simply tells you
+
+188
+00:18:45,468 --> 00:18:50,910
+"Press space for AI or slash for commands".
+And when you press slash, 
+
+189
+00:18:50,910 --> 00:18:59,482
+Notion reveals a wide range of
+features, and by just hovering on them, it
+gives you the short descriptions or
+examples.
+
+190
+00:19:01,300 --> 00:19:08,538
+So Notion steps in lightweight guidance,
+and over time, users remember the commands
+and no longer need the prompts.
+
+191
+00:19:16,961 --> 00:19:25,300
+To apply ZPD and scaffolding to UX, here
+are a few principles to follow.
+
+192
+00:19:25,300 --> 00:19:35,091
+And please remember, in practice, we don't
+apply just one learning theory, and these
+approaches work best when it's all
+combined together.
+
+193
+00:19:36,863 --> 00:19:41,065
+So it should detect users' hesitation.
+
+194
+00:19:41,065 --> 00:19:43,497
+Give contextual hints.
+
+195
+00:19:44,566 --> 00:19:47,369
+Offer temporary support.
+
+196
+00:19:48,375 --> 00:19:55,100
+Fade assistance gradually. And
+then empower independent action.
+
+197
+00:19:58,004 --> 00:20:02,342
+The last one is a flow theory coined by
+Mihaly Csikszentmihalyi.
+
+198
+00:20:02,342 --> 00:20:05,661
+And I'm pretty
+sure you all have heard of him.
+
+199
+00:20:06,771 --> 00:20:18,384
+So the flow theory is, if you want your
+user to be fully immersed, you have to
+meticulously calibrate the difficulty of
+their experience.
+
+200
+00:20:19,066 --> 00:20:28,791
+So if your app is too challenging, then
+users feel anxiety, and they feel worried,
+frustrated, and they might leave. They might quit.
+
+201
+00:20:29,300 --> 00:20:33,300
+But if it's too easy, they get bored, and
+they quit.
+
+202
+00:20:33,300 --> 00:20:40,999
+So you have to keep them right between
+them so that users can still stay in the
+flow state.
+
+203
+00:20:42,300 --> 00:20:49,128
+This is all. Let's take a look at some
+examples of how the strategies of flow can
+be applied.
+
+204
+00:20:51,833 --> 00:20:54,654
+Elevate is a brain training app.
+
+205
+00:20:54,654 --> 00:21:01,544
+It is a strong example of how learning experiences
+can be designed around flow theory.
+
+206
+00:21:02,708 --> 00:21:12,300
+So as you play the games, the on-device
+algorithm constantly analyzes the accuracy
+and reaction speed in the background.
+
+207
+00:21:12,300 --> 00:21:21,239
+So it dynamically calibrates the math or
+language difficulty so that learners can
+stay in the flow state.
+
+208
+00:21:25,300 --> 00:21:37,300
+This can be understood through
+ZPD, where app identifies the gap between
+the user's current ability to potential
+through data.
+
+209
+00:21:37,300 --> 00:21:42,800
+So from a scaffolding perspective,
+
+210
+00:21:42,800 --> 00:21:48,300
+the app learns user behavior and provides timely
+hints for support when needed.
+
+211
+00:21:48,764 --> 00:21:57,300
+And ultimately, the app behaves like a
+teacher, so even allowing for gradual
+removal of support over time.
+
+212
+00:21:59,714 --> 00:22:09,300
+I'm pretty sure you all know Duolingo.
+This is actually a great example of
+educational app that goes beyond flow
+theory.
+
+213
+00:22:10,300 --> 00:22:18,300
+Duolingo applies so many strategies, and
+it delivers personalized learning from the
+data.
+
+214
+00:22:18,300 --> 00:22:22,182
+And also, it suggests a new goal,
+
+215
+00:22:22,182 --> 00:22:29,058
+and it uses a lot of gamification strategies like
+rankings and badges and nudges and
+everything
+
+216
+00:22:29,540 --> 00:22:33,300
+to just keep learners stay
+focused and engaged.
+
+217
+00:22:36,523 --> 00:22:43,303
+I'm a heavy user with a streak over 
+2,100 days.
+
+218
+00:22:43,303 --> 00:22:55,300
+And whenever I see this "JUMP HERE?"
+button, I feel like I'm being challenged,
+and I'm like, "Okay, challenge accepted."
+And I end up learning more than I planned.
+ 
+219
+00:22:57,873 --> 00:23:01,532
+Apple Fitness does this amazingly as well.
+
+220
+00:23:03,940 --> 00:23:09,212
+So each week, it recommends a new move
+goal
+
+221
+00:23:09,212 --> 00:23:17,300
+that's tailored to its user. So it
+does not give you the exact same
+10,000-step goal to everyone.
+
+222
+00:23:18,245 --> 00:23:29,300
+The system analyzes the past activity to
+set a personalized monthly challenge or
+weekly challenge so that it pushes you
+slightly higher yet achievable.
+
+223
+00:23:32,186 --> 00:23:38,545
+To apply flow theory to UX, here are a few
+principles to follow.
+
+224
+00:23:40,231 --> 00:23:42,526
+Track user progress.
+
+225
+00:23:43,626 --> 00:23:48,617
+Adjust task difficulty. Set achievable
+goal.
+
+226
+00:23:49,277 --> 00:23:55,824
+Balance skill and challenge. And
+prevent boredom and frustration.
+
+227
+00:23:57,941 --> 00:24:05,630
+Well, all of these three theories work
+great if it's combined together.
+
+228
+00:24:05,630 --> 00:24:11,300
+So I encourage you to think and maybe apply
+them to your app.
+
+229
+00:24:13,679 --> 00:24:18,590
+And based on everything we've discussed,
+the cognitive flow theory,
+
+230
+00:24:18,590 --> 00:24:21,136
+ZPD and
+scaffolding, and the flow theory,
+
+231
+00:24:21,394 --> 00:24:30,300
+I would also like to recommend this video, which
+brings these ideas together into a
+practical UX design guidance.
+
+232
+00:24:30,300 --> 00:24:33,738
+And also, this year,
+
+233
+00:24:33,738 --> 00:24:36,015
+they also have this
+new video.
+
+234
+00:24:36,015 --> 00:24:43,155
+It's only about 17 minutes
+long, and it covers a wide range of
+fundamental design principles.
+
+235
+00:24:43,656 --> 00:24:51,297
+And if you watch it now, then you will maybe
+recognize some learning theories in the
+back.
+
+236
+00:24:54,611 --> 00:24:59,069
+Now, let me talk briefly about on-device AI.
+
+237
+00:24:59,069 --> 00:25:07,300
+Well, I want to be frank with you, and
+I know this is not the silver bullet for
+every problem. I know its limitations.
+
+238
+00:25:07,300 --> 00:25:13,010
+But I suggest maybe you can take a look at
+on-device AI first, because
+
+239
+00:25:14,321 --> 00:25:22,300
+of privacy. The user data is really private data. 
+It's really sensitive, so it's better to stay
+on the device.
+
+240
+00:25:22,940 --> 00:25:30,227
+So if it does not get uploaded on cloud
+server, it will be safe.
+
+241
+00:25:31,636 --> 00:25:34,675
+And the next one is continuity.
+
+242
+00:25:34,993 --> 00:25:40,992
+If it does
+not depend on the internet, and if it
+works on the plane or on the elevator,
+
+243
+00:25:40,992 --> 00:25:48,961
+then learner can stay focused and the
+learning doesn't stop. So you can keep
+your users hooked and engaged.
+
+244
+00:25:51,769 --> 00:25:54,922
+The next one is cost. So
+
+245
+00:25:54,922 --> 00:26:02,610
+cloud servers are
+great, but if the data has to always go
+back and forth, then it will make you pay
+the cost.
+
+246
+00:26:02,610 --> 00:26:07,300
+So if you can use on-device AI,
+it will save you some costs.
+
+247
+00:26:09,825 --> 00:26:15,536
+Well, while on-device AI offers some
+advantages, it does come with some
+challenges,
+
+248
+00:26:15,536 --> 00:26:20,499
+such as battery consumption or
+need for high-end hardware.
+
+249
+00:26:20,499 --> 00:26:26,300
+So, well, you're the technical experts, so it's up
+to you to do what I was suggesting.
+
+250
+00:26:27,883 --> 00:26:31,631
+And if you're interested in exploring
+on-device AI further,
+
+251
+00:26:31,631 --> 00:26:41,020
+I recommend taking a
+look at this video from last year. It
+offers a great starting point to
+understand how to bring these ideas into
+practice.
+
+252
+00:26:43,783 --> 00:26:47,924
+Now let's take a moment to reflect on what
+we learned today.
+
+253
+00:26:47,924 --> 00:26:55,023
+So the first one was the
+cognitive load theory. So we should reduce
+too much load.
+
+254
+00:26:56,958 --> 00:27:05,807
+ZPD and scaffolding. The zone of proximal
+development. We should target that zone
+and provide scaffolding.
+
+255
+00:27:08,212 --> 00:27:20,300
+And the flow theory. So we need to make
+them learn faster and engage deeper and
+stay longer. So we can use all these three
+theories into our apps.
+
+256
+00:27:23,397 --> 00:27:32,466
+And by leveraging technology, we can build
+interfaces that dynamically adapt to a
+user's individual learning curve.
+
+257
+00:27:32,466 --> 00:27:40,212
+So when we think about adaptive learning
+or user experiences,
+
+258
+00:27:40,212 --> 00:27:46,153
+It's not just about making them smarter.
+It's about making them more private, more responsive, and
+more sustainable.
+
+259
+00:27:50,214 --> 00:27:52,675
+Here's my final suggestion.
+
+260
+00:27:52,675 --> 00:28:00,615
+So when you
+notice users dropping off because learning
+how to use an app feels confusing or
+difficult,
+
+261
+00:28:01,824 --> 00:28:10,015
+I hope you can get some help by
+designing adaptive UX through learning
+theory and AI.
+
+262
+00:28:11,620 --> 00:28:16,620
+That's all I prepared for today, and thank
+you all for listening.
+
+263
+00:28:20,165 --> 00:28:21,333
+This is all.
+
+264
+00:28:21,751 --> 00:28:22,390
+Thank you!
+
+265
+00:28:23,328 --> 00:28:24,606
+Thank you.
